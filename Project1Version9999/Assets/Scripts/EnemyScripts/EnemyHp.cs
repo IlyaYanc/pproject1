@@ -74,7 +74,7 @@ public class EnemyHp : MonoBehaviour
     {
         if (hp <= 0)
         {
-            Destroy(gameObject,2);
+            Destroy(gameObject,0.01f);
             Destroy(hpCanvas.gameObject);
         }
         hpCanvas.position = transform.position + new Vector3(0, 0.7f, 0);
