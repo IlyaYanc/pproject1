@@ -12,7 +12,7 @@ public class Interact : MonoBehaviour
        
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(interactDirection), interactDistance); //бьем луч
         //Debug.DrawRay(transform.position, TransformDirection(interactDirection));
-        Debug.Log(hit.collider);
+        //Debug.Log(hit.collider);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag(interactableTag)) //если коснулся объекта
