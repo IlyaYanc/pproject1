@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class TouchPlayerController : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class TouchPlayerController : MonoBehaviour
     private AnimationController ThiefGraphicsAnimationController;
     private AnimationController ArcherGraphicsAnimationController;
     private AnimationController MageGraphicsAnimationController;
-
+    [SerializeField] private Button[] ActionButtons = new Button[0];
 
     public enum Direction
     {
@@ -177,10 +178,19 @@ public class TouchPlayerController : MonoBehaviour
         gameObject.GetComponent<TouchPlayerController>().enabled = false;
         gameObject.GetComponent<SliderTimer>().m_duration = dur;
         gameObject.GetComponent<SliderTimer>().RestartTimer();
+        for (int i = 0; i < ActionButtons.Length; i++)
+        {
+            ActionButtons[i].enabled = false;
+        }
+
     }
     public void EnableComponent()
     {
         gameObject.GetComponent<TouchPlayerController>().enabled = true;
+        for (int i = 0; i < ActionButtons.Length; i++)
+        {
+            ActionButtons[i].enabled = true;
+        }
     }
 
 }

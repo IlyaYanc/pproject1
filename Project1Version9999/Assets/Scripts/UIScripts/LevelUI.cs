@@ -21,6 +21,10 @@ public class LevelUI : MonoBehaviour
     public GameObject RotateRightButton;
 
     [SerializeField]
+    public Button[] ActionButtons = new Button[0];
+
+
+    [SerializeField]
     public GameObject KnightConstantText;
     [SerializeField]
     public GameObject KnightDamageText;
@@ -427,23 +431,31 @@ public class LevelUI : MonoBehaviour
         }
     }
 
-    public void DisableWalkButtons()
+    public void DisableActionButtons()
     {
-        WalkUPButton.GetComponent<Button>().enabled = false;
+        for (int i = 0; i < ActionButtons.Length; i++)
+        {
+            ActionButtons[i].enabled = false;
+        }
+        /*WalkUPButton.GetComponent<Button>().enabled = false;
         WalkLeftButton.GetComponent<Button>().enabled = false;
         WalkRightButton.GetComponent<Button>().enabled = false;
         WalkDownButton.GetComponent<Button>().enabled = false;
         RotateLeftButton.GetComponent<Button>().enabled = false;
-        RotateRightButton.GetComponent<Button>().enabled = false;
+        RotateRightButton.GetComponent<Button>().enabled = false; */
     }
-    public void EnableWalkButtons()
+    public void EnableActionButtons()
     {
-        WalkUPButton.GetComponent<Button>().enabled = true;
+        for(int i = 0; i<ActionButtons.Length; i++)
+        {
+            ActionButtons[i].enabled = true;
+        }
+        /*WalkUPButton.GetComponent<Button>().enabled = true;
         WalkLeftButton.GetComponent<Button>().enabled = true;
         WalkRightButton.GetComponent<Button>().enabled = true;
         WalkDownButton.GetComponent<Button>().enabled = true;
         RotateLeftButton.GetComponent<Button>().enabled = true;
-        RotateRightButton.GetComponent<Button>().enabled = true;
+        RotateRightButton.GetComponent<Button>().enabled = true;*/
     }
 
     public void PauseTouchController()

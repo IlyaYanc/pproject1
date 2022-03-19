@@ -51,7 +51,7 @@ public class SliderTimer : MonoBehaviour
         }
         if(LevelUI != null)
         {
-            LevelUI.GetComponent<LevelUI>().EnableWalkButtons();
+            LevelUI.GetComponent<LevelUI>().EnableActionButtons();
         }
         _slider.value = 1f;
     }
