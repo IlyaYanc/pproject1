@@ -265,7 +265,15 @@ public class enemy : enemyWalk
     }
     public bool isWalking()
     {
-        return (pos == transform.position);
+        if (walkTimar <= 0f)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        //return (pos == transform.position && walkTimar > 0f);
     }
     private void shoot(float dist)
     {
