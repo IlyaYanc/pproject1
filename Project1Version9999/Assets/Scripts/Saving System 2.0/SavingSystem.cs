@@ -74,15 +74,28 @@ public class SavingSystem : MonoBehaviour
 
     public void SaveSettings()
     {
+        /*if(menuBtns != null)
+            SaveGame.Save("MenuData", menuBtns.SaveData());
+        if (options != null)
+        {
+            SaveGame.Save("OptionsData", options.SaveData());
+        }
+        Debug.Log("save settings"); */
+        StartCoroutine(SaveSettingsDelayed());
+    }
+
+    private IEnumerator SaveSettingsDelayed()
+    {
+        yield return new WaitForSeconds(0.1f);
         if(menuBtns != null)
             SaveGame.Save("MenuData", menuBtns.SaveData());
         if (options != null)
         {
             SaveGame.Save("OptionsData", options.SaveData());
         }
-            
+        Debug.Log("save settings");    
     }
-
+    
     public void LoadSettings()
     {
         if (SaveGame.Exists("MenuData") && menuBtns != null)
@@ -92,6 +105,7 @@ public class SavingSystem : MonoBehaviour
         {
             options.LoadData(SaveGame.Load<OptionsSavingData>("OptionsData"));
         }
+        Debug.Log("load settings"); 
             
     }
 

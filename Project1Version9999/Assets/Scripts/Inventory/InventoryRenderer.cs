@@ -56,8 +56,6 @@ public class InventoryRenderer : MonoBehaviour
         
         ActiveItemButton.gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
-        //cells = container.GetComponentsInChildren<Image>();
-
         wholeContainer.SetActive(false);
 
         Image[] contents = container.GetComponentsInChildren<Image>(true);
@@ -68,22 +66,8 @@ public class InventoryRenderer : MonoBehaviour
                 cells.Add(contents[i].gameObject);
             }
         }
-        /*Image[] appliedContents = appliedItemsContainer.GetComponentsInChildren<Image>(true);
-        for (int i = 0; i < appliedContents.Length; i++)
-        {
-            if (appliedContents[i].CompareTag("invAppliedCell"))
-            {
-                applieditemsCells.Add(appliedContents[i].gameObject);
-            }
-        }*/
-        /*for(int i = 0; i < cells.Count; i++)
-        {
-            EventTrigger trigger = cells[i].GetComponent<EventTrigger>();
-            trigger.OnPointerClick(ActiveItemUpdate(cells[i).);
-        }*/
-
         UpdateInventory(inventory.ReturnItems());
-        //UpdateAppliedItems(inventory.ReturnAppliedItems());
+       
     }
 
     public void UpdateInventory(List<InventoryItem> items)
@@ -130,7 +114,6 @@ public class InventoryRenderer : MonoBehaviour
                         attackController.SetActiveWeapon((WeaponItem) items[i].item, items[i].damage, false);
                         break;
                     }
-                    //attackController.SetActiveWeapon((WeaponItem)items[i].item, items[i].damage, false);
                 }
                 
             }
@@ -159,49 +142,7 @@ public class InventoryRenderer : MonoBehaviour
             ActiveItemUpdate(null, 0);
         }
     }
-
-    /*public void UpdateAppliedItems(List<InventoryItem> items)
-    {
-        if (cells.Count < items.Count)
-        {
-            return;
-        }
-        for (int i = 0; i < cells.Count; i++)
-        {
-            if (i < items.Count)
-            {
-                int x = i;
-                cells[i].GetComponentInChildren<Text>(true).text = items[i].amount.ToString();
-                Image[] imgs = cells[i].GetComponentsInChildren<Image>(true);
-                foreach (Image img in imgs)
-                {
-                    if (img.CompareTag("invSprite"))
-                    {
-                        img.sprite = items[i].item.inventorySprite;
-                        img.gameObject.SetActive(true);
-                        break;
-                    }
-                }
-                UnityEngine.UI.Button btn = cells[i].GetComponent<UnityEngine.UI.Button>();
-                btn.onClick.AddListener(() => ActiveItemUpdate(items[x]));
-            }
-            else
-            {
-                cells[i].GetComponentInChildren<Text>().text = "";
-                Image[] imgs = cells[i].GetComponentsInChildren<Image>();
-                foreach (Image img in imgs)
-                {
-                    if (img.CompareTag("invSprite"))
-                    {
-                        //img.sprite = emptySprite;
-                        img.gameObject.SetActive(false);
-                        break;
-                    }
-                }
-            }
-        }
-    }*/
-
+    
     public void ActiveItemUpdate(InventoryItem _item, int _x)
     {
         TextMeshProUGUI btnText = ActiveItemButton.GetComponentInChildren<TextMeshProUGUI>(true);
@@ -266,11 +207,18 @@ public class InventoryRenderer : MonoBehaviour
         {
             hp.EncreaseResist(CalculateResist(defenceBoostValue));
         }
-        foreach (var attackController in attackControllers)
+
+        for (var index = 0; index < attackControllers.Length; index++)
         {
-            attackController.SetDamegeMultiplier(1);
+            var attackController = attackControllers[index];
+            attackController.DivDamageMultiplier(damageBoostValue);
+            dmgTexts[index].text = attackControllers[index].GetDamage().ToString();
+            Debug.Log(attackControllers[index].GetDamage().ToString());
+            
         }
-        
+
+        defenceBoostValue = 0;
+        damageBoostValue = 1;
     }
     
     void UseItem(InventoryItem _item, int _x)
@@ -293,13 +241,15 @@ public class InventoryRenderer : MonoBehaviour
                 hp.DecreaseResist(CalculateResist(defenceBoostValue));
                 boostCD_timer = new Timer(foodItem.boostLength, false, FoodBoostTimerCompleted);
                 _manager.RegisterTimer(boostCD_timer);
+                boostCD_timer.Restart();
             }
 
             for (var index = 0; index < attackControllers.Length; index++)
             {
                 var attackController = attackControllers[index];
-                attackController.SetDamegeMultiplier(damageBoostValue);
-                dmgTexts[index].text = attackControllers[_x].GetDamage().ToString();
+                attackController.MultiplyDamageMultiplier(damageBoostValue);
+                dmgTexts[index].text = attackControllers[index].GetDamage().ToString();
+                Debug.Log(attackControllers[index].GetDamage().ToString());
             }
 
             if (_item.amount > 1)
@@ -318,18 +268,7 @@ public class InventoryRenderer : MonoBehaviour
     {
         return (_defence/ 100f) * 0.3f;
     }
-
-    /*void ApplyEquipment(InventoryItem _item, int _x, bool _isApplied)
-    {
-        //Debug.Log(_x);
-        heroPanel.SetActive(false);
-
-        equipmentControllers[_x].ChangeEquipment(_item, _isApplied);
-
-    }*/
-
     
-
     public void UnapplyItem(InventoryItem _item)
     {
         Debug.Log("unequiping");
@@ -380,45 +319,6 @@ public class InventoryRenderer : MonoBehaviour
                 }
                 break;
             }
-            
-            /*if (!_item.isApplied)
-            {
-                heroPanel.SetActive(true);
-                for (int i = 0; i < heroBtns.Length; i++)
-                {
-                    heroBtns[i].onClick.RemoveAllListeners();
-                    int j = i;
-                    bool t = _item.isApplied;
-                    heroBtns[i].onClick.AddListener(() => ApplyEquipment(_item, j, t));
-                }
-            }
-            else
-            {
-                Debug.Log("removing " + _item.item);
-                heroPanel.SetActive(false);
-                //equipmentControllers[_x].ChangeEquipment(_item, _item.isApplied);
-                foreach (var hero in equipmentControllers)
-                {
-                    if (((EquipmentItem) (_item.item)).equipmentType == equipmentType.ChestPlate)
-                    {
-                        if (hero.chestPlate == _item)
-                        {
-                            hero.ChangeEquipment(_item, true);
-                            Debug.Log("removing " + _item.item + " from " +hero);
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        if(hero.chestPlate == _item)
-                        {
-                            hero.ChangeEquipment(_item, true);
-                            Debug.Log("removing " + _item.item + " from " +hero);
-                            break;
-                        }
-                    }
-                }
-            }*/
         }
         List<InventoryItem> items = inventory.ReturnItems();
         for(int i = 0; i < items.Count; i++)
@@ -452,17 +352,7 @@ public class InventoryRenderer : MonoBehaviour
         TextMeshProUGUI btnText = ActiveItemButton.GetComponentInChildren<TextMeshProUGUI>(true);
         
         _item.isApplied = !_item.isApplied;
-        /*if (_item.isApplied)
-        {
-            if (_item.item.type == ItemType.Equipment)
-            {
-                // e = ((EquipmentItem) (_item.item)).animator; //вместо e подставить аниматор, который нужно заменить
-            }
-            else if (_item.item.type == ItemType.Weapon)
-            {
-                // e = ((WeaponItem) (_item.item)).animator; //вместо e подставить аниматор, который нужно заменить
-            }
-        }*/
+        
         btnText.text = !_item.isApplied ? "надеть" : "снять";
         inventory.ChangeItem(_item, _x);
         UpdateInventory(inventory.ReturnItems());

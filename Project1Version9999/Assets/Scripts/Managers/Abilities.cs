@@ -63,7 +63,7 @@ public class Abilities : MonoBehaviour
         switch (type)
         {
             case AbilityType.AtackBoost:
-                atckControllers[heroNumber].SetDamegeMultiplier(1);
+                atckControllers[heroNumber].DivDamageMultiplier(damageMultiplier);
                 dmgTexts[heroNumber].text = atckControllers[heroNumber].GetDamage().ToString();
                 break;
             case AbilityType.HpBoost:
@@ -108,7 +108,7 @@ public class Abilities : MonoBehaviour
         if (boostIsReloading)
             return;
         heroNumber = _heroNumber;
-        atckControllers[_heroNumber].SetDamegeMultiplier(damageMultiplier);
+        atckControllers[_heroNumber].MultiplyDamageMultiplier(damageMultiplier);
         RestartBoostTimer();
         RestartBoostCDTimer();
         boostIsReloading = true;
