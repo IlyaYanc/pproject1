@@ -10,6 +10,7 @@ public class HP : MonoBehaviour
     private Button Attack_B;
     [SerializeField]
     private Slider hpSlider;
+    private bool TF = false;
     class PereodicDamager
     {
         private float _time;
@@ -81,16 +82,21 @@ public class HP : MonoBehaviour
     private void Death()
     {
         Attack_B.interactable = false;
+        TF = true;
     }
     private void Update()
     {
         //смэрть
-        if (hp <= 0)
+        if (hp <= 0 && !TF)
         {
             Death();
         }
+        if (hp > 0 && TF)
+        {
+            Attack_B.interactable = true;
+        }
         //UI
-            hpSlider.value = hp / HPmax;
+        hpSlider.value = hp / HPmax;
         //доты
         for (int i = 0; i < dots.Count; i++)
         {
