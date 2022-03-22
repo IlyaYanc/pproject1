@@ -10,7 +10,6 @@ public class Options : MonoBehaviour
     float VM=1, VE=1;
     [SerializeField] private AudioMixerGroup Mixer;
     [SerializeField] private Slider MS, ES;
-
     public void LoadData(OptionsSavingData _data)
     {
         VM = _data.VM;
@@ -23,7 +22,8 @@ public class Options : MonoBehaviour
 
     public OptionsSavingData SaveData()
     {
-        OptionsSavingData data = new OptionsSavingData(VM, VE);
+        //OptionsSavingData data = new OptionsSavingData(VM, VE);
+        OptionsSavingData data = new OptionsSavingData(MS.value, ES.value);
         return data;
     }
 
