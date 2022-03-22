@@ -94,6 +94,7 @@ public class HP : MonoBehaviour
         if (hp > 0 && TF)
         {
             Attack_B.interactable = true;
+            TF = false;
         }
         //UI
         hpSlider.value = hp / HPmax;
