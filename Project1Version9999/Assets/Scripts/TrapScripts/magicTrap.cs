@@ -20,6 +20,8 @@ public class magicTrap : MonoBehaviour
     private float newDotDelay;
     private float timer;
     private DamageInputController playerHp;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips = new AudioClip[0]; //0 - visible, 1 - active
     // Start is called before the first frame update
     void Start()
     {
@@ -52,11 +54,17 @@ public class magicTrap : MonoBehaviour
         if(dist<=0.25)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = active;
+            audioSource.clip = audioClips[1];
+            Debug.Log(timer);
+            audioSource.Play();
+
         }
         else
         {
             timer = 0;
             gameObject.GetComponent<SpriteRenderer>().sprite = notActive;
+            //audioSource.Stop();
+
         }
     }
 }

@@ -24,6 +24,8 @@ public class breacTrap : MonoBehaviour
     private bool isActive = false;
     private int lastN = -1;
     private GameObject player;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] stageAudioClip = new AudioClip[0];
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,8 @@ public class breacTrap : MonoBehaviour
                 if (lastN != n)
                 {
                     lastN = n;
+                    audioSource.clip = stageAudioClip[n];
+                    audioSource.Play();
                     for (int i = 0; i < holes.Count; i++)
                     {
                         holes[i].sprite = stageTiles[n];
