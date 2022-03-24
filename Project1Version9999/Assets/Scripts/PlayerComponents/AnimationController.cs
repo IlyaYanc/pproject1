@@ -188,18 +188,18 @@ public class AnimationController : MonoBehaviour
 
     public void FrontOrderInLayer()
     {
-        CharacterBody.GetComponent<SpriteRenderer>().sortingOrder = 6;
-        CharacterHat.GetComponent<SpriteRenderer>().sortingOrder = 17;
-        CharacterChest.GetComponent<SpriteRenderer>().sortingOrder = 10;
-        CharacterWeapon.GetComponent<SpriteRenderer>().sortingOrder = 21;
+        CharacterBody.GetComponent<SpriteRenderer>().sortingOrder = 9;
+        CharacterHat.GetComponent<SpriteRenderer>().sortingOrder = 20;
+        CharacterChest.GetComponent<SpriteRenderer>().sortingOrder = 13;
+        CharacterWeapon.GetComponent<SpriteRenderer>().sortingOrder = 24;
     }
 
     public void BackOrderInLayer()
     {
-        CharacterBody.GetComponent<SpriteRenderer>().sortingOrder = 22;
-        CharacterHat.GetComponent<SpriteRenderer>().sortingOrder = 24;
-        CharacterChest.GetComponent<SpriteRenderer>().sortingOrder = 23;
-        CharacterWeapon.GetComponent<SpriteRenderer>().sortingOrder = 25;
+        CharacterBody.GetComponent<SpriteRenderer>().sortingOrder = 25;
+        CharacterHat.GetComponent<SpriteRenderer>().sortingOrder = 27;
+        CharacterChest.GetComponent<SpriteRenderer>().sortingOrder = 26;
+        CharacterWeapon.GetComponent<SpriteRenderer>().sortingOrder = 28;
     }
 
     private void SetDeathState()

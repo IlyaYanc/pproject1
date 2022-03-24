@@ -113,28 +113,28 @@ public class TouchPlayerController : MonoBehaviour
         {
             rightMove.Invoke();
             GraphicsMove();
-            Debug.Log("Right Move");
+            //Debug.Log("Right Move");
             DisableComponent(WalkTime);
         }
         else if (angle > 45 && angle < 135)
         {
             topMove.Invoke();
             GraphicsMove();
-            Debug.Log("Top Move");
+            //Debug.Log("Top Move");
             DisableComponent(WalkTime);
         }
         else if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
         {
             leftMove.Invoke();
             GraphicsMove();
-            Debug.Log("Left Move");
+            //Debug.Log("Left Move");
             DisableComponent(WalkTime);
         }
         else
         {
             downMove.Invoke();
             GraphicsMove();
-            Debug.Log("Down Move");
+            //Debug.Log("Down Move");
             DisableComponent(WalkTime);
         }
     }

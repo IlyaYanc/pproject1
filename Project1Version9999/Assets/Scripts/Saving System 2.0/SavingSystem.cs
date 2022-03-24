@@ -96,16 +96,16 @@ public class SavingSystem : MonoBehaviour
         {
             options.LoadData(SaveGame.Load<OptionsSavingData>("OptionsData"));
         }
-        Debug.Log("loadsettings");   
-        Debug.Log(transform);   
+        //Debug.Log("loadsettings");   
+        //Debug.Log(transform);   
     }
 
     public void LoadLvlUI()
     {
         if(lvlUI != null)
             playerSaver.GetComponent<TouchPlayerController>().enabled = lvlUI.LoadData();
-        Debug.Log("loadlvlui"); 
-        Debug.Log(transform);   
+        //Debug.Log("loadlvlui"); 
+        //Debug.Log(transform);   
     }
 
     public void SaveLvlUI()
