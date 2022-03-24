@@ -31,6 +31,8 @@ public class Door : activObject
     [SerializeField] private MonoBehaviour shadowCasterClosed;
     [SerializeField] private MonoBehaviour shadowCasterOpened;
 
+    [SerializeField] private GameObject[] roomObjects = new GameObject[0];
+
     private void Start()
     {
         AudS = gameObject.GetComponent<AudioSource>();
@@ -44,6 +46,7 @@ public class Door : activObject
             shadowCasterClosed.enabled = true;
             shadowCasterOpened.enabled = false;
         }
+        DeactivateRoomObjects();
     }
 
     /* private void Update()
@@ -71,6 +74,7 @@ public class Door : activObject
         shadowCasterOpened.enabled = true;
         AudS.clip = open;
         AudS.Play();
+        ActivateRoomObjects();
     }
   
     public override void SetStage(int _stage)
@@ -118,5 +122,21 @@ public class Door : activObject
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
         else
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    private void ActivateRoomObjects()
+    {
+        for(int i = 0; i<roomObjects.Length; i++)
+        {
+            roomObjects[i].SetActive(true);
+        }
+    }
+
+    private void DeactivateRoomObjects()
+    {
+        for (int i = 0; i < roomObjects.Length; i++)
+        {
+            roomObjects[i].SetActive(false);
+        }
     }
 }
