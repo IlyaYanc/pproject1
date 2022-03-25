@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1181063260215300608}
   - component: {fileID: 1181063260215300611}
   - component: {fileID: 3026357739716718804}
+  - component: {fileID: 7220895503334845421}
   m_Layer: 0
   m_Name: PlayerArrow
   m_TagString: Untagged
@@ -122,3 +123,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15625, y: 0.46875}
   m_EdgeRadius: 0
+--- !u!50 &7220895503334845421
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181063260215300610}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

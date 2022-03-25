@@ -81,9 +81,6 @@ public class SavingSystem : MonoBehaviour
         {
             SaveGame.Save("OptionsData", options.SaveData());
         }
-        Debug.Log("savesettings");   
-        Debug.Log(transform);   
-        Debug.Log(options.SaveData().VE + " " + options.SaveData().VM); 
         Time.timeScale = 0;
     }
 
@@ -95,17 +92,13 @@ public class SavingSystem : MonoBehaviour
         if (SaveGame.Exists("OptionsData") && options != null)
         {
             options.LoadData(SaveGame.Load<OptionsSavingData>("OptionsData"));
-        }
-        //Debug.Log("loadsettings");   
-        //Debug.Log(transform);   
+        }  
     }
 
     public void LoadLvlUI()
     {
         if(lvlUI != null)
-            playerSaver.GetComponent<TouchPlayerController>().enabled = lvlUI.LoadData();
-        //Debug.Log("loadlvlui"); 
-        //Debug.Log(transform);   
+            playerSaver.GetComponent<TouchPlayerController>().enabled = lvlUI.LoadData();  
     }
 
     public void SaveLvlUI()

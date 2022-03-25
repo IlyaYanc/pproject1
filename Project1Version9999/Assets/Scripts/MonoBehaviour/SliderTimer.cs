@@ -9,13 +9,11 @@ public class SliderTimer : MonoBehaviour
 {
     // ��� �������� �������� ��� �������� �� ������
     public float m_duration; //�����
-    private Timer _timer;
+    public Timer _timer;
     private TimerManager _manager;
     private Slider _slider;
 
     [SerializeField] private GameObject AttackButton; //sorry Vlad
-    [SerializeField] private TouchPlayerController TouchPlayerControl; //sorry Vlad
-    [SerializeField] private GameObject LevelUI; //sorry Vlad
 
     [SerializeField] private AttackController _attackController;
     [SerializeField] private Abilities _abilities;
@@ -32,26 +30,18 @@ public class SliderTimer : MonoBehaviour
         _manager.RegisterTimer(_timer);
     }
 
-    private void UpdateTimer(Timer timer)
+    public void UpdateTimer(Timer timer)
     {
         _slider.value = timer.RatioComplete;
     }
 
-    private void TimerCompleted(Timer timer)
+    public void TimerCompleted(Timer timer)
     {
         //Debug.Log("Completed!");
         if(AttackButton != null)
         {
             AttackButton.GetComponent<Button>().enabled = true;
-        }
-
-        if (TouchPlayerControl != null)
-        {
-            TouchPlayerControl.EnableComponent();
-        }
-        if(LevelUI != null)
-        {
-            LevelUI.GetComponent<LevelUI>().EnableActionButtons();
+            AttackButton.GetComponent<FightButton>().timerActive = false;
         }
         _slider.value = 1f;
     }

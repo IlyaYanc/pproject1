@@ -18,13 +18,17 @@ public class TouchPlayerController : MonoBehaviour
     [SerializeField] private GameObject ArcherGraphics;
     [SerializeField] private GameObject MageGraphics;
 
-    [SerializeField] private float RotationTime;
-    [SerializeField] private float WalkTime;
+    private float RotationCD;
+    private float WalkCD;
     private AnimationController KnightGraphicsAnimationController;
     private AnimationController ThiefGraphicsAnimationController;
     private AnimationController ArcherGraphicsAnimationController;
     private AnimationController MageGraphicsAnimationController;
-    [SerializeField] private Button[] ActionButtons = new Button[0];
+    [SerializeField] private GameObject[] FightButtons = new GameObject[0];
+
+    public Timer WalkCDTimer;
+    public Timer RotateCDTimer;
+    public TimerManager _manager;
 
     public enum Direction
     {
@@ -68,7 +72,13 @@ public class TouchPlayerController : MonoBehaviour
         ThiefGraphicsAnimationController = ThiefGraphics.GetComponent<AnimationController>();
         ArcherGraphicsAnimationController = ArcherGraphics.GetComponent<AnimationController>();
         MageGraphicsAnimationController = MageGraphics.GetComponent<AnimationController>();
-
+        RotationCD = gameObject.GetComponent<PlayerMoveController>().m_rotateDelay;
+        WalkCD = gameObject.GetComponent<PlayerMoveController>().m_moveDelay;
+        _manager = gameObject.GetComponent<TimerManager>();
+        WalkCDTimer = new Timer(WalkCD, false, EnableComponent);
+        _manager.RegisterTimer(WalkCDTimer);
+        RotateCDTimer = new Timer(RotationCD, false, EnableComponent);
+        _manager.RegisterTimer(RotateCDTimer);
     }
 
     private void OnTap()
@@ -80,14 +90,14 @@ public class TouchPlayerController : MonoBehaviour
             Debug.Log("Left Rotate");
             GraphicsLeftRotate();
             leftRotate.Invoke();
-            DisableComponent(RotationTime);
+            DisableComponent(RotateCDTimer);
         }
         else if (position.x > mainCamera.pixelWidth * 0.8)
         {
             Debug.Log("Right Rotate");
             GraphicsRightRotate();
             rightRotate.Invoke();
-            DisableComponent(RotationTime);
+            DisableComponent(RotateCDTimer);
         }
     }
 
@@ -114,28 +124,28 @@ public class TouchPlayerController : MonoBehaviour
             rightMove.Invoke();
             GraphicsMove();
             //Debug.Log("Right Move");
-            DisableComponent(WalkTime);
+            DisableComponent(WalkCDTimer);
         }
         else if (angle > 45 && angle < 135)
         {
             topMove.Invoke();
             GraphicsMove();
             //Debug.Log("Top Move");
-            DisableComponent(WalkTime);
+            DisableComponent(WalkCDTimer);
         }
         else if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
         {
             leftMove.Invoke();
             GraphicsMove();
             //Debug.Log("Left Move");
-            DisableComponent(WalkTime);
+            DisableComponent(WalkCDTimer);
         }
         else
         {
             downMove.Invoke();
             GraphicsMove();
             //Debug.Log("Down Move");
-            DisableComponent(WalkTime);
+            DisableComponent(WalkCDTimer);
         }
     }
 
@@ -173,23 +183,25 @@ public class TouchPlayerController : MonoBehaviour
         MageGraphicsAnimationController.Move();
     }
 
-    public void DisableComponent(float dur)
+    public void DisableComponent(Timer timer)
     {
+        timer.Restart();
         gameObject.GetComponent<TouchPlayerController>().enabled = false;
-        gameObject.GetComponent<SliderTimer>().m_duration = dur;
-        gameObject.GetComponent<SliderTimer>().RestartTimer();
-        for (int i = 0; i < ActionButtons.Length; i++)
+        for (int i = 0; i < FightButtons.Length; i++)
         {
-            ActionButtons[i].enabled = false;
+            FightButtons[i].GetComponent<Button>().enabled = false;
         }
 
     }
-    public void EnableComponent()
+    public void EnableComponent(Timer timer)
     {
         gameObject.GetComponent<TouchPlayerController>().enabled = true;
-        for (int i = 0; i < ActionButtons.Length; i++)
+        for (int i = 0; i < FightButtons.Length; i++)
         {
-            ActionButtons[i].enabled = true;
+            if(FightButtons[i].GetComponent<FightButton>().timerActive == false)
+            {
+                FightButtons[i].GetComponent<Button>().enabled = true;
+            }
         }
     }
 

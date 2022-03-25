@@ -86,7 +86,10 @@ public class HP : MonoBehaviour
     }
     private void Update()
     {
-        //смэрть
+        if(hp < 0f)
+        {
+            hp = 0f;
+        }
         if (hp <= 0 && !TF)
         {
             Death();

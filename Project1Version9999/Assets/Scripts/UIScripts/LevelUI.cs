@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BayatGames.SaveGameFree;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 using TMPro;
 
 public class LevelUI : MonoBehaviour
@@ -20,8 +21,8 @@ public class LevelUI : MonoBehaviour
     [SerializeField]
     public GameObject RotateRightButton;
 
-    [SerializeField]
-    public Button[] ActionButtons = new Button[0];
+    [SerializeField] public Button[] ActionButtons = new Button[0];
+    [SerializeField] public Button[] FightButtons = new Button[0];
 
 
     [SerializeField]
@@ -106,12 +107,11 @@ public class LevelUI : MonoBehaviour
 
     private bool TouchControllerEnabled;
 
-
-
-
-
-
-
+    private float WalkCD;
+    private float RotationCD;
+    public Timer WalkCDTimer;
+    public Timer RotateCDTimer;
+    public TimerManager Manager;
 
     private void Start()
     {
@@ -123,35 +123,45 @@ public class LevelUI : MonoBehaviour
         ArcherAttack = Archer.GetComponent<AttackController>();
         MageAttack = Mage.GetComponent<AttackController>();
         ChosenGamePanel = WalkPanel;
-        EqualTextSize(KnightDamageText, KnightConstantText);
+
+        WalkCD = Player.GetComponent<PlayerMoveController>().m_moveDelay;
+        RotationCD = Player.GetComponent<PlayerMoveController>().m_rotateDelay;
+        Manager = gameObject.GetComponent<TimerManager>();
+        WalkCDTimer = new Timer(WalkCD, false, StopMoveTimer);
+        Manager.RegisterTimer(WalkCDTimer);
+        RotateCDTimer = new Timer(RotationCD, false, StopMoveTimer);
+        Manager.RegisterTimer(RotateCDTimer);
     }
-    public void EqualTextSize(GameObject obj1, GameObject obj2)
-    {
-        obj1.GetComponent<TextMeshProUGUI>().fontSize = obj2.GetComponent<TextMeshProUGUI>().fontSize;
-    }
+
 
     public void WalkUP()
     {
+        StartMoveTimer(WalkCDTimer);
         MoveController.MoveUp();
     }
     public void WalkDown()
     {
+        StartMoveTimer(WalkCDTimer);
         MoveController.MoveDown();
     }
     public void WalkLeft()
     {
+        StartMoveTimer(WalkCDTimer);
         MoveController.MoveLeft();
     }
     public void WalkRight()
     {
+        StartMoveTimer(WalkCDTimer);
         MoveController.MoveRight();
     }
     public void RotateLeft()
     {
+        StartMoveTimer(RotateCDTimer);
         MoveController.RotateLeft();
     }
     public void RotateRight()
     {
+        StartMoveTimer(RotateCDTimer);
         MoveController.RotateRight();
     }
     public void TryInteract()
@@ -350,14 +360,17 @@ public class LevelUI : MonoBehaviour
     {
         KnightAttackUI.GetComponent<Button>().enabled = false;
     }
+
     public void DisableThiefAttackButton()
     {
         ThiefAttackUI.GetComponent<Button>().enabled = false;
     }
+
     public void DisableArcherAttackButton()
     {
         ArcherAttackUI.GetComponent<Button>().enabled = false;
     }
+
     public void DisableMageAttackButton()
     {
         MageAttackUI.GetComponent<Button>().enabled = false;
@@ -367,14 +380,17 @@ public class LevelUI : MonoBehaviour
     {
         BoostAttackUI.GetComponent<Button>().enabled = false;
     }
+
     public void DisableHPBoost()
     {
         BoostHPUI.GetComponent<Button>().enabled = false;
     }
+
     public void DisableResistBoost()
     {
         BoostResistUI.GetComponent<Button>().enabled = false;
     }
+
     public void DisableAbilitySelectMenu()
     {
         DisableAbilitiesMenuButton.SetActive(false);
@@ -387,18 +403,21 @@ public class LevelUI : MonoBehaviour
         SelectedAbilityTimer = BoostAttackTimer;
         DisableAbilitiesMenuButton.SetActive(true);
     }
+
     public void HPBoostChoise()
     {
         SelectedAbilityButton = BoostHPUI;
         SelectedAbilityTimer = BoostHPTimer;
         DisableAbilitiesMenuButton.SetActive(true);
     }
+
     public void ResistBoostChoise()
     {
         SelectedAbilityButton = BoostResistUI;
         SelectedAbilityTimer = BoostResistTimer;
         DisableAbilitiesMenuButton.SetActive(true);
     }
+
     public void AbilityPlayerChoise()
     {
         SelectedAbilityTimer.RestartTimer();
@@ -411,6 +430,7 @@ public class LevelUI : MonoBehaviour
     {
         InteractButtonPicture.GetComponent<Image>().sprite = ActiveInteractSprite;
     }
+
     public void SetInactiveInteractPicture()
     {
         InteractButtonPicture.GetComponent<Image>().sprite = InactiveInteractPicture;
@@ -423,6 +443,7 @@ public class LevelUI : MonoBehaviour
             Player.GetComponent<TouchPlayerController>().enabled = false;
         }
     }
+
     public void EnableTouchOnButtonPointerDown()
     {
         if(CrossToggle.GetComponent<Image>().sprite == InActiveWalkModeSprite)
@@ -431,33 +452,51 @@ public class LevelUI : MonoBehaviour
         }
     }
 
-    public void DisableActionButtons()
+    private void DisableActionButtons()
     {
         for (int i = 0; i < ActionButtons.Length; i++)
         {
             ActionButtons[i].enabled = false;
         }
-        /*WalkUPButton.GetComponent<Button>().enabled = false;
-        WalkLeftButton.GetComponent<Button>().enabled = false;
-        WalkRightButton.GetComponent<Button>().enabled = false;
-        WalkDownButton.GetComponent<Button>().enabled = false;
-        RotateLeftButton.GetComponent<Button>().enabled = false;
-        RotateRightButton.GetComponent<Button>().enabled = false; */
     }
-    public void EnableActionButtons()
+    private void EnableActionButtons()
     {
         for(int i = 0; i<ActionButtons.Length; i++)
         {
             ActionButtons[i].enabled = true;
         }
-        /*WalkUPButton.GetComponent<Button>().enabled = true;
-        WalkLeftButton.GetComponent<Button>().enabled = true;
-        WalkRightButton.GetComponent<Button>().enabled = true;
-        WalkDownButton.GetComponent<Button>().enabled = true;
-        RotateLeftButton.GetComponent<Button>().enabled = true;
-        RotateRightButton.GetComponent<Button>().enabled = true;*/
+    }
+    private void DisabeFightButtons()
+    {
+        for (int i = 0; i < FightButtons.Length; i++)
+        {
+            FightButtons[i].enabled = false;
+        }
     }
 
+    private void EnableFightButtons()
+    {
+        for (int i = 0; i < FightButtons.Length; i++)
+        {
+            if (FightButtons[i].GetComponent<FightButton>().timerActive == false)
+            {
+                FightButtons[i].GetComponent<Button>().enabled = true;
+            }
+        }
+    }
+
+    public void StartMoveTimer(Timer timer)
+    {
+        timer.Restart();
+        DisabeFightButtons();
+        DisableActionButtons();
+    }
+
+    public void StopMoveTimer(Timer timer)
+    {
+        EnableFightButtons();
+        EnableActionButtons();
+    }
     public void PauseTouchController()
     {
         TouchControllerEnabled = TouchConroller.enabled;
@@ -467,6 +506,40 @@ public class LevelUI : MonoBehaviour
     public void UnPauseTouchController()
     {
         TouchConroller.enabled = TouchControllerEnabled;
+    }
+
+    public void UpdateMoveTimers(float walkCD, float rotateCD)
+    {
+        Player.GetComponent<TouchPlayerController>().WalkCDTimer = new Timer(walkCD, false, Player.GetComponent<TouchPlayerController>().EnableComponent);
+        Player.GetComponent<TouchPlayerController>().RotateCDTimer = new Timer(rotateCD, false, Player.GetComponent<TouchPlayerController>().EnableComponent);
+        if (Player.GetComponent<TouchPlayerController>().WalkCDTimer != null && Player.GetComponent<TouchPlayerController>().RotateCDTimer != null && Player.GetComponent<TouchPlayerController>()._manager != null)
+        {
+            Player.GetComponent<TouchPlayerController>()._manager.RegisterTimer(Player.GetComponent<TouchPlayerController>().WalkCDTimer);
+            Player.GetComponent<TouchPlayerController>()._manager.RegisterTimer(Player.GetComponent<TouchPlayerController>().RotateCDTimer);
+        }
+
+        Player.GetComponent<PlayerMoveController>()._moveTimer = new Timer(walkCD);
+        Player.GetComponent<PlayerMoveController>()._rotateTimer = new Timer(rotateCD);
+        if (Player.GetComponent<PlayerMoveController>()._moveTimer != null && Player.GetComponent<PlayerMoveController>()._rotateTimer != null && Player.GetComponent<PlayerMoveController>()._manager != null)
+        {
+            Player.GetComponent<PlayerMoveController>()._manager.RegisterTimer(Player.GetComponent<PlayerMoveController>()._moveTimer);
+            Player.GetComponent<PlayerMoveController>()._manager.RegisterTimer(Player.GetComponent<PlayerMoveController>()._rotateTimer);
+        }
+
+
+        WalkCDTimer = new Timer(walkCD, false, StopMoveTimer);
+        RotateCDTimer = new Timer(rotateCD, false, StopMoveTimer);
+        if (WalkCDTimer != null && RotateCDTimer != null && Manager != null)
+        {
+            Manager.RegisterTimer(WalkCDTimer);
+            Manager.RegisterTimer(RotateCDTimer);
+        }
+
+    }
+
+    public void UpdateFightButtonTimer(FightButton fightButton, float actionCD)
+    {
+        fightButton.cooldownTimer._timer = new Timer(actionCD, false, fightButton.cooldownTimer.GetComponent<SliderTimer>().TimerCompleted, fightButton.cooldownTimer.GetComponent<SliderTimer>().UpdateTimer);
     }
 }
 

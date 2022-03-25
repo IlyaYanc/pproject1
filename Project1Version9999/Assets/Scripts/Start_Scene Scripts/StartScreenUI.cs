@@ -7,12 +7,18 @@ public class StartScreenUI : MonoBehaviour
     public GameObject SettingsPanel;
     public GameObject QuestionPanel;
     public GameObject StartPanel;
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
     public void ExitButton()
     {
         Application.Quit(0);
     }
     public void StartButton()
     {
+        Time.timeScale = 1f;
         Application.LoadLevelAsync(1);
     }
     public void Settings()

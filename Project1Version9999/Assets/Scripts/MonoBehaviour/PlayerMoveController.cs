@@ -7,8 +7,8 @@ public class PlayerMoveController : MonoBehaviour
 {
     [SerializeField] private float m_cellSize;
     [SerializeField] private Tilemap m_tileMap;
-    [SerializeField] private float m_moveDelay;
-    [SerializeField] private float m_rotateDelay;
+    public float m_moveDelay;
+    public float m_rotateDelay;
     [SerializeField] private float m_moveAnimDuration;
     [SerializeField] private float m_rotateAnimDuration;
 
@@ -22,9 +22,9 @@ public class PlayerMoveController : MonoBehaviour
     //[SerializeField] private GameObject Thief;
     //[SerializeField] private GameObject Archer;
 
-    private Timer _moveTimer;
-    private Timer _rotateTimer;
-    private TimerManager _manager;
+    public Timer _moveTimer;
+    public Timer _rotateTimer;
+    public TimerManager _manager;
     
     private Transform playerTransform;
     private Effects ef;
@@ -61,7 +61,6 @@ public class PlayerMoveController : MonoBehaviour
             animator.SetBool("WalkL", false);
         }
         Move(new Vector2(0, m_cellSize));
-        
         
     }
     public void MoveDown()

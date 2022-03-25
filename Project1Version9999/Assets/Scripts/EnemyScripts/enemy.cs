@@ -81,7 +81,7 @@ public class enemy : enemyWalk
             else
             {
 
-                shoot(attackDist);
+                Shoot(attackDist);
                 attackTimer = attackTime;
             }
         }
@@ -253,16 +253,21 @@ public class enemy : enemyWalk
 
         }
     }
+
     [Button]
     private void agr()
     {
         hasDisquiet = !hasDisquiet;
 
     }
+
     public void Disquiet(bool isActive)
     {
         hasDisquiet = isActive;
     }
+
+
+    //public bool IsWalking() => walkTimar > 0f;
     public bool isWalking()
     {
         if (walkTimar <= 0f)
@@ -275,7 +280,7 @@ public class enemy : enemyWalk
         }
         //return (pos == transform.position && walkTimar > 0f);
     }
-    private void shoot(float dist)
+    private void Shoot(float dist)
     {
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position, transform.up, attackDist);
