@@ -66,7 +66,7 @@ public class TouchPlayerController : MonoBehaviour
         playerInput.PlayerMoving.Tap.performed += (context) => OnTap();
         foreach(var control in playerInput.controlSchemes)
         {
-            Debug.Log(control.name);
+            //Debug.Log(control.name);
         }
         KnightGraphicsAnimationController = KnightGraphics.GetComponent<AnimationController>();
         ThiefGraphicsAnimationController = ThiefGraphics.GetComponent<AnimationController>();
@@ -83,18 +83,18 @@ public class TouchPlayerController : MonoBehaviour
 
     private void OnTap()
     {
-        Debug.Log("Tap!");
+        //Debug.Log("Tap!");
         Vector2 position = playerInput.PlayerMoving.Position.ReadValue<Vector2>();
         if (position.x < mainCamera.pixelWidth * 0.2)
         {
-            Debug.Log("Left Rotate");
+            //Debug.Log("Left Rotate");
             GraphicsLeftRotate();
             leftRotate.Invoke();
             DisableComponent(RotateCDTimer);
         }
         else if (position.x > mainCamera.pixelWidth * 0.8)
         {
-            Debug.Log("Right Rotate");
+            //Debug.Log("Right Rotate");
             GraphicsRightRotate();
             rightRotate.Invoke();
             DisableComponent(RotateCDTimer);

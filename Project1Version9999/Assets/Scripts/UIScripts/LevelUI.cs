@@ -116,7 +116,8 @@ public class LevelUI : MonoBehaviour
     private void Start()
     {
         MoveController = Player.GetComponent<PlayerMoveController>();
-        //TouchConroller = Player.GetComponent<TouchPlayerController>();
+        TouchConroller = Player.GetComponent<TouchPlayerController>();
+        TouchControllerEnabled = TouchConroller.enabled;
         Interact = Player.GetComponent<Interact>();
         KnightAttack = Knight.GetComponent<AttackController>();
         ThiefAttack = Thief.GetComponent<AttackController>();
@@ -237,7 +238,11 @@ public class LevelUI : MonoBehaviour
         PausePanel.SetActive(false);
         ResumeGame();
     }
-
+    public void ExitToMainMenu()
+    {
+        TouchConroller.enabled = TouchControllerEnabled;
+        Time.timeScale = 1f;
+    }
     public void OpenSettings()
     {
         SettingsPanel.SetActive(true);
