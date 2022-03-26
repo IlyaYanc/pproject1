@@ -83,7 +83,7 @@ public class AttackController : MonoBehaviour
             if (weaponType == weaponType.Archer || weaponType == weaponType.Mage)
             {
                 GameObject project = Instantiate(projectail, transform.position, transform.rotation);
-                project.GetComponent<PlayerProjectail>().Values(projectailSpeed, damage, weaponType, fireTime);
+                project.GetComponent<PlayerProjectail>().Values(projectailSpeed, damage*damageMultiplier, weaponType, fireTime);
                 AudS.clip = dam;
                 AudS.Play();
             }
@@ -145,9 +145,17 @@ public class AttackController : MonoBehaviour
     }
 
 
-    public void SetDamegeMultiplier(float multiplier)
+    public void SetDamageMultiplier(float multiplier)
     {
         damageMultiplier = multiplier;
+    }
+    public void MultiplyDamageMultiplier(float multiplier)
+    {
+        damageMultiplier *= multiplier;
+    }
+    public void DivDamageMultiplier(float multiplier)
+    {
+        damageMultiplier /= multiplier;
     }
 
     public float GetDamageMultiplier()
@@ -156,6 +164,6 @@ public class AttackController : MonoBehaviour
     }
     public float GetDamage()
     {
-        return damage;
+        return damage*damageMultiplier;
     }
 }
