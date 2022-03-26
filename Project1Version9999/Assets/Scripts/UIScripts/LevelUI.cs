@@ -216,12 +216,14 @@ public class LevelUI : MonoBehaviour
     {
         ChosenGamePanel.SetActive(false);
         CommonPanel.SetActive(false);
+        TouchConroller.enabled = false;
         Time.timeScale = 0f;
     }
     private void ResumeGame()
     {
         ChosenGamePanel.SetActive(true);
         CommonPanel.SetActive(true);
+        TouchConroller.enabled = TouchControllerEnabled;
         Time.timeScale = 1f;
     }
 
@@ -274,12 +276,7 @@ public class LevelUI : MonoBehaviour
         //if(TouchConroller.enabled == false)
         if(TouchControllerEnabled == false)
         {
-            WalkUPButton.SetActive(false);
-            WalkDownButton.SetActive(false);
-            WalkLeftButton.SetActive(false);
-            WalkRightButton.SetActive(false);
-            RotateLeftButton.SetActive(false);
-            RotateRightButton.SetActive(false);
+            DisableVisibleActionButtons();
             CrossToggle.GetComponent<Image>().sprite = InActiveWalkModeSprite;
             SwipeToggle.GetComponent<Image>().sprite = ActiveWalkModeSprite;
             TouchControllerEnabled = true;
@@ -290,12 +287,7 @@ public class LevelUI : MonoBehaviour
         //if(TouchConroller.enabled == true)
         if(TouchControllerEnabled == true)
         {
-            WalkUPButton.SetActive(true);
-            WalkDownButton.SetActive(true);
-            WalkLeftButton.SetActive(true);
-            WalkRightButton.SetActive(true);
-            RotateLeftButton.SetActive(true);
-            RotateRightButton.SetActive(true);
+            EnableVisibleActionButtons();
             CrossToggle.GetComponent<Image>().sprite = ActiveWalkModeSprite;
             SwipeToggle.GetComponent<Image>().sprite = InActiveWalkModeSprite;
             TouchControllerEnabled = false;
@@ -309,12 +301,7 @@ public class LevelUI : MonoBehaviour
     {
         if (_isTouchInput)
         {
-            WalkUPButton.SetActive(false);
-            WalkDownButton.SetActive(false);
-            WalkLeftButton.SetActive(false);
-            WalkRightButton.SetActive(false);
-            RotateLeftButton.SetActive(false);
-            RotateRightButton.SetActive(false);
+            DisableVisibleActionButtons();
             CrossToggle.GetComponent<Image>().sprite = InActiveWalkModeSprite;
             SwipeToggle.GetComponent<Image>().sprite = ActiveWalkModeSprite;
             //TouchControllerEnabled = true;
@@ -323,12 +310,7 @@ public class LevelUI : MonoBehaviour
         }
         else
         {
-            WalkUPButton.SetActive(true);
-            WalkDownButton.SetActive(true);
-            WalkLeftButton.SetActive(true);
-            WalkRightButton.SetActive(true);
-            RotateLeftButton.SetActive(true);
-            RotateRightButton.SetActive(true);
+            EnableVisibleActionButtons();
             CrossToggle.GetComponent<Image>().sprite = ActiveWalkModeSprite;
             SwipeToggle.GetComponent<Image>().sprite = InActiveWalkModeSprite;
             //TouchControllerEnabled = false;
@@ -348,12 +330,6 @@ public class LevelUI : MonoBehaviour
             return TouchConroller.enabled;
         SetWalkMode(SaveGame.Load<bool>("InputType"));
         return SaveGame.Load<bool>("InputType");
-    }
-    
-
-    public void UpdateTimerMaxValue(GameObject Player, GameObject Slider)   //вызывать при смене оружия
-    {
-        //Slider.GetComponent<SliderTimer>().m_duration = Player.GetComponent<AttackController>().cooldown;
     }
 
     public void DisableKnightAttackButton()
@@ -452,6 +428,25 @@ public class LevelUI : MonoBehaviour
         }
     }
 
+    private void DisableVisibleActionButtons()
+    {
+        WalkUPButton.SetActive(false);
+        WalkDownButton.SetActive(false);
+        WalkRightButton.SetActive(false);
+        WalkLeftButton.SetActive(false);
+        RotateLeftButton.SetActive(false);
+        RotateRightButton.SetActive(false);
+    }
+
+    private void EnableVisibleActionButtons()
+    {
+        WalkUPButton.SetActive(true);
+        WalkDownButton.SetActive(true);
+        WalkRightButton.SetActive(true);
+        WalkLeftButton.SetActive(true);
+        RotateLeftButton.SetActive(true);
+        RotateRightButton.SetActive(true);
+    }
     private void DisableActionButtons()
     {
         for (int i = 0; i < ActionButtons.Length; i++)
