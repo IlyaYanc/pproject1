@@ -97,15 +97,15 @@ public class SavingSystem : MonoBehaviour
 
     public void LoadLvlUI()
     {
-        if(lvlUI != null)
-            playerSaver.GetComponent<TouchPlayerController>().enabled = lvlUI.LoadData();  
+        if (lvlUI != null)
+        {
+            lvlUI.LoadData();
+        }
     }
 
     public void SaveLvlUI()
     {
         lvlUI.SaveData();
-        Debug.Log("savelvlui"); 
-        Debug.Log(transform);   
     }
     
     [Button("Save Game")]

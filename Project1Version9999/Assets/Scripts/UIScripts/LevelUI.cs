@@ -304,12 +304,13 @@ public class LevelUI : MonoBehaviour
 
     private void SetWalkMode(bool _isTouchInput)
     {
+        //ebug.Log(_isTouchInput);
         if (_isTouchInput)
         {
             DisableVisibleActionButtons();
             CrossToggle.GetComponent<Image>().sprite = InActiveWalkModeSprite;
             SwipeToggle.GetComponent<Image>().sprite = ActiveWalkModeSprite;
-            //TouchControllerEnabled = true;
+            TouchControllerEnabled = true;
             TouchConroller.enabled = true;
             IsCross = false;
         }
@@ -318,7 +319,7 @@ public class LevelUI : MonoBehaviour
             EnableVisibleActionButtons();
             CrossToggle.GetComponent<Image>().sprite = ActiveWalkModeSprite;
             SwipeToggle.GetComponent<Image>().sprite = InActiveWalkModeSprite;
-            //TouchControllerEnabled = false;
+            TouchControllerEnabled = false;
             TouchConroller.enabled = false;
             IsCross = true;
         }
@@ -326,15 +327,16 @@ public class LevelUI : MonoBehaviour
 
     public void SaveData()
     {
-        SaveGame.Save("InputType", TouchConroller.enabled);
+        SaveGame.Save("InputType", TouchControllerEnabled);
     }
 
-    public bool LoadData()
+    public void LoadData()
     {
-        if(!SaveGame.Exists("InputType"))
-            return TouchConroller.enabled;
+        if (!SaveGame.Exists("InputType"))
+        {
+            SetWalkMode(false);
+        }
         SetWalkMode(SaveGame.Load<bool>("InputType"));
-        return SaveGame.Load<bool>("InputType");
     }
 
     public void DisableKnightAttackButton()
