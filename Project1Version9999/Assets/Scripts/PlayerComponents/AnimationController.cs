@@ -29,6 +29,7 @@ public class AnimationController : MonoBehaviour
     public int PositionNumber;
 
     public Vector3[] ShootPositions = new Vector3[4];
+    public Vector2[] ProjectailOffset = new Vector2[4];
     public int ShootPosition;
 
     public HP CharacterHP;
@@ -160,6 +161,19 @@ public class AnimationController : MonoBehaviour
     private void ChangeShootingPosition(int pos)
     {
         CharacterPhysics.transform.localPosition = ShootPositions[pos];
+        if(CharacterPhysics.GetComponent<AttackController>().projectail != null)
+        {
+            CharacterPhysics.GetComponent<AttackController>().projectail.GetComponent<BoxCollider2D>().offset = ProjectailOffset[pos];
+            if(pos == 2)
+            {
+                CharacterPhysics.GetComponent<AttackController>().projectail.GetComponent<SpriteRenderer>().sortingOrder = 31;
+            }
+            else
+            {
+                CharacterPhysics.GetComponent<AttackController>().projectail.GetComponent<SpriteRenderer>().sortingOrder = 25;
+            }
+        }
+
     }
 
     private void ChangeDirection(int a)
@@ -196,10 +210,10 @@ public class AnimationController : MonoBehaviour
 
     public void BackOrderInLayer()
     {
-        CharacterBody.GetComponent<SpriteRenderer>().sortingOrder = 25;
-        CharacterHat.GetComponent<SpriteRenderer>().sortingOrder = 27;
-        CharacterChest.GetComponent<SpriteRenderer>().sortingOrder = 26;
-        CharacterWeapon.GetComponent<SpriteRenderer>().sortingOrder = 28;
+        CharacterBody.GetComponent<SpriteRenderer>().sortingOrder = 27;
+        CharacterHat.GetComponent<SpriteRenderer>().sortingOrder = 29;
+        CharacterChest.GetComponent<SpriteRenderer>().sortingOrder = 28;
+        CharacterWeapon.GetComponent<SpriteRenderer>().sortingOrder = 30;
     }
 
     private void SetDeathState()

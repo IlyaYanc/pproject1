@@ -16,8 +16,7 @@ public class AttackController : MonoBehaviour
     private float armorBreakTime;
     [SerializeField]
     private float attackDistance = 1f; //дистанция удара в юнитах
-    [SerializeField]
-    private GameObject projectail;
+    public GameObject projectail;
     [SerializeField]
     private float projectailSpeed;
 
