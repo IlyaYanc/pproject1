@@ -15,6 +15,12 @@ public class DamageInputController : MonoBehaviour
     [SerializeField]
     private GameObject deathScreen;
 
+    [SerializeField]
+    private DeathAudioSourceController deathAudioSourceController;
+
+    [SerializeField]
+    private DeathLevelObjectsController deathLevelObjectsController;
+
     public enum DamageType { melee, range, rangeSplash, meleeSplash, magic, fire /*used only in enemy script*/, rangeFire /*used only in enemy script*/}
     // Start is called before the first frame update
     void Start()
@@ -116,6 +122,14 @@ public class DamageInputController : MonoBehaviour
     private void Death()
     {
         deathScreen.SetActive(true);
+        if(deathAudioSourceController != null)
+        {
+            deathAudioSourceController.DisableAudioSources();
+        }
+        if(deathLevelObjectsController!=null)
+        {
+            deathLevelObjectsController.DisableLevelObjects();
+        }
         //Time.timeScale = 0;
     }
     public void killAll()
