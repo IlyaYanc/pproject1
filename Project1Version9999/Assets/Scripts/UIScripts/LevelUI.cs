@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelUI : MonoBehaviour
 {
@@ -240,6 +241,7 @@ public class LevelUI : MonoBehaviour
     }
     public void ExitToMainMenu()
     {
+        SceneManager.LoadSceneAsync(0);
         TouchConroller.enabled = TouchControllerEnabled;
         Time.timeScale = 1f;
     }

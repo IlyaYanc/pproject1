@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Start_Death_Screen : MonoBehaviour
 {
+    public GameObject MainPanel;
     public Image s_image;
     public GameObject ds;
     private AudioSource Ads;
     private void Start()
     {
         StartCoroutine("VisibleIE");
-        Ads = GetComponent<AudioSource>();
+        Ads = MainPanel.GetComponent<AudioSource>();
         Ads.Play();
     }
     IEnumerator VisibleIE()

@@ -13,17 +13,21 @@ public class DeathAudioSourceController : MonoBehaviour
     {
         for(int i = 0; i < PlayerAudioSource.Length; i++)
         {
-            PlayerAudioSource[i].enabled = false;
+            if (PlayerAudioSource[i] != null)
+                PlayerAudioSource[i].enabled = false;
         }
 
         for (int i = 0; i < EnemyAudioSource.Length; i++)
         {
-            EnemyAudioSource[i].enabled = false;
+            if(EnemyAudioSource[i] != null)
+                EnemyAudioSource[i].enabled = false;
+
         }
 
         for (int i = 0; i < TrapsAudioSource.Length; i++)
         {
-            TrapsAudioSource[i].enabled = false;
+            if (TrapsAudioSource[i] != null)
+                TrapsAudioSource[i].enabled = false;
         }
 
         for (int i = 0; i < FireplaceAudioSource.Length; i++)
@@ -36,17 +40,20 @@ public class DeathAudioSourceController : MonoBehaviour
     {
         for (int i = 0; i < PlayerAudioSource.Length; i++)
         {
-            PlayerAudioSource[i].enabled = true;
+            if (PlayerAudioSource[i] != null)
+                PlayerAudioSource[i].enabled = true;
         }
 
         for (int i = 0; i < EnemyAudioSource.Length; i++)
         {
-            EnemyAudioSource[i].enabled = true;
+            if (EnemyAudioSource[i] != null)
+                EnemyAudioSource[i].enabled = true;
         }
 
         for (int i = 0; i < TrapsAudioSource.Length; i++)
         {
-            TrapsAudioSource[i].enabled = true;
+            if (TrapsAudioSource[i] != null)
+                TrapsAudioSource[i].enabled = true;
         }
 
         for (int i = 0; i < FireplaceAudioSource.Length; i++)

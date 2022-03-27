@@ -7,6 +7,6 @@ public class ending : MonoBehaviour
 {
     public void Ret()
     {
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 }

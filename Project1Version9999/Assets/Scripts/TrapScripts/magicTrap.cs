@@ -57,7 +57,11 @@ public class magicTrap : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = active;
             audioSource.clip = audioClips[1];
             //Debug.Log(timer);
-            if(!audioSource.isPlaying) audioSource.Play();
+            if(!audioSource.isPlaying && audioSource.enabled == true)
+            {
+                audioSource.Play();
+            }
+
 
         }
         else

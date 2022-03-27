@@ -40,6 +40,7 @@ public class PlayerProjectail : MonoBehaviour
         }
         if (!collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log(collision.name);
             Destroy(gameObject);
         }
     }
