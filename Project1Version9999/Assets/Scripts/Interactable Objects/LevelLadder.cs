@@ -15,6 +15,7 @@ public class LevelLadder : Interactable
     }
     public override void Interact()
     {
+        Debug.Log("int");
         if(SceneManager.sceneCountInBuildSettings - 1 == SceneManager.GetActiveScene().buildIndex)
         {
             deathAudioSourceController.DisableAudioSources();
