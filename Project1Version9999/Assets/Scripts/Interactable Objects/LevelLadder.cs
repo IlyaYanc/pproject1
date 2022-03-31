@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLadder : Interactable
 {
+    [SerializeField] private string NextLevelName;
+    [SerializeField] private bool InstantSceneLoad;
     [SerializeField] private DeathAudioSourceController deathAudioSourceController;
     [SerializeField] private DeathLevelObjectsController deathLevelObjectsController;
     [SerializeField] private AudioSource levelMusic;
@@ -15,8 +17,7 @@ public class LevelLadder : Interactable
     }
     public override void Interact()
     {
-        Debug.Log("int");
-        if(SceneManager.sceneCountInBuildSettings - 1 == SceneManager.GetActiveScene().buildIndex)
+        if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) == -1 || InstantSceneLoad == false)
         {
             deathAudioSourceController.DisableAudioSources();
             deathLevelObjectsController.DisableLevelObjects();
@@ -25,7 +26,8 @@ public class LevelLadder : Interactable
         }
         else
         {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+            Debug.Log("haha");
+            SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(NextLevelName));
         }
     }
 }
