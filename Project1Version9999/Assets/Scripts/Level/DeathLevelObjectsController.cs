@@ -17,11 +17,11 @@ public class DeathLevelObjectsController : MonoBehaviour
                 MagicTraps[i].enabled = false;
         }
 
-        for (int i = 0; i < BreakTraps.Length; i++)
+        /*for (int i = 0; i < BreakTraps.Length; i++)
         {
             if(BreakTraps[i] != null)
                 BreakTraps[i].enabled = false;
-        }
+        } */
 
         for (int i = 0; i < Enemies.Length; i++)
         {
@@ -38,11 +38,11 @@ public class DeathLevelObjectsController : MonoBehaviour
                 MagicTraps[i].enabled = true;
         }
 
-        for (int i = 0; i < BreakTraps.Length; i++)
+        /*for (int i = 0; i < BreakTraps.Length; i++)
         {
             if (BreakTraps[i] != null)
                 BreakTraps[i].enabled = true;
-        }
+        }*/
 
         for (int i = 0; i < Enemies.Length; i++)
         {
