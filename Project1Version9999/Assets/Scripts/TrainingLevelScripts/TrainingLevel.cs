@@ -137,6 +137,11 @@ public class TrainingLevel : MonoBehaviour
         }
     }
 
+    public void DisableTrigger()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
