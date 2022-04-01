@@ -20,8 +20,9 @@ public class breacTrap : MonoBehaviour
     [SerializeField]
     private float breakDelay;
     private DamageInputController hp;
-    private float timer;
-    private bool isActive = false;
+    public float timer;
+    public int n;
+    public bool isActive = false;
     private int lastN = -1;
     private GameObject player;
     [SerializeField] AudioSource audioSource;
@@ -50,7 +51,7 @@ public class breacTrap : MonoBehaviour
             if(timer>0)
             {
                 timer -= Time.deltaTime;
-                int n = Mathf.CeilToInt(stageTiles.Count * timer / breakDelay) - 1;
+                n = Mathf.CeilToInt(stageTiles.Count * timer / breakDelay) - 1;
                 if (n < 0)
                     n = 0;
                 if (lastN != n)

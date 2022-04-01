@@ -26,7 +26,7 @@ public class Door : activObject
 
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Tile groundTile;
-    [SerializeField] private Tile groundWallTile;
+    public Tile groundWallTile;
 
     [SerializeField] private MonoBehaviour shadowCasterClosed;
     [SerializeField] private MonoBehaviour shadowCasterOpened;
@@ -59,13 +59,13 @@ public class Door : activObject
      } */
     
 
-    void PutTile(Tile tile)
+    public void PutTile(Tile tile)
     {
         Vector3Int gridPos = tilemap.WorldToCell(transform.position);
         tilemap.SetTile(new Vector3Int(gridPos.x, gridPos.y, 0), tile);
     }
 
-    void OpenDoor()
+    public void OpenDoor()
     {
         stage = 2;
         PutTile(groundTile);

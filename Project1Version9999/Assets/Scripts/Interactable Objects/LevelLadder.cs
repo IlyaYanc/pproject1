@@ -26,7 +26,7 @@ public class LevelLadder : Interactable
         }
         else
         {
-            Debug.Log("haha");
+            Time.timeScale = 1f;
             SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(NextLevelName));
         }
     }
