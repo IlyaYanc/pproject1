@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartScreenUI : MonoBehaviour
 {
     public GameObject SettingsPanel;
     public GameObject QuestionPanel;
     public GameObject StartPanel;
+    public GameObject TrainingPanel;
 
     private void Start()
     {
@@ -18,9 +20,28 @@ public class StartScreenUI : MonoBehaviour
     }
     public void StartButton()
     {
-        Time.timeScale = 1f;
-        Application.LoadLevelAsync(1);
+        if(!PlayerPrefs.HasKey("FirstTime"))
+        {
+            PlayerPrefs.SetInt("FirstTime", 1);
+            TrainingPanel.SetActive(true);
+            StartPanel.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadSceneAsync("level1"); // nado last level
+        }
     }
+    public void TrainingYes()
+    {
+        SceneManager.LoadSceneAsync("TrainingScene");
+    }
+
+    public void TrainingNo()
+    {
+        SceneManager.LoadSceneAsync("level1");
+    }
+
     public void Settings()
     {
         SettingsPanel.SetActive(true);

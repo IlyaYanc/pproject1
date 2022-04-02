@@ -38,7 +38,7 @@ public class PlayerProjectail : MonoBehaviour
             hp.GetDamage(_damage, _type, _fireTime, 0);
             Destroy(gameObject);
         }
-        if (!collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("TrainingTrigger"))
         {
             //Debug.Log(collision.name);
             Destroy(gameObject);

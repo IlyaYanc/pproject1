@@ -25,7 +25,7 @@ public class TrainingLevel : MonoBehaviour
 
     public GameObject[] objectsToSetActive = new GameObject[0];
     public GameObject[] objectsToSetInactive = new GameObject[0];
-
+    public GameObject TextPanel;
 
 
     private bool hasEnteredTrigger = false;
@@ -123,6 +123,7 @@ public class TrainingLevel : MonoBehaviour
 
     public void SetObjectsActive()
     {
+        Time.timeScale = 1f;
         for (int i = 0; i < objectsToSetActive.Length; i++)
         {
             objectsToSetActive[i].SetActive(true);
@@ -142,6 +143,26 @@ public class TrainingLevel : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void EbableTrigger()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void ActivateTextPanel()
+    {
+        if (TextPanel != null)
+        {
+            TextPanel.SetActive(true);
+        }
+    }
+
+    public void DeactivateTextPanel()
+    {
+        if (TextPanel != null)
+        {
+            TextPanel.SetActive(false);
+        }
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
@@ -152,6 +173,7 @@ public class TrainingLevel : MonoBehaviour
             ClosePreviousDoors();
             SetObjectsActive();
             SetObjectsInactive();
+            ActivateTextPanel();
         }
     }
 
@@ -162,6 +184,7 @@ public class TrainingLevel : MonoBehaviour
             UIBlinking = false;
             ObjectBlinking = false;
             waitsForPlayer = false;
+            DeactivateTextPanel();
         }
     }
 
