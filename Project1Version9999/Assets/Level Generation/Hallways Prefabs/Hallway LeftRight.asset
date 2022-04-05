@@ -15,13 +15,24 @@ MonoBehaviour:
   tilemapPrefab: {fileID: 2047779808471948494, guid: 25a797e64ab0e9d458491b8ce6997a91,
     type: 3}
   hallwaySize:
-    m_Position: {x: -2, y: 0, z: 0}
-    m_Size: {x: 5, y: 1, z: 1}
+    m_Position: {x: -2, y: -1, z: 0}
+    m_Size: {x: 5, y: 3, z: 1}
   tilesDataBase: {fileID: 11400000, guid: 2b471e51fc179424a9d09795c43c463e, type: 2}
   connectionPoints:
   - Position: {x: -2, y: 0}
-    LocalPosition: {x: 0, y: 0}
+    LocalPosition: {x: 0, y: 1}
     ExitRotation: 0
   - Position: {x: 2, y: 0}
-    LocalPosition: {x: 4, y: 0}
+    LocalPosition: {x: 4, y: 1}
     ExitRotation: 1
+  wallPoints:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: 3, y: 0}
+  - {x: 4, y: 0}
+  - {x: 0, y: 2}
+  - {x: 1, y: 2}
+  - {x: 2, y: 2}
+  - {x: 3, y: 2}
+  - {x: 4, y: 2}

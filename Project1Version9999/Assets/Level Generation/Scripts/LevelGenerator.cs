@@ -144,6 +144,7 @@ public class LevelGenerator : MonoBehaviour
                             break;
                     }
                     HallwayGenerationPreparations(point);
+                    wallsPositions.Remove(point.LocalPosition + currentPos);
                     RecursionGenerate(true);
                     break;
                 
@@ -152,9 +153,11 @@ public class LevelGenerator : MonoBehaviour
                     int index1 = UnityEngine.Random.Range(0, nextPoints.Count);
                     ConnectionPoint point1 = nextPoints[index1];
                     nextPoints.Remove(point1);
+                    wallsPositions.Remove(point1.LocalPosition + currentPos);
                     int index2 = UnityEngine.Random.Range(0, nextPoints.Count);;
                     ConnectionPoint point2 = nextPoints[index2];
                     nextPoints.Remove(point2);
+                    
                     
                     var currentPosCopy = currentPos;
                     var currentFieldPosCopy = currentFieldPos;
@@ -178,8 +181,10 @@ public class LevelGenerator : MonoBehaviour
                     RecursionGenerate(false);
                     if (roomsCurrentAmount >= roomsCount)
                         break;
+                    
                     currentPos = currentPosCopy;
                     currentFieldPos = currentFieldPosCopy;
+                    wallsPositions.Remove(point2.LocalPosition + currentPos);
                     switch (point2.ExitRotation)
                     {
                         case ObjectRotation.Down:
@@ -241,6 +246,7 @@ public class LevelGenerator : MonoBehaviour
                     currentFieldPos += Vector2Int.right;
                     break;
             }
+            wallsPositions.Remove(point.LocalPosition + currentPos);
             HallwayGenerationPreparations(point);
             RecursionGenerate(true);
         }
@@ -323,6 +329,7 @@ public class LevelGenerator : MonoBehaviour
             var startTilePos = new Vector3Int((point.LocalPosition + currentPos).x, (point.LocalPosition + currentPos).y, 0);
             tilemap.SetTile(startTilePos,tilesDataBase.ground); //закрашиваем начальный тайл комнаты полом
             wallsPositions.Remove(point.LocalPosition + currentPos);
+            Debug.Log(point.LocalPosition + currentPos);
         }
     
         //считываем все специальные тайлы и заменяем их на тайлы пола
@@ -383,7 +390,7 @@ public class LevelGenerator : MonoBehaviour
     private List<Vector2Int> exitPositions = new List<Vector2Int>();
     private List<Vector2Int> bonfiresPositions = new List<Vector2Int>();
 
-    private List<Vector2Int> wallsPositions = new List<Vector2Int>();
+    public List<Vector2Int> wallsPositions = new List<Vector2Int>();
 
     [SerializeField] private TilesDataBase tilesDataBase;
 

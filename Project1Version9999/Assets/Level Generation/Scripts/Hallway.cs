@@ -22,6 +22,7 @@ public class Hallway : ScriptableObject
     public void Bake()
     {
         connectionPoints.Clear();
+        wallPoints.Clear();
         var tileArray = tilemapPrefab.GetTilesBlock(hallwaySize);
         for (var index = 0; index < tileArray.Length; index++)
         {

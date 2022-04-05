@@ -21,6 +21,7 @@ public class Room : ScriptableObject
     {
         connectionPoints.Clear();
         placingPoints.Clear();
+        wallPoints.Clear();
         var tileArray = tilemapPrefab.GetTilesBlock(roomSize);
         for (var index = 0; index < tileArray.Length; index++)
         {
