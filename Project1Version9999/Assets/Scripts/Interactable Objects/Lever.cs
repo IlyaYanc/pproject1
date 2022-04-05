@@ -50,6 +50,11 @@ public class Lever : Interactable
         }
         
     }
+
+    public void SetActiveObject(activObject _obj)
+    {
+        obj = _obj;
+    }
 }
 
 public class LeverSavingData

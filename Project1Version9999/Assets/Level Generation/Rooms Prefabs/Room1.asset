@@ -38,9 +38,55 @@ MonoBehaviour:
   - Position: {x: 3, y: -3}
     LocalPosition: {x: 8, y: 2}
     PlacingThing: 2
+  - Position: {x: 0, y: -1}
+    LocalPosition: {x: 5, y: 4}
+    PlacingThing: 3
+  - Position: {x: -2, y: 1}
+    LocalPosition: {x: 3, y: 6}
+    PlacingThing: 4
+  - Position: {x: 2, y: 1}
+    LocalPosition: {x: 7, y: 6}
+    PlacingThing: 3
   - Position: {x: -3, y: 3}
     LocalPosition: {x: 2, y: 8}
     PlacingThing: 2
   - Position: {x: 3, y: 3}
     LocalPosition: {x: 8, y: 8}
     PlacingThing: 6
+  wallPoints:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: 3, y: 0}
+  - {x: 4, y: 0}
+  - {x: 6, y: 0}
+  - {x: 7, y: 0}
+  - {x: 8, y: 0}
+  - {x: 9, y: 0}
+  - {x: 10, y: 0}
+  - {x: 0, y: 1}
+  - {x: 10, y: 1}
+  - {x: 0, y: 2}
+  - {x: 10, y: 2}
+  - {x: 0, y: 3}
+  - {x: 10, y: 3}
+  - {x: 0, y: 4}
+  - {x: 10, y: 4}
+  - {x: 0, y: 6}
+  - {x: 10, y: 6}
+  - {x: 0, y: 7}
+  - {x: 10, y: 7}
+  - {x: 0, y: 8}
+  - {x: 10, y: 8}
+  - {x: 0, y: 9}
+  - {x: 10, y: 9}
+  - {x: 0, y: 10}
+  - {x: 1, y: 10}
+  - {x: 2, y: 10}
+  - {x: 3, y: 10}
+  - {x: 4, y: 10}
+  - {x: 6, y: 10}
+  - {x: 7, y: 10}
+  - {x: 8, y: 10}
+  - {x: 9, y: 10}
+  - {x: 10, y: 10}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using NaughtyAttributes;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "HallwayPrefab", menuName = "LevelGenerator/HallwayPrefab")]
 public class Hallway : ScriptableObject
@@ -15,7 +16,7 @@ public class Hallway : ScriptableObject
     public ConnectionPoint startPoint;
     public ConnectionPoint endPoint;*/
     public List<ConnectionPoint> connectionPoints;
-
+    public List<Vector2Int> wallPoints;
 
     [Button("Bake")]
     public void Bake()
@@ -36,25 +37,21 @@ public class Hallway : ScriptableObject
             
             //Debug.Log( "; x1 = " + x + "; y1 = " + y);
             if (tile == tilesDataBase.connectionDown)
-            {
                 connectionPoints.Add(new ConnectionPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), ObjectRotation.Down));
-                Debug.Log(tile);
-            }
             else if (tile == tilesDataBase.connectionUp)
-            {
                 connectionPoints.Add(new ConnectionPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), ObjectRotation.Up));
-                Debug.Log(tile);
-            }
             else if (tile == tilesDataBase.connectionLeft)
-            {
                 connectionPoints.Add(new ConnectionPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), ObjectRotation.Left));
-                Debug.Log(tile);
-            }
             else if (tile == tilesDataBase.connectionRight)
-            {
-                connectionPoints.Add(new ConnectionPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), ObjectRotation.Right));   
-                Debug.Log(tile);
-            }
+                connectionPoints.Add(new ConnectionPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), ObjectRotation.Right));
+            
+            else if (tilesDataBase.wallTiles.Any(_wallTile => tile == _wallTile))
+                wallPoints.Add(new Vector2Int(x, y));
+            
+            else
+                continue;
+            
+            Debug.Log(tile);
         }
     }
 }

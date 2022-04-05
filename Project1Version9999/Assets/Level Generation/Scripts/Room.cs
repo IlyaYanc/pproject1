@@ -1,5 +1,6 @@
 using System;using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -13,7 +14,7 @@ public class Room : ScriptableObject
     public TilesDataBase tilesDataBase;
     public List<ConnectionPoint> connectionPoints;
     public List<PlacingPoint> placingPoints;
-    
+    public List<Vector2Int> wallPoints;
 
     [Button("Bake")]
     public void Bake()
@@ -65,8 +66,12 @@ public class Room : ScriptableObject
             else if (tile == tilesDataBase.fallingGroundPlace)
                 placingPoints.Add(new PlacingPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), PlacingThings.FallingGroundPlace));
             
+            else if (tilesDataBase.wallTiles.Any(_wallTile => tile == _wallTile))
+                wallPoints.Add(new Vector2Int(x, y));
+            
             else
                 continue;
+            
             
             Debug.Log(tile);
         }
@@ -109,5 +114,6 @@ public struct PlacingPoint
         PlacingThing = _placingThing;
     }
 }
+
 
 
