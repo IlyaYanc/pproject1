@@ -26,6 +26,8 @@ public class TilesDataBase : ScriptableObject
     public TileBase lockedDoorPlace;
     public TileBase magicTrapPlace;
     public TileBase fallingGroundPlace;
+    public TileBase emptyTile;
+    public TileBase[] wallTiles;
 }
 public enum PlacingThings
 {

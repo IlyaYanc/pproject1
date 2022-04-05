@@ -38,6 +38,21 @@ MonoBehaviour:
   - Position: {x: 3, y: -3}
     LocalPosition: {x: 8, y: 2}
     PlacingThing: 6
+  - Position: {x: -2, y: -2}
+    LocalPosition: {x: 3, y: 3}
+    PlacingThing: 3
+  - Position: {x: -1, y: -2}
+    LocalPosition: {x: 4, y: 3}
+    PlacingThing: 3
+  - Position: {x: -2, y: -1}
+    LocalPosition: {x: 3, y: 4}
+    PlacingThing: 3
+  - Position: {x: 3, y: -1}
+    LocalPosition: {x: 8, y: 4}
+    PlacingThing: 4
+  - Position: {x: 2, y: 0}
+    LocalPosition: {x: 7, y: 5}
+    PlacingThing: 4
   - Position: {x: 2, y: 2}
     LocalPosition: {x: 7, y: 7}
     PlacingThing: 2

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Utils;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -12,10 +13,15 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Hallway[] hallways;
     [SerializeField] private int roomsCount;
     [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Tilemap shadowsTileMap;
+    [SerializeField] private TilemapShadowCaster2D tilemapShadowCaster2D;
     private void Start()
     {
         ResetLevelSettings();
         RecursionGenerate(true);
+        GenerateSpecialObjects();
+        GenerateEmptyWalls();
+        GenerateShadows();
     }
 
     private Vector2Int currentPos = new Vector2Int(0, 0);
@@ -32,12 +38,20 @@ public class LevelGenerator : MonoBehaviour
         currentFieldPos = new Vector2Int(50, 50);
         GenerateEmptyField();
         tilemap.ClearAllTiles();
+        shadowsTileMap.ClearAllTiles();
         chestsPositions = new List<Vector2Int>();
         //lockedChestsPositions = new List<Vector2Int>();
         exitPositions = new List<Vector2Int>();
         bonfiresPositions = new List<Vector2Int>();
+        leversPositions = new List<Vector2Int>();
+        lockedChestsPositions = new List<Vector2Int>();
+        wallsPositions = new List<Vector2Int>();
         
         foreach (Transform child in lvlContentParent) {
+            DestroyImmediate(child.gameObject);
+        }
+        
+        foreach (Transform child in shadowsTileMap.GetComponent<Transform>()) {
             DestroyImmediate(child.gameObject);
         }
         
@@ -50,7 +64,10 @@ public class LevelGenerator : MonoBehaviour
     private void StartRecursionGenerate()
     {
         RecursionGenerate(true);
+        GenerateEmptyWalls();
         GenerateSpecialObjects();
+        //GenerateShadows();
+        tilemapShadowCaster2D.GenerateShadowCastersRunTime();
         Debug.Log("--Generated--");
     }
     
@@ -104,7 +121,7 @@ public class LevelGenerator : MonoBehaviour
 
         //var emptyPoints = new List<ConnectionPoint>(nextPoints);
         
-        if (roomsCurrentAmount * 1.5f < roomsCount && nextPoints.Count >= 2 && _isMain)
+        if (roomsCurrentAmount * 1.2f < roomsCount && nextPoints.Count >= 2 && _isMain)
         {
             switch (UnityEngine.Random.Range(0,3))
             {
@@ -296,16 +313,19 @@ public class LevelGenerator : MonoBehaviour
                     placingTile = tilesDataBase.wallDown;
                     break;
             }
-
+            
             tilemap.SetTile(tilePos, placingTile);
+            wallsPositions.Add(conPoint.LocalPosition + currentPos);
         }
 
-        if (roomsCurrentAmount > 1) //чтобы в первой комнате закрасился начальный тайл
+        if (roomsCurrentAmount >= 1) //чтобы в первой комнате начальный тайл закрасился стеной 
         {
             var startTilePos = new Vector3Int((point.LocalPosition + currentPos).x, (point.LocalPosition + currentPos).y, 0);
-            tilemap.SetTile(startTilePos,tilesDataBase.ground);
+            tilemap.SetTile(startTilePos,tilesDataBase.ground); //закрашиваем начальный тайл комнаты полом
+            wallsPositions.Remove(point.LocalPosition + currentPos);
         }
-
+    
+        //считываем все специальные тайлы и заменяем их на тайлы пола
         foreach (var placingPoint in _room.placingPoints)
         {
             switch (placingPoint.PlacingThing)
@@ -318,9 +338,10 @@ public class LevelGenerator : MonoBehaviour
                 case PlacingThings.MonsterDot:
                     break;
                 case PlacingThings.LockedChestPlace:
-                    //lockedChestsPositions.Add(placingPoint.Position);
+                    lockedChestsPositions.Add(placingPoint.LocalPosition+currentPos);
                     break;
                 case PlacingThings.LeverPlace:
+                    leversPositions.Add(placingPoint.LocalPosition+currentPos);
                     break;
                 case PlacingThings.BonfirePlace:
                     bonfiresPositions.Add(placingPoint.LocalPosition+currentPos);
@@ -343,17 +364,26 @@ public class LevelGenerator : MonoBehaviour
             var tilePos = new Vector3Int((placingPoint.LocalPosition + currentPos).x, (placingPoint.LocalPosition + currentPos).y, 0);
             tilemap.SetTile(tilePos,tilesDataBase.ground);
         }
+
+        foreach (var wallPoint in _room.wallPoints)
+        {
+            wallsPositions.Add(wallPoint + currentPos);
+        }
         
+
     }
 
-    [SerializeField] private int chestsAmount, bonfiresAmount;
+    [SerializeField] private int chestsAmount, bonfiresAmount, lockedChestsAmount;
     [SerializeField] private Transform lvlContentParent;
-    [SerializeField] private GameObject chestPrefab, exitPrefab;
+    [SerializeField] private GameObject chestPrefab, lockedChestPrefab, exitPrefab, leverPrefab;
     
     private List<Vector2Int> chestsPositions = new List<Vector2Int>();
-    //private List<Vector2Int> lockedChestsPositions = new List<Vector2Int>();
+    private List<Vector2Int> lockedChestsPositions = new List<Vector2Int>();
+    private List<Vector2Int> leversPositions = new List<Vector2Int>();
     private List<Vector2Int> exitPositions = new List<Vector2Int>();
     private List<Vector2Int> bonfiresPositions = new List<Vector2Int>();
+
+    private List<Vector2Int> wallsPositions = new List<Vector2Int>();
 
     [SerializeField] private TilesDataBase tilesDataBase;
 
@@ -367,6 +397,22 @@ public class LevelGenerator : MonoBehaviour
             var position = tilemap.GetCellCenterWorld(new Vector3Int(posVector2.x, posVector2.y, 0));
             chestsPositions.Remove(posVector2);
             Instantiate(chestPrefab, position, Quaternion.Euler(0,0,0), lvlContentParent);
+        }
+        for (var i = 0; i < lockedChestsAmount; i++)
+        {
+            var posVector2 = lockedChestsPositions[UnityEngine.Random.Range(0, lockedChestsPositions.Count)];
+            var position = tilemap.GetCellCenterWorld(new Vector3Int(posVector2.x, posVector2.y, 0));
+            lockedChestsPositions.Remove(posVector2);
+            var lockedChestGameObject = Instantiate(lockedChestPrefab, position, Quaternion.Euler(0,0,0), lvlContentParent);
+            var lockedChestComponent = lockedChestGameObject.GetComponent<Chest>();
+            
+            posVector2 = leversPositions[UnityEngine.Random.Range(0, leversPositions.Count)];
+            position = tilemap.GetCellCenterWorld(new Vector3Int(posVector2.x, posVector2.y, 0));
+            leversPositions.Remove(posVector2);
+            var leverGameObject = Instantiate(leverPrefab, position, Quaternion.Euler(0,0,0), lvlContentParent);
+            var leverComponent = leverGameObject.GetComponent<Lever>();
+            leverComponent.SetActiveObject(lockedChestComponent);
+
         }
         var exitPosVector2 = exitPositions[UnityEngine.Random.Range(0, chestsPositions.Count)];
         var exitPosition = tilemap.GetCellCenterWorld(new Vector3Int(exitPosVector2.x, exitPosVector2.y, 0));
@@ -403,6 +449,31 @@ public class LevelGenerator : MonoBehaviour
         var tilePos = new Vector3Int((_hallway.connectionPoints[_startPointIndex].LocalPosition + currentPos).x, (_hallway.connectionPoints[_startPointIndex].LocalPosition + currentPos).y, 0);
         tilemap.SetTile(tilePos,tilesDataBase.ground);
         
+        foreach (var wallPoint in _hallway.wallPoints)
+        {
+            wallsPositions.Add(wallPoint + currentPos);
+        }
+    }
+
+    private void GenerateEmptyWalls()
+    {
+        foreach (var wallPos in wallsPositions)
+        {
+            shadowsTileMap.SetTile(new Vector3Int(wallPos.x, wallPos.y, 0), tilesDataBase.emptyTile);
+        }
+    }
+
+    /*IEnumerator GenerateShadowsIEnumenator()
+    {
+        yield return new WaitForSeconds(0.5f);
+        shadowCaster2DTileMap.Generate();
+    }*/
+    [Button("GenerateShadows")]
+    private void GenerateShadows()
+    {
+        
+        //StartCoroutine(GenerateShadowsIEnumenator());
+        tilemapShadowCaster2D.GenerateShadowCastersRunTime();
     }
     
 

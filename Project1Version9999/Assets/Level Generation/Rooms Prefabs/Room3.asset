@@ -38,6 +38,9 @@ MonoBehaviour:
   - Position: {x: 1, y: -1}
     LocalPosition: {x: 6, y: 4}
     PlacingThing: 6
+  - Position: {x: 0, y: 0}
+    LocalPosition: {x: 5, y: 5}
+    PlacingThing: 4
   - Position: {x: -1, y: 1}
     LocalPosition: {x: 4, y: 6}
     PlacingThing: 6
