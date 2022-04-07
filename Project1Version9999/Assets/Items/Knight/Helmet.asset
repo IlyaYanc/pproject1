@@ -20,5 +20,6 @@ MonoBehaviour:
   canBeApplied: 1
   description: 
   defence: 0
-  animator: {fileID: 9100000, guid: f0270a507e424aa47abe6ed776bcffb3, type: 2}
+  animator: {fileID: 9100000, guid: 1b41ebd8a519ee54fb24c6b611ea0b56, type: 2}
+  classType: 0
   equipmentType: 0

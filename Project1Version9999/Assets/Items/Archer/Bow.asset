@@ -21,4 +21,4 @@ MonoBehaviour:
   weaponType: 1
   damage: 0
   hasFire: 0
-  animator: {fileID: 9100000, guid: 81502d6de8be1c34abb9b2a157ae7c0f, type: 2}
+  animator: {fileID: 9100000, guid: 8cad343937133fb44a1c041952c639ee, type: 2}
