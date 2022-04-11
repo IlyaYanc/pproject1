@@ -9,20 +9,24 @@ using Random = System.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
+    [Header("-GENERAL SETTINGS-")]
     [SerializeField] private Room[] rooms;
     [SerializeField] private Hallway[] hallways;
     [SerializeField] private int roomsCount;
+    [SerializeField] private TilesDataBase tilesDataBase;
+    [Space]
+    [Header("-TILEMAP LINKS-")]
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Tilemap shadowsTileMap;
     [SerializeField] private TilemapShadowCaster2D tilemapShadowCaster2D;
-    private void Start()
+    /*private void Start()
     {
         ResetLevelSettings();
         RecursionGenerate(true);
         GenerateSpecialObjects();
         GenerateEmptyWalls();
         GenerateShadows();
-    }
+    }*/
 
     private Vector2Int currentPos = new Vector2Int(0, 0);
 
@@ -54,22 +58,23 @@ public class LevelGenerator : MonoBehaviour
         foreach (Transform child in shadowsTileMap.GetComponent<Transform>()) {
             DestroyImmediate(child.gameObject);
         }
-        
+        shadowsTileMap.GetComponent<TilemapRenderer>().enabled = true;
         Debug.Log("--Reset--");
     }
     
     private int roomsCurrentAmount = 0;
 
-    [Button("StartRecursionGenerate")]
+    [Button("Generate Level Map")]
     private void StartRecursionGenerate()
     {
         RecursionGenerate(true);
         GenerateEmptyWalls();
-        GenerateSpecialObjects();
+        //GenerateSpecialObjects();
         //GenerateShadows();
         tilemapShadowCaster2D.GenerateShadowCastersRunTime();
         Debug.Log("--Generated--");
     }
+    
     
     private void RecursionGenerate(bool _isMain)
     {
@@ -144,7 +149,7 @@ public class LevelGenerator : MonoBehaviour
                             break;
                     }
                     HallwayGenerationPreparations(point);
-                    wallsPositions.Remove(point.LocalPosition + currentPos);
+                    //wallsPositions.Remove(point.LocalPosition + currentPos);
                     RecursionGenerate(true);
                     break;
                 
@@ -153,7 +158,7 @@ public class LevelGenerator : MonoBehaviour
                     int index1 = UnityEngine.Random.Range(0, nextPoints.Count);
                     ConnectionPoint point1 = nextPoints[index1];
                     nextPoints.Remove(point1);
-                    wallsPositions.Remove(point1.LocalPosition + currentPos);
+                    //wallsPositions.Remove(point1.LocalPosition + currentPos);
                     int index2 = UnityEngine.Random.Range(0, nextPoints.Count);;
                     ConnectionPoint point2 = nextPoints[index2];
                     nextPoints.Remove(point2);
@@ -184,7 +189,7 @@ public class LevelGenerator : MonoBehaviour
                     
                     currentPos = currentPosCopy;
                     currentFieldPos = currentFieldPosCopy;
-                    wallsPositions.Remove(point2.LocalPosition + currentPos);
+                    //wallsPositions.Remove(point2.LocalPosition + currentPos);
                     switch (point2.ExitRotation)
                     {
                         case ObjectRotation.Down:
@@ -246,7 +251,7 @@ public class LevelGenerator : MonoBehaviour
                     currentFieldPos += Vector2Int.right;
                     break;
             }
-            wallsPositions.Remove(point.LocalPosition + currentPos);
+            //wallsPositions.Remove(point.LocalPosition + currentPos);
             HallwayGenerationPreparations(point);
             RecursionGenerate(true);
         }
@@ -258,6 +263,7 @@ public class LevelGenerator : MonoBehaviour
     private void HallwayGenerationPreparations(ConnectionPoint _point)
     {
         currentPos += new Vector2Int(_point.LocalPosition.x, _point.LocalPosition.y);
+        wallsPositions.Remove(currentPos);
         //Debug.Log(currentPos);
         //choose random suitable hallway
         Hallway currentHallway = null;
@@ -329,7 +335,7 @@ public class LevelGenerator : MonoBehaviour
             var startTilePos = new Vector3Int((point.LocalPosition + currentPos).x, (point.LocalPosition + currentPos).y, 0);
             tilemap.SetTile(startTilePos,tilesDataBase.ground); //закрашиваем начальный тайл комнаты полом
             wallsPositions.Remove(point.LocalPosition + currentPos);
-            Debug.Log(point.LocalPosition + currentPos);
+            //Debug.Log(point.LocalPosition + currentPos);
         }
     
         //считываем все специальные тайлы и заменяем их на тайлы пола
@@ -380,7 +386,10 @@ public class LevelGenerator : MonoBehaviour
 
     }
 
-    [SerializeField] private int chestsAmount, bonfiresAmount, lockedChestsAmount;
+    [Space] [Header("-PROPS SETTINGS-")]
+    [SerializeField] private int chestsAmount;
+    //[SerializeField] private int bonfiresAmount;
+    [SerializeField] private int lockedChestsAmount;
     [SerializeField] private Transform lvlContentParent;
     [SerializeField] private GameObject chestPrefab, lockedChestPrefab, exitPrefab, leverPrefab;
     
@@ -389,13 +398,13 @@ public class LevelGenerator : MonoBehaviour
     private List<Vector2Int> leversPositions = new List<Vector2Int>();
     private List<Vector2Int> exitPositions = new List<Vector2Int>();
     private List<Vector2Int> bonfiresPositions = new List<Vector2Int>();
-
-    public List<Vector2Int> wallsPositions = new List<Vector2Int>();
-
-    [SerializeField] private TilesDataBase tilesDataBase;
-
-
+    private List<Vector2Int> wallsPositions = new List<Vector2Int>();
+    
     [SerializeField] private Vector3 exitTileOffset = new Vector3(0f, 0f, 0f);
+    
+    
+    
+    [Button("Generate Props")]
     private void GenerateSpecialObjects()
     {
         for (var i = 0; i < chestsAmount; i++)
@@ -468,6 +477,8 @@ public class LevelGenerator : MonoBehaviour
         {
             shadowsTileMap.SetTile(new Vector3Int(wallPos.x, wallPos.y, 0), tilesDataBase.emptyTile);
         }
+
+        shadowsTileMap.GetComponent<TilemapRenderer>().enabled = false;
     }
 
     /*IEnumerator GenerateShadowsIEnumenator()
@@ -475,7 +486,7 @@ public class LevelGenerator : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         shadowCaster2DTileMap.Generate();
     }*/
-    [Button("GenerateShadows")]
+    [Button("Generate Shadows")]
     private void GenerateShadows()
     {
         

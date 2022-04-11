@@ -47,8 +47,10 @@ public class Hallway : ScriptableObject
                 connectionPoints.Add(new ConnectionPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), ObjectRotation.Right));
             
             else if (tilesDataBase.wallTiles.Any(_wallTile => tile == _wallTile))
+            {
                 wallPoints.Add(new Vector2Int(x, y));
-            
+                continue;
+            }
             else
                 continue;
             

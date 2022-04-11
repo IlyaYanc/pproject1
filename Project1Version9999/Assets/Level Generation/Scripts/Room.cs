@@ -68,8 +68,10 @@ public class Room : ScriptableObject
                 placingPoints.Add(new PlacingPoint(new Vector2Int(x1, y1),new Vector2Int(x, y), PlacingThings.FallingGroundPlace));
             
             else if (tilesDataBase.wallTiles.Any(_wallTile => tile == _wallTile))
+            {
                 wallPoints.Add(new Vector2Int(x, y));
-            
+                continue;
+            }
             else
                 continue;
             
