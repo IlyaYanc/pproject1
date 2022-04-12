@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EquipmentController : MonoBehaviour
 {
-    public EquipmentItem chestPlate;
-    public EquipmentItem hat;
+    public InventoryItem chestPlate;
+    public InventoryItem hat;
     [SerializeField] private HP hp;
     [SerializeField] private InventoryRenderer inventoryRenderer;
 
@@ -20,39 +20,45 @@ public class EquipmentController : MonoBehaviour
     private float hatDefence = 0f;
     
 
-    public void ApplyChestPlate(EquipmentItem item, bool isApplied)
+    public void ApplyChestPlate(InventoryItem _invItem, bool isApplied)
     {
+        
         if (chestPlate != null)
         {
             hp.EncreaseResist(CalculateResist(chestPlateDefence)); //the lower resist is the lower damage goes
+            
         }
-        if (isApplied || item == null)
+        
+        if (isApplied || _invItem == null)
         {
             chestPlate = null;
             chestPlateDefence = 0;
             bodyClothesAnimator.runtimeAnimatorController = bodyClothesAnimatorDefault;
             return;
         }
-        chestPlate = item;
-        chestPlateDefence = item.defence;
+        EquipmentItem item = (EquipmentItem)_invItem.item;
+        chestPlate = _invItem;
+        chestPlateDefence = _invItem.defence;
         hp.DecreaseResist(CalculateResist(chestPlateDefence));
         bodyClothesAnimator.runtimeAnimatorController = item.animator;
     }
-    public void ApplyHat(EquipmentItem item, bool isApplied)
+    public void ApplyHat(InventoryItem _invItem, bool isApplied)
     {
+        
         if (hat != null)
         {
             hp.EncreaseResist(CalculateResist(hatDefence)); //the lower resist is the lower damage goes
         }
-        if (isApplied || item == null)
+        if (isApplied || _invItem == null)
         {
             hat = null;
             hatDefence = 0;
             hatClothesAnimator.runtimeAnimatorController = hatClothesAnimatorDefault;
             return;
         }
-        hat = item;
-        hatDefence = item.defence;
+        EquipmentItem item = (EquipmentItem)_invItem.item;
+        hat = _invItem;
+        hatDefence = _invItem.defence;
         hp.DecreaseResist(CalculateResist(hatDefence));
         hatClothesAnimator.runtimeAnimatorController = item.animator;
     }

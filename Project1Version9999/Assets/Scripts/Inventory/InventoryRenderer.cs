@@ -292,32 +292,39 @@ public class InventoryRenderer : MonoBehaviour
         
         ItemType itemType = _item.item.type;
 
-        if (itemType == ItemType.Weapon)
+        switch (itemType)
         {
-            for (var index = 0; index < attackControllers.Length; index++)
+            case ItemType.Weapon:
             {
-                var attackController = attackControllers[index];
-                if (attackController.WeaponType() != ((WeaponItem) _item.item).weaponType)
-                    continue;
-                attackController.SetActiveWeapon((WeaponItem) _item.item, _item.damage, _item.isApplied);
-                dmgTexts[index].text = attackControllers[index].GetDamage().ToString();
+                for (var index = 0; index < attackControllers.Length; index++)
+                {
+                    var attackController = attackControllers[index];
+                    if (attackController.WeaponType() != ((WeaponItem) _item.item).weaponType)
+                        continue;
+                    attackController.SetActiveWeapon((WeaponItem) _item.item, _item.damage, _item.isApplied);
+                    dmgTexts[index].text = attackControllers[index].GetDamage().ToString();
+                    break;
+                }
+
                 break;
             }
-        }
-        if (itemType == ItemType.Equipment)
-        {
-            foreach (var equipmentController in equipmentControllers)
+            case ItemType.Equipment:
             {
-                if (equipmentController.EqupmentClassType() != ((EquipmentItem) _item.item).classType) 
-                    continue;
-                if (((EquipmentItem) _item.item).equipmentType == equipmentType.ChestPlate)
+                foreach (var equipmentController in equipmentControllers)
                 {
-                    equipmentController.ApplyChestPlate((EquipmentItem)_item.item, _item.isApplied);
+                    if (equipmentController.EqupmentClassType() != ((EquipmentItem) _item.item).classType) 
+                        continue;
+                    if (((EquipmentItem) _item.item).equipmentType == equipmentType.ChestPlate)
+                    {
+                        equipmentController.ApplyChestPlate(_item, _item.isApplied);
+                    }
+                    else
+                    {
+                        equipmentController.ApplyHat(_item, _item.isApplied);
+                    }
+                    break;
                 }
-                else
-                {
-                    equipmentController.ApplyHat((EquipmentItem)_item.item, _item.isApplied);
-                }
+
                 break;
             }
         }
@@ -331,20 +338,27 @@ public class InventoryRenderer : MonoBehaviour
                     items[i].isApplied = false;
                     inventory.ChangeItem(items[i], i);
                 }
-                else if(itemType == ItemType.Weapon)
+                else switch (itemType)
                 {
-                    if (((WeaponItem) (items[i].item)).weaponType == ((WeaponItem) _item.item).weaponType)
+                    case ItemType.Weapon:
                     {
-                        items[i].isApplied = false;
-                        inventory.ChangeItem(items[i], i);
+                        if (((WeaponItem) (items[i].item)).weaponType == ((WeaponItem) _item.item).weaponType)
+                        {
+                            items[i].isApplied = false;
+                            inventory.ChangeItem(items[i], i);
+                        }
+
+                        break;
                     }
-                }
-                else if(itemType == ItemType.Equipment)
-                {
-                    if (((EquipmentItem) (items[i].item)).classType == ((EquipmentItem) _item.item).classType)
+                    case ItemType.Equipment:
                     {
-                        items[i].isApplied = false;
-                        inventory.ChangeItem(items[i], i);
+                        if (((EquipmentItem) (items[i].item)).classType == ((EquipmentItem) _item.item).classType)
+                        {
+                            items[i].isApplied = false;
+                            inventory.ChangeItem(items[i], i);
+                        }
+
+                        break;
                     }
                 }
                 
@@ -375,6 +389,34 @@ public class InventoryRenderer : MonoBehaviour
                 }
             }
                 //attackController.SetActiveWeapon((WeaponItem)items[_x].item, items[_x].damage, items[_x].isApplied);
+        }
+        else if (items[_x].item.type == ItemType.Equipment)
+        {
+            InventoryItem item = items[_x];
+            if (item.isApplied)
+            {
+                foreach (var equipmentController in equipmentControllers)
+                {
+                    if (equipmentController.EqupmentClassType() != ((EquipmentItem) item.item).classType) continue;
+                    switch (((EquipmentItem) item.item).equipmentType)
+                    {
+                        case equipmentType.ChestPlate:
+                            if (equipmentController.chestPlate == item)
+                            {
+                                equipmentController.ApplyChestPlate(null, false);
+                            }
+                            break;
+                        case equipmentType.Hat:
+                            if (equipmentController.hat == item)
+                            {
+                                equipmentController.ApplyHat(null, false);
+                            }
+                            break;
+                    }
+                    break;
+                }
+            }
+            //attackController.SetActiveWeapon((WeaponItem)items[_x].item, items[_x].damage, items[_x].isApplied);
         }
         inventory.DeleteItem(_x);
         UpdateInventory(inventory.ReturnItems());

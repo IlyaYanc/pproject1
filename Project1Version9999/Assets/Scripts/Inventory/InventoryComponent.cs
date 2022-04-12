@@ -19,8 +19,7 @@ public class InventoryComponent : MonoBehaviour
 
     [SerializeField] private int lvl = 1;
     [SerializeField] private float k = 1; //коэффициент, на который умножается уровень, для выдачи урона оружию
-    
-    
+
     private void Start()
     {
         if(lootManager != null)
@@ -49,21 +48,21 @@ public class InventoryComponent : MonoBehaviour
         }
         else
         {
-            if (_item.type == ItemType.Weapon)
+            switch (_item.type)
             {
-                items.Add(new InventoryItem(_item, lvl * k));
+                case ItemType.Weapon:
+                    items.Add(new InventoryItem(_item, k, lvl));
+                    break;
+                case ItemType.Equipment:
+                    items.Add(new InventoryItem(_item, k, lvl));
+                    break;
+                default:
+                    items.Add(new InventoryItem(_item));
+                    break;
             }
-            else
-                items.Add(new InventoryItem(_item));
         }
         inventoryRenderer.UpdateInventory(items);
     }
-
-    /*public void InventorySave()
-    {
-        string data = JsonUtility.ToJson(this, true);
-        File.WriteAllText("D:/saveInventory.txt", data);
-    }*/
 
     public List<InventoryItem> ReturnItems()
     {
