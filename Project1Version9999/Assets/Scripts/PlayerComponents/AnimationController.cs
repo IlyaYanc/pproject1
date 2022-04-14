@@ -34,7 +34,9 @@ public class AnimationController : MonoBehaviour
 
     public HP CharacterHP;
     private bool WasDead = false;
-
+    [SerializeField]private string lastClipName;
+    private AnimatorClipInfo[] clipsInfo;
+    private RuntimeAnimatorController[] equipmentAnimatorControllers = new RuntimeAnimatorController[4];
     public void Start()
     {
         CharacterBodyAnimator = CharacterBody.GetComponent<Animator>();
@@ -50,6 +52,7 @@ public class AnimationController : MonoBehaviour
         CharacterPositions[2] = new Vector3(0.25f, 0.6f, 0f);
         CharacterPositions[3] = new Vector3(0.25f, 0f, 0f);
         CharacterPhysics.transform.localPosition = ShootPositions[0];
+        SetRuntimeAnimatorControllers();
     }
 
     private void Update()
@@ -75,19 +78,23 @@ public class AnimationController : MonoBehaviour
         {
             ChangeDirection(3);
             CharacterTransform.localScale = WatchLeft;
+            SetLastClipName("WL");
         }
         if (Player.transform.localEulerAngles.z >= 89f && Player.transform.localEulerAngles.z <= 91f)
         {
             ChangeDirection(2);
             CharacterTransform.localScale = WatchRight;
+            SetLastClipName("WD");
         }
         if (Player.transform.localEulerAngles.z >= 179f && Player.transform.localEulerAngles.z <= 181f)
         {
             ChangeDirection(1);
+            SetLastClipName("WR");
         }
         if (Player.transform.localEulerAngles.z >= 269f && Player.transform.localEulerAngles.z <= 271f)
         {
             ChangeDirection(0);
+            SetLastClipName("WU");
         }
         PositionNumber--;
         if (PositionNumber == -1)
@@ -116,21 +123,25 @@ public class AnimationController : MonoBehaviour
         if (Player.transform.localEulerAngles.z >= -1f && Player.transform.localEulerAngles.z <= 1f)
         {
             ChangeDirection(1);
+            SetLastClipName("WR");
         }
         if (Player.transform.localEulerAngles.z >= 89f && Player.transform.localEulerAngles.z <= 91f)
         {
             ChangeDirection(0);
+            SetLastClipName("WU");
             CharacterTransform.localScale = WatchRight;
         }
         if (Player.transform.localEulerAngles.z >= 179f && Player.transform.localEulerAngles.z <= 181f)
         {
             ChangeDirection(3);
+            SetLastClipName("WL");
             CharacterTransform.localScale = WatchLeft;
 
         }
         if (Player.transform.localEulerAngles.z >= 269f && Player.transform.localEulerAngles.z <= 271f)
         {
             ChangeDirection(2);
+            SetLastClipName("WD");
         }
         PositionNumber++;
         if (PositionNumber == 4)
@@ -232,4 +243,63 @@ public class AnimationController : MonoBehaviour
         CharacterWeaponAnimator.SetBool("Dead", false);
     }
 
+    public void ResetAnimationClip()
+    {
+        if(equipmentAnimatorControllers[0] != CharacterBodyAnimator.runtimeAnimatorController)
+        {
+            Time.timeScale = 1f;
+            CharacterBodyAnimator.SetInteger("DirectionNumber", SetDirectionAfterChange());
+            CharacterBodyAnimator.Play(lastClipName);
+        }
+
+        if (equipmentAnimatorControllers[1] != CharacterHatAnimator.runtimeAnimatorController)
+        {
+            Time.timeScale = 1f;
+            CharacterHatAnimator.SetInteger("DirectionNumber", SetDirectionAfterChange());
+            CharacterHatAnimator.Play(lastClipName);
+        }
+
+        if (equipmentAnimatorControllers[2] != CharacterChestAnimator.runtimeAnimatorController)
+        {
+            Time.timeScale = 1f;
+            CharacterChestAnimator.SetInteger("DirectionNumber", SetDirectionAfterChange());
+            CharacterChestAnimator.Play(lastClipName);
+        }
+
+        if (equipmentAnimatorControllers[3] != CharacterWeaponAnimator.runtimeAnimatorController)
+        {
+            Time.timeScale = 1f;
+            CharacterWeaponAnimator.SetInteger("DirectionNumber", SetDirectionAfterChange());
+            CharacterWeaponAnimator.Play(lastClipName);
+        }
+        
+        SetRuntimeAnimatorControllers();
+    }
+
+    private void SetLastClipName(string name)
+    {
+        lastClipName = name;
+    }
+
+    private void SetRuntimeAnimatorControllers()
+    {
+        equipmentAnimatorControllers[0] = CharacterBodyAnimator.runtimeAnimatorController;
+        equipmentAnimatorControllers[1] = CharacterHatAnimator.runtimeAnimatorController;
+        equipmentAnimatorControllers[2] = CharacterChestAnimator.runtimeAnimatorController;
+        equipmentAnimatorControllers[3] = CharacterWeaponAnimator.runtimeAnimatorController;
+    }
+
+    private int SetDirectionAfterChange()
+    {
+        if (lastClipName == "WU")
+            return 0;
+        if (lastClipName == "WR")
+            return 1;
+        if (lastClipName == "WD")
+            return 2;
+        if (lastClipName == "WL")
+            return 3;
+
+        return 0;
+    }
 }
