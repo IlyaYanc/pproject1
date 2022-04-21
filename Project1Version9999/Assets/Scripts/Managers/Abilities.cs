@@ -18,7 +18,7 @@ public class Abilities : MonoBehaviour
     [SerializeField] private HP[] HpControllers;
 
     [SerializeField] private AbilityType type;
-    
+
     [SerializeField] int boostCooldown = 90;
     [SerializeField] int boostLength = 30;
 
@@ -26,33 +26,33 @@ public class Abilities : MonoBehaviour
     //выбор персонажа, на которого применяются абилки
     [SerializeField] private GameObject heroPanel;
     [SerializeField] private UnityEngine.UI.Button[] heroBtns;
-    
+
     private bool boostIsReloading = false;
 
     [SerializeField] private float damageMultiplier = 1.3f;
     [SerializeField] private float hpBoost = 0.3f;
     [SerializeField] private float defenceBoost = 10f;
-    
+
     private Timer boost_timer;
     private Timer boostCD_timer;
     private TimerManager _manager;
-    
+
     private int heroNumber;
-    
+
     //damage texts
     [SerializeField] private TextMeshProUGUI[] dmgTexts;
-    
- 
+
+
     private void Start()
     {
         //объявление таймеров
         _manager = GetComponent<TimerManager>();
-        
+
         boost_timer = new Timer(boostLength, false, boostTimerCompleted);
         _manager.RegisterTimer(boost_timer);
         boostCD_timer = new Timer(boostCooldown, false, boostCDTimerCompleted);
         _manager.RegisterTimer(boostCD_timer);
-        
+
     }
     private void boostCDTimerCompleted(Timer timer)
     {
@@ -99,7 +99,7 @@ public class Abilities : MonoBehaviour
                     heroBtns[i].onClick.AddListener(() => DefenceBoost(j));
                     break;
             }
-            
+
         }
         heroPanel.SetActive(true);
     }
@@ -119,8 +119,8 @@ public class Abilities : MonoBehaviour
     {
         if (boostIsReloading)
             return;
-        HpControllers[_heroNumber].GetHill(HpControllers[_heroNumber].GetMaxHp()*hpBoost);
-        Debug.Log("healing" + HpControllers[_heroNumber] );
+        HpControllers[_heroNumber].GetHill(HpControllers[_heroNumber].GetMaxHp() * hpBoost);
+        Debug.Log("healing" + HpControllers[_heroNumber]);
         RestartBoostTimer();
         RestartBoostCDTimer();
         boostIsReloading = true;
@@ -133,7 +133,7 @@ public class Abilities : MonoBehaviour
             return;
         heroNumber = _heroNumber;
         HpControllers[_heroNumber].DecreaseResist(CalculateResist(defenceBoost));
-        Debug.Log("giving defence to " + HpControllers[_heroNumber] );
+        Debug.Log("giving defence to " + HpControllers[_heroNumber]);
         RestartBoostTimer();
         RestartBoostCDTimer();
         boostIsReloading = true;
@@ -144,10 +144,10 @@ public class Abilities : MonoBehaviour
     {
         return boostCooldown;
     }
-    
+
     private float CalculateResist(float _defence)
     {
-        return (_defence/ 100f) * 0.3f;
+        return (_defence / 100f) * 0.3f;
     }
 
 }

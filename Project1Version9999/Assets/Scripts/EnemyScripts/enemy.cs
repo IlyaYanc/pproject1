@@ -5,7 +5,7 @@ using NaughtyAttributes;
 
 public class enemy : enemyWalk
 {
-    private float walkTimar;
+    private float walkTimer;
     public float attackTimer;
     private Queue<Vector3> q = new Queue<Vector3>();
     Vector3 pos;
@@ -58,7 +58,7 @@ public class enemy : enemyWalk
         {
             q.Enqueue(transform.position);
         }
-        walkTimar = walkCd;
+        walkTimer = walkCd;
         pos = transform.position;
         rot = new Vector3(0, 0, 0);
         speed = 1 / speed;
@@ -121,7 +121,7 @@ public class enemy : enemyWalk
                 transform.Rotate(new Vector3(0, 0, -1 * newRot));
             }
         }
-        if (walkTimar <= 0)
+        if (walkTimer <= 0)
         {
             Vector3 u = player.transform.position - transform.position;
             bool canAttackOnDist = false;
@@ -193,50 +193,50 @@ public class enemy : enemyWalk
                     Vector3 newRot = newPos - transform.position;
                     if (newRot == new Vector3(-1, 0, 0) && new Vector3(Mathf.Round(transform.up.normalized.x), Mathf.Round(transform.up.normalized.y), 0) == new Vector3(1, 0, 0))
                     {
-                        walkTimar = walkCd;
+                        walkTimer = walkCd;
                         rot = new Vector3(0, 1, 0);
                     }
                     else if (newRot == new Vector3(0, 1, 0) && new Vector3(Mathf.Round(transform.up.normalized.x), Mathf.Round(transform.up.normalized.y), 0) == new Vector3(0, -1, 0))
                     {
-                        walkTimar = walkCd;
+                        walkTimer = walkCd;
                         rot = new Vector3(1, 0, 0);
                     }
                     else if (newRot == new Vector3(1, 0, 0) && new Vector3(Mathf.Round(transform.up.normalized.x), Mathf.Round(transform.up.normalized.y), 0) == new Vector3(-1, 0, 0))
                     {
-                        walkTimar = walkCd;
+                        walkTimer = walkCd;
                         rot = new Vector3(0, -1, 0);
                     }
                     else if (newRot == new Vector3(0, -1, 0) && new Vector3(Mathf.Round(transform.up.normalized.x), Mathf.Round(transform.up.normalized.y), 0) == new Vector3(0, 1, 0))
                     {
-                        walkTimar = walkCd;
+                        walkTimer = walkCd;
                         rot = new Vector3(-1, 0, 0);
                     }
                     else if (new Vector3(Mathf.Round(transform.up.normalized.x), Mathf.Round(transform.up.normalized.y), 0) != newRot)
                     {
-                        walkTimar = walkCd;
+                        walkTimer = walkCd;
                         rot = newRot;
                     }
                     else
                     {
                         pos = newPos;
-                        walkTimar = walkCd;
+                        walkTimer = walkCd;
                     }
                 }
                 else
                 {
                     pos = newPos;
-                    walkTimar = walkCd;
+                    walkTimer = walkCd;
                 }
             }
             else
             {
                 isAttacking = true;
-                walkTimar = attackCd;
+                walkTimer = attackCd;
             }
         }
         else
         {
-            walkTimar -= Time.deltaTime;
+            walkTimer -= Time.deltaTime;
             ////////
         }
 
@@ -270,13 +270,13 @@ public class enemy : enemyWalk
     //public bool IsWalking() => walkTimar > 0f;
     public bool isWalking()
     {
-        if (walkTimar <= 0f)
+        if (walkTimer >= walkCd-1/speed)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
         //return (pos == transform.position && walkTimar > 0f);
     }
