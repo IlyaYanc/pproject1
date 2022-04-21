@@ -138,32 +138,26 @@ public class LevelUI : MonoBehaviour
 
     public void WalkUP()
     {
-        StartMoveTimer(WalkCDTimer);
         MoveController.MoveUp();
     }
     public void WalkDown()
     {
-        StartMoveTimer(WalkCDTimer);
         MoveController.MoveDown();
     }
     public void WalkLeft()
     {
-        StartMoveTimer(WalkCDTimer);
         MoveController.MoveLeft();
     }
     public void WalkRight()
     {
-        StartMoveTimer(WalkCDTimer);
         MoveController.MoveRight();
     }
     public void RotateLeft()
     {
-        StartMoveTimer(RotateCDTimer);
         MoveController.RotateLeft();
     }
     public void RotateRight()
     {
-        StartMoveTimer(RotateCDTimer);
         MoveController.RotateRight();
     }
     public void TryInteract()

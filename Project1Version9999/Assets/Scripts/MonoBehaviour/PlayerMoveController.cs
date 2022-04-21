@@ -2,9 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class PlayerMoveController : MonoBehaviour
 {
+    [SerializeField] private UnityEvent m_onMove;
+    [SerializeField] private UnityEvent m_onRightRotate;
+    [SerializeField] private UnityEvent m_onLeftRotate;
     [SerializeField] private float m_cellSize;
     [SerializeField] private Tilemap m_tileMap;
     public float m_moveDelay;
@@ -15,24 +19,19 @@ public class PlayerMoveController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private bool useAnimations;
 
-    //[SerializeField] private GameObject Mage;
-    //[SerializeField] private Animator MageAnimator;
-
-    //[SerializeField] private GameObject Knight;
-    //[SerializeField] private GameObject Thief;
-    //[SerializeField] private GameObject Archer;
 
     public Timer _moveTimer;
     public Timer _rotateTimer;
     public TimerManager _manager;
-    
+
     private Transform playerTransform;
     private Effects ef;
-    private bool isMoveOrRotate => (!_moveTimer.IsCompleted && !_moveTimer.IsPaused) || (!_rotateTimer.IsCompleted && !_rotateTimer.IsPaused);
+
+    private bool isMoveOrRotate => (!_moveTimer.IsCompleted && !_moveTimer.IsPaused) ||
+                                   (!_rotateTimer.IsCompleted && !_rotateTimer.IsPaused);
 
     private void Start()
     {
-        
         playerTransform = transform;
         _moveTimer = new Timer(m_moveDelay);
         _rotateTimer = new Timer(m_rotateDelay);
@@ -40,7 +39,6 @@ public class PlayerMoveController : MonoBehaviour
         _manager = (TimerManager)GameObject.FindObjectOfType(typeof(TimerManager));
         if (_manager != null)
         {
-
             _manager.RegisterTimer(_moveTimer);
             _manager.RegisterTimer(_rotateTimer);
         }
@@ -60,9 +58,10 @@ public class PlayerMoveController : MonoBehaviour
             animator.SetBool("WalkR", false);
             animator.SetBool("WalkL", false);
         }
+
         Move(new Vector2(0, m_cellSize));
-        
     }
+
     public void MoveDown()
     {
         //Debug.Log("MoveDown");
@@ -73,9 +72,10 @@ public class PlayerMoveController : MonoBehaviour
             animator.SetBool("WalkR", false);
             animator.SetBool("WalkL", false);
         }
+
         Move(new Vector2(0, -m_cellSize));
-        
     }
+
     public void MoveLeft()
     {
         //Debug.Log("MoveLeft");
@@ -86,9 +86,10 @@ public class PlayerMoveController : MonoBehaviour
             animator.SetBool("WalkR", false);
             animator.SetBool("WalkL", true);
         }
+
         Move(new Vector2(-m_cellSize, 0));
-        
     }
+
     public void MoveRight()
     {
         //Debug.Log("MoveRight");
@@ -99,14 +100,16 @@ public class PlayerMoveController : MonoBehaviour
             animator.SetBool("WalkR", true);
             animator.SetBool("WalkL", false);
         }
+
         Move(new Vector2(m_cellSize, 0));
-        
     }
+
     public void RotateLeft()
     {
         //Debug.Log("RotateLeft");
         Rotate(90);
     }
+
     public void RotateRight()
     {
         //Debug.Log("RotateRight");
@@ -120,13 +123,15 @@ public class PlayerMoveController : MonoBehaviour
             return;
         }
 
-        Vector2 rotatedOffset = offset;//Quaternion.Euler(0, 0, playerTransform.rotation.eulerAngles.z) * offset;
+        Vector2 rotatedOffset = offset; //Quaternion.Euler(0, 0, playerTransform.rotation.eulerAngles.z) * offset;
         if (GetCellGroundType(rotatedOffset + (Vector2)playerTransform.position) == GroundTile.GroundType.Ground)
         {
-            playerTransform.DOMove((Vector2)playerTransform.position + rotatedOffset, m_moveAnimDuration); ef.MoveEffects();
+            playerTransform.DOMove((Vector2)playerTransform.position + rotatedOffset, m_moveAnimDuration);
+            ef.MoveEffects();
         }
 
         _moveTimer.Restart();
+        m_onMove.Invoke();
     }
 
     private void Rotate(float angle)
@@ -136,7 +141,17 @@ public class PlayerMoveController : MonoBehaviour
             return;
         }
 
-        playerTransform.DORotate(new Vector3(0, 0, angle + playerTransform.rotation.eulerAngles.z), m_rotateAnimDuration);
+        if (angle >= 0)
+        {
+            m_onLeftRotate.Invoke();
+        }
+        else
+        {
+            m_onRightRotate.Invoke();
+        }
+
+        playerTransform.DORotate(new Vector3(0, 0, angle + playerTransform.rotation.eulerAngles.z),
+            m_rotateAnimDuration);
 
         _rotateTimer.Restart();
     }
