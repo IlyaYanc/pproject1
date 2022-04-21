@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1e877c5ac37fc438b292a7aef1c35c, type: 3}
+  m_Name: Room3
+  m_EditorClassIdentifier: 
+  tilemapPrefab: {fileID: 2528947547729425954, guid: aa169d4b55daa03408f44f5b23c80b4c,
+    type: 3}
+  roomSize:
+    m_Position: {x: -4, y: -4, z: 0}
+    m_Size: {x: 9, y: 9, z: 1}
+  tilesDataBase: {fileID: 11400000, guid: 2b471e51fc179424a9d09795c43c463e, type: 2}
+  connectionPoints:
+  - Position: {x: 0, y: -4}
+    LocalPosition: {x: 4, y: 0}
+    ExitRotation: 3
+  - Position: {x: -4, y: 0}
+    LocalPosition: {x: 0, y: 4}
+    ExitRotation: 1
+  - Position: {x: 4, y: 0}
+    LocalPosition: {x: 8, y: 4}
+    ExitRotation: 0
+  - Position: {x: 0, y: 4}
+    LocalPosition: {x: 4, y: 8}
+    ExitRotation: 2
+  placingPoints:
+  - Position: {x: 0, y: 0}
+    LocalPosition: {x: 4, y: 4}
+    PlacingThing: 6
+  wallPoints:
+  - {x: 3, y: 0}
+  - {x: 5, y: 0}
+  - {x: 1, y: 1}
+  - {x: 2, y: 1}
+  - {x: 3, y: 1}
+  - {x: 5, y: 1}
+  - {x: 6, y: 1}
+  - {x: 7, y: 1}
+  - {x: 1, y: 2}
+  - {x: 7, y: 2}
+  - {x: 0, y: 3}
+  - {x: 1, y: 3}
+  - {x: 7, y: 3}
+  - {x: 8, y: 3}
+  - {x: 0, y: 5}
+  - {x: 1, y: 5}
+  - {x: 7, y: 5}
+  - {x: 8, y: 5}
+  - {x: 1, y: 6}
+  - {x: 7, y: 6}
+  - {x: 1, y: 7}
+  - {x: 2, y: 7}
+  - {x: 3, y: 7}
+  - {x: 5, y: 7}
+  - {x: 6, y: 7}
+  - {x: 7, y: 7}
+  - {x: 3, y: 8}
+  - {x: 5, y: 8}

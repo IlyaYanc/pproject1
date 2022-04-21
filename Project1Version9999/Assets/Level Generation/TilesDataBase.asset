@@ -17,10 +17,10 @@ MonoBehaviour:
   connectionLeft: {fileID: 11400000, guid: 48c5ce4be69336841b15cd5d41fd7634, type: 2}
   connectionRight: {fileID: 11400000, guid: bf153d5183db0e943a9020579834eeec, type: 2}
   ground: {fileID: 11400000, guid: e911f709b32aadf44b2b51b945e3e252, type: 2}
-  wallUp: {fileID: 11400000, guid: 7eeeaa9081d4b404abffdce02923a8d8, type: 2}
-  wallDown: {fileID: 11400000, guid: 7067189693f0fdb4793339bf7381d7f1, type: 2}
-  wallLeft: {fileID: 11400000, guid: e59c26f9a0f068441b150af737efd489, type: 2}
-  wallRight: {fileID: 11400000, guid: 6abd164e3676aad46a7c1a9d7fa757d3, type: 2}
+  wallUp: {fileID: 11400000, guid: 0a3281e175bfdb14ba2dfa9751c4fa92, type: 2}
+  wallDown: {fileID: 11400000, guid: 563ee5fc6e5471d44bb6226f29f52a0e, type: 2}
+  wallLeft: {fileID: 11400000, guid: b84afd99b8e5b874bb5fd05cadd7efa8, type: 2}
+  wallRight: {fileID: 11400000, guid: 3bf0b9402984e034f96a5131ebe572cb, type: 2}
   monsterPlace: {fileID: 11400000, guid: b006f9ed5d321b74a960dec5585ae420, type: 2}
   monsterDot: {fileID: 11400000, guid: fb99795f20a9f05499fe05eb6cb882ff, type: 2}
   chestPlace: {fileID: 11400000, guid: 413b118bb96e78743a9df0ebf4115208, type: 2}
