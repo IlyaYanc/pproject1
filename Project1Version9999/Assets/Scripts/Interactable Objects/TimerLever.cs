@@ -29,6 +29,7 @@ public class TimerLever : Lever
         obj.LeverInteract(-1);
         hasInteracted = false;
         sRenderer.sprite = sprites[0];
+        AudS.Play();
     }
 
     [Button]

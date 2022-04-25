@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,7 +13,7 @@ public class TouchPlayerController : MonoBehaviour
     [SerializeField] private UnityEvent downMove;
     [SerializeField] private UnityEvent leftRotate;
     [SerializeField] private UnityEvent rightRotate;
-
+    
     [SerializeField] private GameObject KnightGraphics;
     [SerializeField] private GameObject ThiefGraphics;
     [SerializeField] private GameObject ArcherGraphics;
@@ -28,7 +29,11 @@ public class TouchPlayerController : MonoBehaviour
 
     public Timer WalkCDTimer;
     public Timer RotateCDTimer;
+    public Timer touchHoldTimer;
     public TimerManager _manager;
+
+    private bool swipeHeld = false;
+    
 
     public enum Direction
     {
@@ -79,37 +84,45 @@ public class TouchPlayerController : MonoBehaviour
         _manager.RegisterTimer(WalkCDTimer);
         RotateCDTimer = new Timer(RotationCD, false, EnableComponent);
         _manager.RegisterTimer(RotateCDTimer);
+        touchHoldTimer = new Timer(0.25f, false, OnTouchHold);
+        _manager.RegisterTimer(touchHoldTimer);
     }
 
     private void OnTap()
     {
-        //Debug.Log("Tap!");
         Vector2 position = playerInput.PlayerMoving.Position.ReadValue<Vector2>();
         if (position.x < mainCamera.pixelWidth * 0.2)
         {
-            //Debug.Log("Left Rotate");
-            GraphicsLeftRotate();
             leftRotate.Invoke();
-            DisableComponent(RotateCDTimer);
+            //DisableComponent(RotateCDTimer);
         }
         else if (position.x > mainCamera.pixelWidth * 0.8)
         {
-            //Debug.Log("Right Rotate");
-            GraphicsRightRotate();
             rightRotate.Invoke();
-            DisableComponent(RotateCDTimer);
+            //DisableComponent(RotateCDTimer);
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (swipeHeld == true)
+        {
+            OnSwipeHold();
+        }
+    } 
 
     public void OnSwipeStart()
     {
         startPosition = playerInput.PlayerMoving.Position.ReadValue<Vector2>();
         startPosition = mainCamera.ScreenToWorldPoint(startPosition);
         startPosition.z = 0;
-
         endPosition = Vector3.zero;
     }
 
+    public void OnTouchHold(Timer timer)
+    {
+        swipeHeld = true;
+    }
     public void OnSwipeEnd()
     {
         endPosition = playerInput.PlayerMoving.Position.ReadValue<Vector2>();
@@ -122,33 +135,55 @@ public class TouchPlayerController : MonoBehaviour
         if (angle > -45 && angle < 45)
         {
             rightMove.Invoke();
-            GraphicsMove();
-            //Debug.Log("Right Move");
-            DisableComponent(WalkCDTimer);
+            //DisableComponent(WalkCDTimer);
         }
         else if (angle > 45 && angle < 135)
         {
             topMove.Invoke();
-            GraphicsMove();
-            //Debug.Log("Top Move");
-            DisableComponent(WalkCDTimer);
+            //DisableComponent(WalkCDTimer);
         }
         else if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
         {
             leftMove.Invoke();
-            GraphicsMove();
-            //Debug.Log("Left Move");
-            DisableComponent(WalkCDTimer);
+            //DisableComponent(WalkCDTimer);
         }
         else
         {
             downMove.Invoke();
-            GraphicsMove();
-            //Debug.Log("Down Move");
-            DisableComponent(WalkCDTimer);
+            //DisableComponent(WalkCDTimer);
         }
     }
 
+    public void OnSwipeHold()
+    {
+        endPosition = playerInput.PlayerMoving.Position.ReadValue<Vector2>();
+        endPosition = mainCamera.ScreenToWorldPoint(endPosition);
+        endPosition.z = 0;
+
+        Vector3 diff = endPosition - startPosition;
+        var angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+        if (angle > -45 && angle < 45)
+        {
+            rightMove.Invoke();
+            //DisableComponent(WalkCDTimer);
+        }
+        else if (angle > 45 && angle < 135)
+        {
+            topMove.Invoke();
+            //DisableComponent(WalkCDTimer);
+        }
+        else if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
+        {
+            leftMove.Invoke();
+            //DisableComponent(WalkCDTimer);
+        }
+        else
+        {
+            downMove.Invoke();
+            //DisableComponent(WalkCDTimer);
+        }
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(startPosition, 0.1f);
@@ -158,31 +193,6 @@ public class TouchPlayerController : MonoBehaviour
             Gizmos.DrawLine(startPosition, endPosition);
         }
     }
-
-    public void GraphicsLeftRotate()
-    {
-        KnightGraphicsAnimationController.RotateLeftButton();
-        ThiefGraphicsAnimationController.RotateLeftButton();
-        ArcherGraphicsAnimationController.RotateLeftButton();
-        MageGraphicsAnimationController.RotateLeftButton();
-    }
-
-    public void GraphicsRightRotate()
-    {
-        KnightGraphicsAnimationController.RotateRightButton();
-        ThiefGraphicsAnimationController.RotateRightButton();
-        ArcherGraphicsAnimationController.RotateRightButton();
-        MageGraphicsAnimationController.RotateRightButton();
-    }
-
-    public void GraphicsMove()
-    {
-        KnightGraphicsAnimationController.Move();
-        ThiefGraphicsAnimationController.Move();
-        ArcherGraphicsAnimationController.Move();
-        MageGraphicsAnimationController.Move();
-    }
-
     public void DisableComponent(Timer timer)
     {
         timer.Restart();

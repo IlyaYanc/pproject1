@@ -122,14 +122,14 @@ public class PlayerMoveController : MonoBehaviour
         {
             return;
         }
-
+        
         Vector2 rotatedOffset = offset; //Quaternion.Euler(0, 0, playerTransform.rotation.eulerAngles.z) * offset;
         if (GetCellGroundType(rotatedOffset + (Vector2)playerTransform.position) == GroundTile.GroundType.Ground)
         {
             playerTransform.DOMove((Vector2)playerTransform.position + rotatedOffset, m_moveAnimDuration);
             ef.MoveEffects();
         }
-
+        
         _moveTimer.Restart();
         m_onMove.Invoke();
     }
