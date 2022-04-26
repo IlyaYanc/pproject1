@@ -149,7 +149,7 @@ public class PlayerMoveController : MonoBehaviour
         {
             m_onRightRotate.Invoke();
         }
-
+        ef.MoveEffects();
         playerTransform.DORotate(new Vector3(0, 0, angle + playerTransform.rotation.eulerAngles.z),
             m_rotateAnimDuration);
 

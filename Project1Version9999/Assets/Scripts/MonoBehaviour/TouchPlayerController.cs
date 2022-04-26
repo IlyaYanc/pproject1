@@ -32,7 +32,7 @@ public class TouchPlayerController : MonoBehaviour
     public Timer touchHoldTimer;
     public TimerManager _manager;
 
-    private bool swipeHeld = false;
+    private bool swipeHold = false;
     
 
     public enum Direction
@@ -94,18 +94,16 @@ public class TouchPlayerController : MonoBehaviour
         if (position.x < mainCamera.pixelWidth * 0.2)
         {
             leftRotate.Invoke();
-            //DisableComponent(RotateCDTimer);
         }
         else if (position.x > mainCamera.pixelWidth * 0.8)
         {
             rightRotate.Invoke();
-            //DisableComponent(RotateCDTimer);
         }
     }
 
     private void FixedUpdate()
     {
-        if (swipeHeld == true)
+        if (swipeHold == true)
         {
             OnSwipeHold();
         }
@@ -121,7 +119,7 @@ public class TouchPlayerController : MonoBehaviour
 
     public void OnTouchHold(Timer timer)
     {
-        swipeHeld = true;
+        swipeHold = true;
     }
     public void OnSwipeEnd()
     {
@@ -135,22 +133,18 @@ public class TouchPlayerController : MonoBehaviour
         if (angle > -45 && angle < 45)
         {
             rightMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
         else if (angle > 45 && angle < 135)
         {
             topMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
         else if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
         {
             leftMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
         else
         {
             downMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
     }
 
@@ -166,22 +160,18 @@ public class TouchPlayerController : MonoBehaviour
         if (angle > -45 && angle < 45)
         {
             rightMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
         else if (angle > 45 && angle < 135)
         {
             topMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
         else if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
         {
             leftMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
         else
         {
             downMove.Invoke();
-            //DisableComponent(WalkCDTimer);
         }
     }
     private void OnDrawGizmosSelected()

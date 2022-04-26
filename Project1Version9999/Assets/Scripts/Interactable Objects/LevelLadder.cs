@@ -11,6 +11,8 @@ public class LevelLadder : Interactable
     [SerializeField] private DeathLevelObjectsController deathLevelObjectsController;
     [SerializeField] private AudioSource levelMusic;
     [SerializeField] private GameObject levelEndPanel;
+    [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject mainMenuButton;
     private void Start()
     {
         
@@ -23,11 +25,25 @@ public class LevelLadder : Interactable
             deathLevelObjectsController.DisableLevelObjects();
             levelMusic.Stop();
             levelEndPanel.SetActive(true);
+            if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) != -1 && InstantSceneLoad == false)
+            {
+                continueButton.SetActive(true);
+            }
+            else if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) == -1)
+            {
+                mainMenuButton.SetActive(false);
+            }
+            
         }
         else
         {
-            Time.timeScale = 1f;
-            SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(NextLevelName));
+            LoadNextLevel();
         }
+    }
+
+    public void LoadNextLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(NextLevelName));   
     }
 }

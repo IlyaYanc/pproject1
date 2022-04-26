@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.Tilemaps;
 
 public class enemy : enemyWalk
 {
@@ -10,7 +12,6 @@ public class enemy : enemyWalk
     private Queue<Vector3> q = new Queue<Vector3>();
     Vector3 pos;
     Vector3 rot;
-    [SerializeField]
     private bool doConsole;
     [SerializeField]
     private float disAgrDist;

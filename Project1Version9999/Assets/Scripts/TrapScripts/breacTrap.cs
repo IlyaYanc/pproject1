@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -88,5 +89,11 @@ public class breacTrap : MonoBehaviour
     private void kill()
     {
         hp.killAll();
+    }
+
+    [Button]
+    private void ActivateTrap()
+    {
+        isActive = true;
     }
 }
