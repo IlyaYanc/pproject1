@@ -1,18 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class AdsInitializer : MonoBehaviour
+﻿using UnityEngine;
+using UnityEngine.Advertisements;
+public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string androidGameId;
+    [SerializeField] private string iOSGameId;
+    [SerializeField] private bool testMode;
+    
+    private string gameId;
+
+    private void Awake()
     {
-        
+        InitializeAds();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InitializeAds()
     {
-        
+        gameId = (Application.platform == RuntimePlatform.IPhonePlayer) ?iOSGameId : androidGameId;
+        Advertisement.Initialize(gameId, testMode, true);
+    }
+
+    public void OnInitializationComplete()
+    {
+        Debug.Log("Unity Ads Initialization Complete");
+    }
+
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+    {
+        Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
     }
 }
