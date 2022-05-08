@@ -117,6 +117,7 @@ public class SavingSystem : MonoBehaviour
         SaveLevers();
         SaveSettings();
         lvlUI.SaveData();
+        Time.timeScale = 1f;
     }
     
     [Button("Load Game")]

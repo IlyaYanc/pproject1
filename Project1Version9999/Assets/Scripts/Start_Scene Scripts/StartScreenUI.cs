@@ -13,6 +13,10 @@ public class StartScreenUI : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        if (!PlayerPrefs.HasKey("FirstTime"))
+        {
+            PlayerPrefs.SetString("LastLevel", "level1");
+        }
     }
     public void ExitButton()
     {
@@ -29,7 +33,7 @@ public class StartScreenUI : MonoBehaviour
         else
         {
             Time.timeScale = 1f;
-            SceneManager.LoadSceneAsync("level1"); // nado last level
+            SceneManager.LoadSceneAsync(PlayerPrefs.GetString("LastLevel")); // nado last level
         }
     }
     public void TrainingYes()
@@ -51,7 +55,7 @@ public class StartScreenUI : MonoBehaviour
     {
         SettingsPanel.SetActive(false);
         StartPanel.SetActive(true);
-        // save
+        Time.timeScale = 1f;
     }
     public void Questions()
     {

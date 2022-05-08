@@ -19,21 +19,29 @@ public class LevelLadder : Interactable
     }
     public override void Interact()
     {
+        if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) != -1 && NextLevelName != "Start_Scene")
+        {
+            PlayerPrefs.SetString("LastLevel", NextLevelName);
+        }
         if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) == -1 || InstantSceneLoad == false)
         {
             deathAudioSourceController.DisableAudioSources();
             deathLevelObjectsController.DisableLevelObjects();
             levelMusic.Stop();
             levelEndPanel.SetActive(true);
-            if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) != -1 && InstantSceneLoad == false)
+            if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) == -1)
             {
-                continueButton.SetActive(true);
+                mainMenuButton.SetActive(true);
+                return;
             }
-            else if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) == -1)
+            if (InstantSceneLoad == false)
             {
-                mainMenuButton.SetActive(false);
+                if (continueButton != null)
+                {
+                    continueButton.SetActive(true);
+                    return;   
+                }
             }
-            
         }
         else
         {
