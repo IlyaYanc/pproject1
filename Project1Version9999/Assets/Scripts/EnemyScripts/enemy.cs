@@ -267,7 +267,10 @@ public class enemy : enemyWalk
         hasDisquiet = isActive;
     }
 
-
+    public void Nondisquiet()
+    {
+        hasDisquiet = false;
+    }
     //public bool IsWalking() => walkTimar > 0f;
     public bool isWalking()
     {

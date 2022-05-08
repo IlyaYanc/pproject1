@@ -14,6 +14,8 @@ public class SavingSystem : MonoBehaviour
     //scene
     [SerializeField] private List<activObject> activeObjects;
     [SerializeField] private List<Lever> levers;
+
+    [SerializeField] private List<GameObject> enemies;
     //settings
     [SerializeField] private MenuButtons menuBtns;
     [SerializeField] private Options options;
@@ -129,5 +131,15 @@ public class SavingSystem : MonoBehaviour
         LoadLevers();
         LoadSettings();
         LoadLvlUI();
+        LoadEnemies();
+    }
+
+    private void LoadEnemies()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].GetComponent<enemy>().Nondisquiet();
+            enemies[i].GetComponent<EnemyHp>().SetMaxHP();
+        }
     }
 }

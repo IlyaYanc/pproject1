@@ -65,6 +65,11 @@ public class EnemyHp : MonoBehaviour
         hp = maxhp;
 
     }
+
+    public void SetMaxHP()
+    {
+        hp = maxhp;
+    }
     public float ReturnHP()
     {
         return hp;

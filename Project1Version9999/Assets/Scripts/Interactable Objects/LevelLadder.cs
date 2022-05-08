@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLadder : Interactable
 {
+    [SerializeField] private SavingSystem saving; 
     [SerializeField] private string NextLevelName;
     [SerializeField] private bool InstantSceneLoad;
     [SerializeField] private DeathAudioSourceController deathAudioSourceController;
@@ -19,6 +20,7 @@ public class LevelLadder : Interactable
     }
     public override void Interact()
     {
+        SaveStats();
         if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) != -1 && NextLevelName != "Start_Scene")
         {
             PlayerPrefs.SetString("LastLevel", NextLevelName);
@@ -49,6 +51,13 @@ public class LevelLadder : Interactable
         }
     }
 
+    private void SaveStats()
+    {
+        if (saving != null)
+        {
+            saving.Save();
+        }
+    }
     public void LoadNextLevel()
     {
         Time.timeScale = 1f;
