@@ -125,7 +125,7 @@ public class DamageInputController : MonoBehaviour
         {
             deathAudioSourceController.DisableAudioSources();
         }
-            Time.timeScale = 0;
+          
     }
     public void DeathOnBreakTrap(Vector3 SpawningPosition)
     {
@@ -135,7 +135,6 @@ public class DamageInputController : MonoBehaviour
         {
             deathAudioSourceController.DisableAudioSources();
         }
-        Time.timeScale = 0;
     }
     public void killAll()
     {
