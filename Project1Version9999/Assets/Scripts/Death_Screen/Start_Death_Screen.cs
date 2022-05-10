@@ -40,12 +40,12 @@ public class Start_Death_Screen : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         
-        s_image.gameObject.SetActive(false);
-        Time.timeScale = 0;
+       // s_image.gameObject.SetActive(false);
+        //Time.timeScale = 0;
     }
     public void DisActivate()
     {
-        s_image.gameObject.SetActive(true);
+        //s_image.gameObject.SetActive(true);
         ds.SetActive(false);
     }
 

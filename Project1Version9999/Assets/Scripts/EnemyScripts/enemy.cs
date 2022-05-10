@@ -69,6 +69,7 @@ public class enemy : enemyWalk
     }
     void Update()
     {
+        Debug.Log(Time.deltaTime);
         //Vector3 dir = player.transform.position - transform.position;
         //float angDir = Mathf.Round(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg / 90) * 90;
         //if (doConsole)

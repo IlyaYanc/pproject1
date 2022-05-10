@@ -82,8 +82,8 @@ public class DamageInputController : MonoBehaviour
             case DamageType.melee:
                 hpses[0].GetDamege(damage);
                 hpses[1].GetDamege(damage);
-                hpses[2].GetDamege(damage * 0.10f);
-                hpses[3].GetDamege(damage * 0.10f);
+                hpses[2].GetDamege(damage * 0.25f);
+                hpses[3].GetDamege(damage * 0.25f);
                 break;
             case DamageType.range:
                 hpses[0].GetDamege(damage);
