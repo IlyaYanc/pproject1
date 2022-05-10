@@ -7,6 +7,7 @@ using UnityEngine;
 public class SavingSystem : MonoBehaviour
 {
     //player
+    [SerializeField] private PlayerMoveController playerMoveController;
     [SerializeField] private PlayerSavingComponent playerSaver;
     
     //inventory
@@ -132,6 +133,8 @@ public class SavingSystem : MonoBehaviour
         LoadSettings();
         LoadLvlUI();
         LoadEnemies();
+        playerMoveController.RotateRight();
+        playerMoveController.RotateRight();//aaahhhhhhhhh
     }
 
     private void LoadEnemies()

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLadder : Interactable
 {
-    [SerializeField] private SavingSystem saving; 
+    [SerializeField] private InventoryComponent inventoryComponent; 
     [SerializeField] private string NextLevelName;
     [SerializeField] private bool InstantSceneLoad;
     [SerializeField] private DeathAudioSourceController deathAudioSourceController;
@@ -53,9 +53,9 @@ public class LevelLadder : Interactable
 
     private void SaveStats()
     {
-        if (saving != null)
+        if (inventoryComponent != null)
         {
-            saving.Save();
+            inventoryComponent.Save();
         }
     }
     public void LoadNextLevel()

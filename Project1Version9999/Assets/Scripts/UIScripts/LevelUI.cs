@@ -239,6 +239,11 @@ public class LevelUI : MonoBehaviour
         TouchConroller.enabled = TouchControllerEnabled;
         Time.timeScale = 1f;
     }
+
+    public void RestartLeve(string levelName)
+    {
+        SceneManager.LoadSceneAsync(levelName);
+    }
     public void OpenSettings()
     {
         SettingsPanel.SetActive(true);
