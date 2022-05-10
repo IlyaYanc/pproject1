@@ -38,7 +38,7 @@ public class Start_Death_Screen : MonoBehaviour
         }
         
         s_image.gameObject.SetActive(false);
-
+        Time.timeScale = 0;
     }
 
 
