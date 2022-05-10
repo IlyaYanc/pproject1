@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class ADS_spawn : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class ADS_spawn : MonoBehaviour
     {
         
     }
+    [Button]
     public void Spawn()
     {
         if(deathOnBreakTrap)
@@ -37,6 +39,7 @@ public class ADS_spawn : MonoBehaviour
             deathOnBreakTrap = false;
         }
         Time.timeScale = 1;
+        deathScreen.GetComponent<Start_Death_Screen>().DisActivate();
         deathScreen.SetActive(false);
         deathAudioSourceController.EnableAudioSource();
         HP hp;
