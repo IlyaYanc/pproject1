@@ -14,12 +14,11 @@ public class DamageInputController : MonoBehaviour
     private HP RightDown;
     [SerializeField]
     private GameObject deathScreen;
+    [SerializeField]
+    private ADS_spawn ADS_Spawning;
 
     [SerializeField]
     private DeathAudioSourceController deathAudioSourceController;
-
-    [SerializeField]
-    private DeathLevelObjectsController deathLevelObjectsController;
 
     public enum DamageType { melee, range, rangeSplash, meleeSplash, magic, fire /*used only in enemy script*/, rangeFire /*used only in enemy script*/}
     // Start is called before the first frame update
@@ -126,11 +125,17 @@ public class DamageInputController : MonoBehaviour
         {
             deathAudioSourceController.DisableAudioSources();
         }
-        if(deathLevelObjectsController!=null)
+            Time.timeScale = 0;
+    }
+    public void DeathOnBreakTrap(Vector3 SpawningPosition)
+    {
+        ADS_Spawning.spawningPosition = SpawningPosition;
+        deathScreen.SetActive(true);
+        if (deathAudioSourceController != null)
         {
-            deathLevelObjectsController.DisableLevelObjects();
+            deathAudioSourceController.DisableAudioSources();
         }
-        //Time.timeScale = 0;
+        Time.timeScale = 0;
     }
     public void killAll()
     {
