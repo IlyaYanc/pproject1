@@ -11,8 +11,11 @@ public class Start_Death_Screen : MonoBehaviour
     private AudioSource Ads;
     private void Start()
     {
+       Ads = MainPanel.GetComponent<AudioSource>();
+    }
+    public void Activate()
+    {
         StartCoroutine("VisibleIE");
-        Ads = MainPanel.GetComponent<AudioSource>();
         Ads.Play();
     }
     IEnumerator VisibleIE()
@@ -39,6 +42,11 @@ public class Start_Death_Screen : MonoBehaviour
         
         s_image.gameObject.SetActive(false);
         Time.timeScale = 0;
+    }
+    public void DisActivate()
+    {
+        s_image.gameObject.SetActive(true);
+        ds.SetActive(false);
     }
 
 

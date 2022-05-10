@@ -121,6 +121,7 @@ public class DamageInputController : MonoBehaviour
     private void Death()
     {
         deathScreen.SetActive(true);
+        deathScreen.GetComponent<Start_Death_Screen>().Activate();
         if(deathAudioSourceController != null)
         {
             deathAudioSourceController.DisableAudioSources();
@@ -131,6 +132,7 @@ public class DamageInputController : MonoBehaviour
     {
         ADS_Spawning.spawningPosition = SpawningPosition;
         deathScreen.SetActive(true);
+        deathScreen.GetComponent<Start_Death_Screen>().Activate();
         if (deathAudioSourceController != null)
         {
             deathAudioSourceController.DisableAudioSources();
