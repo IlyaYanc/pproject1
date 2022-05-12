@@ -134,9 +134,17 @@ public class SavingSystem : MonoBehaviour
         LoadLvlUI();
         LoadEnemies();
         playerMoveController.RotateRight();
-        playerMoveController.RotateRight();//aaahhhhhhhhh
+        //playerMoveController.RotateRight();//aaahhhhhhhhh
     }
 
+    [Button("Load For Next Level")]
+    public void LoadForNextLevel()
+    {
+        playerSaver.LoadForNextLevel();
+        inventoryComponent.Load();
+        LoadSettings();
+        LoadLvlUI();
+    }
     private void LoadEnemies()
     {
         for (int i = 0; i < enemies.Count; i++)
