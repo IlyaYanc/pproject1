@@ -30,6 +30,7 @@ public class DamageInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Time.timeScale);
         if(LeftUp.Hp()<=0 && LeftDown.Hp() <= 0 && RightDown.Hp()<=0 && RightUp.Hp()<=0)
         {
             Death();
@@ -120,7 +121,6 @@ public class DamageInputController : MonoBehaviour
     }
     private void Death()
     {
-        deathScreen.SetActive(true);
         deathScreen.GetComponent<Start_Death_Screen>().Activate();
         if(deathAudioSourceController != null)
         {
@@ -131,7 +131,7 @@ public class DamageInputController : MonoBehaviour
     public void DeathOnBreakTrap(Vector3 SpawningPosition)
     {
         ADS_Spawning.spawningPosition = SpawningPosition;
-        deathScreen.SetActive(true);
+        ADS_Spawning.deathOnBreakTrap = true;
         deathScreen.GetComponent<Start_Death_Screen>().Activate();
         if (deathAudioSourceController != null)
         {

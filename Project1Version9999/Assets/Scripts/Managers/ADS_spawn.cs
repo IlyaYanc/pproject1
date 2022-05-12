@@ -40,7 +40,6 @@ public class ADS_spawn : MonoBehaviour
         }
         Time.timeScale = 1;
         deathScreen.GetComponent<Start_Death_Screen>().DisActivate();
-        deathScreen.SetActive(false);
         deathAudioSourceController.EnableAudioSource();
         HP hp;
         hp = LeftDown.GetComponent<HP>();
