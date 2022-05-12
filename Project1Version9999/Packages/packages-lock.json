@@ -81,7 +81,7 @@
       }
     },
     "com.unity.ads": {
-      "version": "3.7.5",
+      "version": "4.1.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
