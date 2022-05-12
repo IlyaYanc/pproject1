@@ -14,12 +14,11 @@ public class DamageInputController : MonoBehaviour
     private HP RightDown;
     [SerializeField]
     private GameObject deathScreen;
+    [SerializeField]
+    private ADS_spawn ADS_Spawning;
 
     [SerializeField]
     private DeathAudioSourceController deathAudioSourceController;
-
-    [SerializeField]
-    private DeathLevelObjectsController deathLevelObjectsController;
 
     public enum DamageType { melee, range, rangeSplash, meleeSplash, magic, fire /*used only in enemy script*/, rangeFire /*used only in enemy script*/}
     // Start is called before the first frame update
@@ -83,8 +82,8 @@ public class DamageInputController : MonoBehaviour
             case DamageType.melee:
                 hpses[0].GetDamege(damage);
                 hpses[1].GetDamege(damage);
-                hpses[2].GetDamege(damage * 0.10f);
-                hpses[3].GetDamege(damage * 0.10f);
+                hpses[2].GetDamege(damage * 0.25f);
+                hpses[3].GetDamege(damage * 0.25f);
                 break;
             case DamageType.range:
                 hpses[0].GetDamege(damage);
@@ -122,15 +121,22 @@ public class DamageInputController : MonoBehaviour
     private void Death()
     {
         deathScreen.SetActive(true);
+        deathScreen.GetComponent<Start_Death_Screen>().Activate();
         if(deathAudioSourceController != null)
         {
             deathAudioSourceController.DisableAudioSources();
         }
-        if(deathLevelObjectsController!=null)
+          
+    }
+    public void DeathOnBreakTrap(Vector3 SpawningPosition)
+    {
+        ADS_Spawning.spawningPosition = SpawningPosition;
+        deathScreen.SetActive(true);
+        deathScreen.GetComponent<Start_Death_Screen>().Activate();
+        if (deathAudioSourceController != null)
         {
-            deathLevelObjectsController.DisableLevelObjects();
+            deathAudioSourceController.DisableAudioSources();
         }
-        //Time.timeScale = 0;
     }
     public void killAll()
     {
