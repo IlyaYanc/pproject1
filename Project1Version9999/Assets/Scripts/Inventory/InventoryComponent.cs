@@ -108,6 +108,8 @@ public class InventoryComponent : MonoBehaviour
     {
         //cashItems = lootManager.GetItems();
         items = SaveGame.Load<List<InventoryItem>>("InventorySaveFile");
+        if (items == null)
+            items = new List<InventoryItem>();
         foreach (var item in items)
         {
             foreach (var cashItem in cashItems)
@@ -118,6 +120,10 @@ public class InventoryComponent : MonoBehaviour
                 break;
             }
         }
+        
+
+        if (items == null)
+            items = new List<InventoryItem>();
         //Debug.Log(SaveGame.Load<List<InventoryItem>>("InventorySaveFile"));
         inventoryRenderer.UpdateInventory(items);
         inventoryRenderer.ActiveItemUpdate(null, 0);
