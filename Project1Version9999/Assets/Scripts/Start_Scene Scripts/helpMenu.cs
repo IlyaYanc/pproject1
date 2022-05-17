@@ -59,6 +59,10 @@ public class helpMenu : MonoBehaviour
     }
     public void TrainingYes()
     {
+        if(!PlayerPrefs.HasKey("FirstTime"))
+        {
+            PlayerPrefs.SetInt("FirstTime", 1);
+        }
         SceneManager.LoadSceneAsync("TrainingScene");
     }
     public void TrainingNo()
