@@ -33,6 +33,8 @@ public class ADS_spawn : MonoBehaviour
     [Button]
     public void Spawn()
     {
+        RightDown.GetComponentInParent<DamageInputController>().Undeath();
+        StartCoroutine(enemiTupit(1.5f));
         if(deathOnBreakTrap)
         {
             gameObject.transform.position = spawningPosition;
@@ -50,5 +52,14 @@ public class ADS_spawn : MonoBehaviour
         hp.GetHill(hp.GetMaxHp() * 0.75f);
         hp = RightUp.GetComponent<HP>();
         hp.GetHill(hp.GetMaxHp() * 0.75f);
+    }
+    IEnumerator enemiTupit(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<enemy>().CanAttack(true);
+        }
     }
 }

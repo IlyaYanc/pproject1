@@ -20,6 +20,7 @@ public class DamageInputController : MonoBehaviour
     [SerializeField]
     private DeathAudioSourceController deathAudioSourceController;
 
+    private bool DEATH = false;
     public enum DamageType { melee, range, rangeSplash, meleeSplash, magic, fire /*used only in enemy script*/, rangeFire /*used only in enemy script*/}
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,15 @@ public class DamageInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.timeScale);
-        if(LeftUp.Hp()<=0 && LeftDown.Hp() <= 0 && RightDown.Hp()<=0 && RightUp.Hp()<=0)
+        if(LeftUp.Hp()<=0 && LeftDown.Hp() <= 0 && RightDown.Hp()<=0 && RightUp.Hp()<=0 && !DEATH)
         {
             Death();
+            DEATH = true;
         }
+    }
+    public void Undeath()
+    {
+        DEATH = false;
     }
     public void TakeDamage(Vector3 damageSoursePosition, float damage, DamageType damageType)
     {

@@ -26,13 +26,14 @@ public class Start_Death_Screen : MonoBehaviour
     }
     public void Activate()
     {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<enemy>().CanAttack(false);
+        }
         Ads.Play();
         shirma.gameObject.SetActive(true);
         StartCoroutine("VisibleIE");
-        Act(true);
-        StartCoroutine("INVisibleIE");
-        shirma.gameObject.SetActive(false);
-        Time.timeScale = 0;
     }
     private void Act (bool condition)
     {
@@ -49,6 +50,8 @@ public class Start_Death_Screen : MonoBehaviour
             shirma.material.color = color;
             yield return new WaitForSeconds(0.05f);
         }
+        Act(true);
+        StartCoroutine("INVisibleIE");
     }
     IEnumerator INVisibleIE()
     {
@@ -59,6 +62,8 @@ public class Start_Death_Screen : MonoBehaviour
             shirma.material.color = color;
             yield return new WaitForSeconds(0.05f);
         }
+        shirma.gameObject.SetActive(false);
+        Time.timeScale = 0;
     }
     public void DisActivate()
     {

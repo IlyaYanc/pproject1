@@ -44,6 +44,7 @@ public class enemy : enemyWalk
     [SerializeField]
     private List<Vector3> patrWay;
 
+    private bool neTupit = true;
     public bool isAttacking = false;
     private bool attackOnEscapeDist = false;
     private DamageInputController playerHp;
@@ -67,8 +68,16 @@ public class enemy : enemyWalk
         attackTimer = attackTime;
         playerHp = player.GetComponent<DamageInputController>();
     }
+    public void CanAttack(bool state)
+    {
+        neTupit = state;
+    }
     void Update()
     {
+        if(neTupit==false)
+        {
+            isAttacking = false;
+        }
         //Vector3 dir = player.transform.position - transform.position;
         //float angDir = Mathf.Round(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg / 90) * 90;
         //if (doConsole)
@@ -90,6 +99,7 @@ public class enemy : enemyWalk
         {
             attackTimer = attackTime;
         }
+        if(neTupit)
         transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
 
         if (rot != new Vector3(0, 0, 0))
@@ -231,8 +241,9 @@ public class enemy : enemyWalk
             }
             else
             {
+                if(neTupit)
                 isAttacking = true;
-                walkTimer = attackCd;
+                walkTimer = walkCd/(1.5f);
             }
         }
         else
@@ -248,10 +259,6 @@ public class enemy : enemyWalk
         if (hasDisquiet && Vector3.Distance(transform.position, player.transform.position) > disAgrDist)
         {
             hasDisquiet = false;
-        }
-        if (hasDisquiet)
-        {
-
         }
     }
 
@@ -274,7 +281,7 @@ public class enemy : enemyWalk
     //public bool IsWalking() => walkTimar > 0f;
     public bool isWalking()
     {
-        if (walkTimer >= walkCd-1/speed)
+        if (walkTimer >= walkCd-1/speed && neTupit)
         {
             return true;
         }
