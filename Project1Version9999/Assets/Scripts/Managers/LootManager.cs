@@ -6,9 +6,9 @@ public class LootManager : MonoBehaviour
 {
     [SerializeField]
     ItemBase[] itemsList;
-    
     public ItemBase[] GetItems()
     {
         return itemsList;
     }
+    
 }

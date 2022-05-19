@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openValue: 0
   multipleLevers: 0
-  lootManager: {fileID: 0}
+  lootManager: {fileID: 11400000, guid: 369dcf831f9d7cd42aac47aac11db837, type: 2}
   inventory: {fileID: 0}
   lootEmpty: {fileID: 3527686940763261591}
   close: {fileID: 8300000, guid: 44d98c5918a651a4ab04f9ebe802279c, type: 3}
