@@ -713,6 +713,7 @@ MonoBehaviour:
   - {x: -0.6, y: 0.12}
   ShootPosition: 0
   CharacterHP: {fileID: 0}
+  lastClipName: 
 --- !u!1 &1661729055785669456
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +807,7 @@ Animator:
   m_GameObject: {fileID: 1661729055785669456}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c132596840c55fd40a5fbbbcbb0610b0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9757e4fa8527e1a45a7940e548f7cb88, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1020,6 +1021,7 @@ MonoBehaviour:
   - {x: 0, y: 0}
   ShootPosition: 0
   CharacterHP: {fileID: 0}
+  lastClipName: 
 --- !u!1 &1661729055818263501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1328,7 @@ MonoBehaviour:
   - {x: 0, y: 0}
   ShootPosition: 0
   CharacterHP: {fileID: 0}
+  lastClipName: 
 --- !u!1 &1661729056046271575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,6 +1517,7 @@ MonoBehaviour:
   - {x: -0.15, y: 0.33}
   ShootPosition: 0
   CharacterHP: {fileID: 0}
+  lastClipName: 
 --- !u!1 &1661729056630760611
 GameObject:
   m_ObjectHideFlags: 0

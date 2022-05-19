@@ -32,32 +32,32 @@ public class StoryScript : MonoBehaviour
         N++;
     }
     [Button]
-    private void Next()
+    private void NextStory()
     {
         StartCoroutine("VisibleIE");
+    }
+    IEnumerator VisibleIE()
+    {
+        for (float f = 0.05f; f <= 1f; f += 0.05f)
+        {
+            Color color = shirma.color;
+            color.a = f;
+            shirma.color = color;
+            yield return new WaitForSeconds(0.05f);
+        }
         if (N == StoryText.Length) gameObject.SetActive(false);
         StoryImageUI.sprite = StoryImage[N];
         StoryTextUI.text = StoryText[N];
         N++;
         StartCoroutine("INVisibleIE");
     }
-    IEnumerator VisibleIE()
-    {
-        for (float f = 0.03f; f <= 1f; f += 0.03f)
-        {
-            Color color = shirma.color;
-            color.a = f;
-            shirma.material.color = color;
-            yield return new WaitForSeconds(0.05f);
-        }
-    }
     IEnumerator INVisibleIE()
     {
-        for (float f = 1f; f >= 0.03f; f -= 0.03f)
+        for (float f = 1f; f >= 0.05f; f -= 0.05f)
         {
             Color color = shirma.color;
             color.a = f;
-            shirma.material.color = color;
+            shirma.color = color;
             yield return new WaitForSeconds(0.05f);
         }
     }

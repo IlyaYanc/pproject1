@@ -13,7 +13,7 @@ public class InventoryComponent : MonoBehaviour
     [SerializeField] private InventoryRenderer inventoryRenderer;
     [SerializeField] private List<InventoryItem> appliedItems;
     [SerializeField] private int cellsCount = 8;
-    [SerializeField] private LootManager lootManager;
+    [SerializeField] private ItemsList lootManager;
     [SerializeField] private ItemBase[] cashItems;
 
 
@@ -23,7 +23,7 @@ public class InventoryComponent : MonoBehaviour
     private void Start()
     {
         if(lootManager != null)
-            cashItems = lootManager.GetItems();
+            cashItems = lootManager.Items;
     }
 
     public void AddItem(ItemBase _item)

@@ -6,7 +6,7 @@ public class Chest : activObject
 {
     //loot
     [SerializeField]
-    LootManager lootManager;
+    ItemsList lootManager;
     [SerializeField]
     InventoryComponent inventory;
 
@@ -48,8 +48,9 @@ public class Chest : activObject
     }
     void GenerateLoot()
     {
-        ItemBase[] loot = lootManager.GetItems();
-        droppedLoot = loot[Random.Range(0, loot.Length)];
+        //ItemBase[] loot = lootManager.Items;
+        //droppedLoot = loot[Random.Range(0, loot.Length)];
+        droppedLoot= lootManager.Items[Random.Range(0, lootManager.Items.Length)];
         lootEmpty.GetComponent<SpriteRenderer>().sprite = droppedLoot.inventorySprite;
         lootEmpty.SetActive(true);
     }
