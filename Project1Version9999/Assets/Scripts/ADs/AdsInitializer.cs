@@ -16,6 +16,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     private void Awake()
     {
         rewardedAdsBtn.interactable = false;
+        rewardedAdsBtn.onClick.AddListener(ShowRewardedAds);
         if (Advertisement.isInitialized)
         {
             Debug.Log("Advertisement is Initialized");
@@ -50,6 +51,10 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
         Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+        rewardedAdsBtn.onClick.RemoveAllListeners();
+        if(adsSpawn != null)
+            rewardedAdsBtn.onClick.AddListener(adsSpawn.Spawn);
+        rewardedAdsBtn.interactable = true;
     }
 
     public void LoadInerstitialAd()
@@ -76,6 +81,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {placementId}: {error.ToString()} - {message}");
+        
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
