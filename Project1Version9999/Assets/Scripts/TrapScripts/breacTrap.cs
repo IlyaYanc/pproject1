@@ -20,6 +20,8 @@ public class breacTrap : MonoBehaviour
     private List<GameObject> ObjectsOnHoles;
     [SerializeField]
     private float breakDelay;
+    [SerializeField]
+    private Vector3 ADS_spawningPos;
     private DamageInputController hp;
     public float timer;
     public int n;
@@ -62,6 +64,14 @@ public class breacTrap : MonoBehaviour
                     audioSource.Play();
                     for (int i = 0; i < holes.Count; i++)
                     {
+                        if(n!=stageTiles.Count-1)
+                        {
+                            if (holes[i].sprite==stageTiles[n+1])
+                            {
+                                holes[i].sprite = stageTiles[n];
+                            }
+                        }
+                        else
                         holes[i].sprite = stageTiles[n];
                     }
                 }
@@ -71,29 +81,39 @@ public class breacTrap : MonoBehaviour
                 for (int i = 0; i < holes.Count; i++)
                 {
                     mp.SetTile(mp.WorldToCell(holes[i].transform.position), holeTile);
-                    Destroy(holes[i].gameObject);
-                    if(Mathf.Abs(holes[i].gameObject.transform.position.x-player.transform.position.x)<=0.5 && Mathf.Abs(holes[i].gameObject.transform.position.y - player.transform.position.y) <= 0.5)
+                    holes[i].gameObject.SetActive(false);
+                    if (Mathf.Abs(holes[i].gameObject.transform.position.x-player.transform.position.x)<=0.5 && Mathf.Abs(holes[i].gameObject.transform.position.y - player.transform.position.y) <= 0.5)
                     {
                         kill();
                     }
                 }
                 for(int i=0;i<ObjectsOnHoles.Count;i++)
                 {
-                    Destroy(ObjectsOnHoles[i]);
+                    ObjectsOnHoles[i].SetActive(false);
                 }
                 isActive = false;
-                Destroy(gameObject);
             }
         }
     }
     private void kill()
     {
-        hp.killAll();
+        hp.DeathOnBreakTrap(ADS_spawningPos,gameObject);
     }
 
     [Button]
     private void ActivateTrap()
     {
         isActive = true;
+    }
+    public void Activate()
+    {
+        for (int i = 0; i < holes.Count; i++)
+        {
+            holes[i].gameObject.SetActive(true);
+        }
+        for (int i = 0; i < ObjectsOnHoles.Count; i++)
+        {
+            ObjectsOnHoles[i].SetActive(true);
+        }
     }
 }

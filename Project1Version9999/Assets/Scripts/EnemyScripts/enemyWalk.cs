@@ -6,11 +6,9 @@ using UnityEngine.Tilemaps;
 public class enemyWalk : EnemyCanSee
 {
 
-    [SerializeField]
-    private Tilemap map;
+    public Tilemap map;
 
-    [SerializeField]
-    private Tile ground;
+    public Tile ground;
 
     private Dictionary<Vector3, int> used = new Dictionary<Vector3, int>();
     private Dictionary<Vector3, Vector3> pred = new Dictionary<Vector3, Vector3>();

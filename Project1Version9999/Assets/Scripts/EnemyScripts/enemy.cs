@@ -74,6 +74,9 @@ public class enemy : enemyWalk
     }
     void Update()
     {
+        if(map.GetTile(map.WorldToCell(gameObject.transform.position))!=ground){
+            Destroy(gameObject);
+        }
         if(neTupit==false)
         {
             isAttacking = false;

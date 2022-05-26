@@ -133,10 +133,11 @@ public class DamageInputController : MonoBehaviour
         }
           
     }
-    public void DeathOnBreakTrap(Vector3 SpawningPosition)
+    public void DeathOnBreakTrap(Vector3 SpawningPosition, GameObject trap)
     {
         ADS_Spawning.spawningPosition = SpawningPosition;
         ADS_Spawning.deathOnBreakTrap = true;
+        ADS_Spawning.trap_killer = trap.GetComponent<breacTrap>();
         deathScreen.GetComponent<Start_Death_Screen>().Activate();
         if (deathAudioSourceController != null)
         {
