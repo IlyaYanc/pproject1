@@ -288,18 +288,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 457980409}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1665745278}
-        m_MethodName: ShowRewardedAds
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &457980409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,18 +531,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1665745278 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7618185157226266343, guid: 951ef409b76f54a4bb9da8611824b478,
-    type: 3}
-  m_PrefabInstance: {fileID: 7618185157783502745}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81893fc5d8dbcfe42a8c110355d2f862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2138874744
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +734,7 @@ PrefabInstance:
     - target: {fileID: 7618185157226266343, guid: 951ef409b76f54a4bb9da8611824b478,
         type: 3}
       propertyPath: _iOSGameId
-      value: 4727216
+      value: 4727217
       objectReference: {fileID: 0}
     - target: {fileID: 7618185157226266343, guid: 951ef409b76f54a4bb9da8611824b478,
         type: 3}
