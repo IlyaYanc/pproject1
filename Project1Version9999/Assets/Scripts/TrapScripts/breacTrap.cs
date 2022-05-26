@@ -30,9 +30,11 @@ public class breacTrap : MonoBehaviour
     private GameObject player;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] stageAudioClip = new AudioClip[0];
+    private TileBase floarTile;
     // Start is called before the first frame update
     void Start()
     {
+        floarTile = mp.GetTile(mp.WorldToCell(gameObject.transform.position));
         timer = breakDelay;
         player = GameObject.FindGameObjectWithTag("Player");
         hp = player.GetComponent<DamageInputController>();
@@ -110,10 +112,14 @@ public class breacTrap : MonoBehaviour
         for (int i = 0; i < holes.Count; i++)
         {
             holes[i].gameObject.SetActive(true);
+            mp.SetTile(mp.WorldToCell(holes[i].transform.position), floarTile);
+            holes[i].sprite = stageTiles[stageTiles.Count-1];
         }
         for (int i = 0; i < ObjectsOnHoles.Count; i++)
         {
             ObjectsOnHoles[i].SetActive(true);
         }
+        isActive = false;
+        timer = breakDelay;
     }
 }

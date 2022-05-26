@@ -28399,10 +28399,12 @@ MonoBehaviour:
   RightUp: {fileID: 9038259792207352879}
   LeftDown: {fileID: 9038259792362831151}
   RightDown: {fileID: 9038259791398781719}
+  allPlayer: {fileID: 9038259790509049296}
   deathAudioSourceController: {fileID: 9038259790941727433}
   deathScreen: {fileID: 4755632977215376038}
   deathOnBreakTrap: 0
   spawningPosition: {x: 0, y: 0, z: 0}
+  trap_killer: {fileID: 0}
 --- !u!1 &9038259791626415416
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,7 @@ public class ADS_spawn : MonoBehaviour
     {
         RightDown.GetComponentInParent<DamageInputController>().Undeath();
         StartCoroutine(enemiTupit(1.5f));
+        Debug.Log(deathOnBreakTrap);
         if(deathOnBreakTrap)
         {
             allPlayer.transform.position = spawningPosition;

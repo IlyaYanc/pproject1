@@ -19,7 +19,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
         rewardedAdsBtn.onClick.AddListener(ShowRewardedAds);
         if (Advertisement.isInitialized)
         {
-            Debug.Log("Advertisement is Initialized");
+           // Debug.Log("Advertisement is Initialized");
             LoadRewardedAd();
         }
         else
@@ -42,7 +42,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     public void OnInitializationComplete()
     {
-        Debug.Log("Unity Ads initialization complete.");
+       Debug.Log("Unity Ads initialization complete.");
         //LoadInerstitialAd();
         LoadRewardedAd();
         //LoadBannerAd();
@@ -50,7 +50,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
-        Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+      //  Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
         rewardedAdsBtn.onClick.RemoveAllListeners();
         if(adsSpawn != null)
             rewardedAdsBtn.onClick.AddListener(adsSpawn.Spawn);
@@ -70,7 +70,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        Debug.Log("OnUnityAdsAdLoaded");
+      //  Debug.Log("OnUnityAdsAdLoaded");
         if (placementId.Equals("Rewarded_Android"))
         {
             rewardedAdsBtn.interactable = true;
@@ -80,30 +80,30 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener, IU
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
-        Debug.Log($"Error showing Ad Unit {placementId}: {error.ToString()} - {message}");
+      //  Debug.Log($"Error showing Ad Unit {placementId}: {error.ToString()} - {message}");
         
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
-        Debug.Log("OnUnityAdsShowFailure");
+       // Debug.Log("OnUnityAdsShowFailure");
     }
 
     public void OnUnityAdsShowStart(string placementId)
     {
-        Debug.Log("OnUnityAdsShowStart");
+        //Debug.Log("OnUnityAdsShowStart");
         Time.timeScale = 0;
         //Advertisement.Banner.Hide();
     }
 
     public void OnUnityAdsShowClick(string placementId)
     {
-        Debug.Log("OnUnityAdsShowClick");
+       // Debug.Log("OnUnityAdsShowClick");
     }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-        Debug.Log("OnUnityAdsShowComplete "+showCompletionState);
+        //Debug.Log("OnUnityAdsShowComplete "+showCompletionState);
         if (placementId.Equals("Rewarded_Android") && UnityAdsShowCompletionState.COMPLETED.Equals(showCompletionState))
         {
             Debug.Log("rewared Player");
