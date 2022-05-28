@@ -14,7 +14,11 @@ public class roomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        openValue = enemies.Count;
+        if(enemies.Count == 0)
+        {
+            enabled = false; 
+        }
+        openValue = enemies.Count;    
     }
 
     // Update is called once per frame

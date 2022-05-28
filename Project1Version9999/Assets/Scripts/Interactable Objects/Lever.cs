@@ -5,7 +5,7 @@ using NaughtyAttributes;
 
 public class Lever : Interactable
 {
-    private AudioSource AudS;
+    protected AudioSource AudS;
    
 
     [SerializeField] protected activObject obj;

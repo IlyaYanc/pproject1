@@ -81,6 +81,7 @@ public class EnemyHp : MonoBehaviour
         {
             Destroy(gameObject,0.005f);
             Destroy(hpCanvas.gameObject);
+            enabled = false;
         }
         hpCanvas.position = transform.position + new Vector3(0, 0.7f, 0);
         hpSlid.value = hp / maxhp;

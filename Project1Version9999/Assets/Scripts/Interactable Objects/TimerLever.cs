@@ -9,14 +9,13 @@ public class TimerLever : Lever
     [SerializeField] private float m_duration; //время
     private Timer _timer;
     private TimerManager _manager;
-    private AudioSource AudS;
+    
     private void Start()
     {
         AudS = gameObject.GetComponent<AudioSource>();
         sRenderer = GetComponent<SpriteRenderer>();
         _manager = GetComponent<TimerManager>();
-
-
+        
         _timer = new Timer(m_duration, false, TimerCompleted); //создание таймера
         _manager.RegisterTimer(_timer);
 
