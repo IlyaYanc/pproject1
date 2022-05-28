@@ -33,7 +33,10 @@ public class StartScreenUI : MonoBehaviour
         else
         {
             Time.timeScale = 1f;
-            SceneManager.LoadSceneAsync(PlayerPrefs.GetString("LastLevel")); // nado last level
+            if(PlayerPrefs.HasKey("LastLevel"))
+                SceneManager.LoadSceneAsync(PlayerPrefs.GetString("LastLevel")); // nado last level
+            else 
+                SceneManager.LoadSceneAsync("level1");
         }
     }
     public void TrainingYes()
