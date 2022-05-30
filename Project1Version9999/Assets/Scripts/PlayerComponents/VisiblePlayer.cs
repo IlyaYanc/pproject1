@@ -15,7 +15,15 @@ public class VisiblePlayer : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        ObjectTransform.position = PlayerTransform.position;
+        if(ObjectTransform != null)
+        {
+            ObjectTransform.position = PlayerTransform.position;
+        }
+        else
+        {
+            gameObject.GetComponent<VisiblePlayer>().enabled = false;
+        }
+        
     }
 
 }

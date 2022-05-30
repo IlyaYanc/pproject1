@@ -20,7 +20,6 @@ public class LevelLadder : Interactable
     }
     public override void Interact()
     {
-        Debug.Log(Time.timeScale);
         SaveStats();
         if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) != -1 && NextLevelName != "Start_Scene")
         {
