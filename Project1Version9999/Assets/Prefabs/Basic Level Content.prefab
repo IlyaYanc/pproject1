@@ -5583,7 +5583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1, y: -0.5000305}
+  m_AnchoredPosition: {x: -1, y: -0.5}
   m_SizeDelta: {x: -1.0029297, y: 0.9654541}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2301223350144739988
@@ -18635,10 +18635,10 @@ RectTransform:
   m_Father: {fileID: 6052662339213934187}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2717746, y: 0.535}
+  m_AnchorMin: {x: 0.24133192, y: 0.535}
   m_AnchorMax: {x: 0.9811107, y: 0.625}
-  m_AnchoredPosition: {x: -0.5, y: 0}
-  m_SizeDelta: {x: 0.6163025, y: -0.000038146973}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: 0.11932373, y: -0.000038146973}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6052662338533099395
 CanvasRenderer:
@@ -23070,14 +23070,13 @@ GameObject:
   - component: {fileID: 8484469082860082563}
   - component: {fileID: 8484469082860082567}
   - component: {fileID: 8484469082860082560}
-  - component: {fileID: 8484469082860082561}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8484469082860082563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23134,23 +23133,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8484469082860082561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8484469082860082588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729220c46c4fc3543a58c64a4335de09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fon: {fileID: 0}
-  shirma: {fileID: 0}
-  ADSBut: {fileID: 0}
-  menuBut: {fileID: 0}
-  deathAudioSourceController: {fileID: 0}
 --- !u!1 &8484469082927339930
 GameObject:
   m_ObjectHideFlags: 0
@@ -27070,7 +27052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9038259790772794100
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28474,13 +28456,14 @@ GameObject:
   - component: {fileID: 9038259791563561046}
   - component: {fileID: 9038259791563561047}
   - component: {fileID: 9038259791563561064}
+  - component: {fileID: 4284327681657074137}
   m_Layer: 5
   m_Name: LevelEndScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9038259791563561044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28524,7 +28507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -28652,6 +28635,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4284327681657074137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038259791563561045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1836c915711f15242bf3b54d81a1ff37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fon: {fileID: 9038259790772794099}
+  shirma: {fileID: 8484469082860082560}
+  deathAudioSourceController: {fileID: 9038259790941727433}
 --- !u!1 &9038259791571645230
 GameObject:
   m_ObjectHideFlags: 0
@@ -28856,7 +28854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9038259791634303471
 RectTransform:
   m_ObjectHideFlags: 0

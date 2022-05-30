@@ -20,6 +20,7 @@ public class LevelLadder : Interactable
     }
     public override void Interact()
     {
+        Debug.Log(Time.timeScale);
         SaveStats();
         if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) != -1 && NextLevelName != "Start_Scene")
         {
@@ -27,10 +28,11 @@ public class LevelLadder : Interactable
         }
         if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) == -1 || InstantSceneLoad == false)
         {
+            
             deathAudioSourceController.DisableAudioSources();
             deathLevelObjectsController.DisableLevelObjects();
             levelMusic.Stop();
-            levelEndPanel.SetActive(true);
+            levelEndPanel.GetComponent<StartLevelEnd>().Activate();
             if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) == -1)
             {
                 mainMenuButton.SetActive(true);
@@ -49,6 +51,7 @@ public class LevelLadder : Interactable
         {
             LoadNextLevel();
         }
+        
     }
 
     private void SaveStats()
