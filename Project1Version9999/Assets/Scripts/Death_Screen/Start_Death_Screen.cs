@@ -55,6 +55,7 @@ public class Start_Death_Screen : MonoBehaviour
         }
         Act(true);
         StartCoroutine("INVisibleIE");
+        
     }
     IEnumerator INVisibleIE()
     {

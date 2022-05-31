@@ -29,10 +29,7 @@ public class ADS_spawn : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     [Button]
     public void Spawn()
     {
@@ -42,8 +39,8 @@ public class ADS_spawn : MonoBehaviour
         if(deathOnBreakTrap)
         {
             allPlayer.transform.position = spawningPosition;
-            trap_killer.Activate();
             deathOnBreakTrap = false;
+            trap_killer.Activate();
         }
         Time.timeScale = 1;
         deathScreen.GetComponent<Start_Death_Screen>().DisActivate();

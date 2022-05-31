@@ -31,6 +31,7 @@ public class breacTrap : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] stageAudioClip = new AudioClip[0];
     private TileBase floarTile;
+    private bool killed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,7 +100,12 @@ public class breacTrap : MonoBehaviour
     }
     private void kill()
     {
-        hp.DeathOnBreakTrap(ADS_spawningPos,gameObject);
+        if(killed == false)
+        {
+            hp.DeathOnBreakTrap(ADS_spawningPos, gameObject);
+            killed = true;
+        }
+        
     }
 
     [Button]
@@ -120,6 +126,7 @@ public class breacTrap : MonoBehaviour
             ObjectsOnHoles[i].SetActive(true);
         }
         isActive = false;
+        killed = false;
         timer = breakDelay;
     }
 }
