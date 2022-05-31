@@ -22,7 +22,7 @@ public class SavingSystem : MonoBehaviour
     [SerializeField] private Options options;
 
     [SerializeField] private LevelUI lvlUI;
-    
+
     private void SaveActiveObjects()
     {
         List<ActiveObjectSavingData> savingDatas = new List<ActiveObjectSavingData>();
@@ -135,6 +135,14 @@ public class SavingSystem : MonoBehaviour
         LoadEnemies();
         playerMoveController.RotateRight();
         //playerMoveController.RotateRight();//aaahhhhhhhhh
+    }
+    public void SaveInventory()
+    {
+        inventoryComponent.Save();
+    }
+    public void LoadInventory()
+    {
+        inventoryComponent.Load();
     }
 
     [Button("Load For Next Level")]

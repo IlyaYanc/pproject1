@@ -79,7 +79,7 @@ public class EnemyHp : MonoBehaviour
     {
         if (hp <= 0)
         {
-            //Destroy(gameObject,0.005f);
+            Destroy(gameObject,0.005f);
             Destroy(hpCanvas.gameObject);
             enabled = false;
         }

@@ -544,5 +544,11 @@ public class LevelUI : MonoBehaviour
     {
         fightButton.cooldownTimer._timer = new Timer(actionCD, false, fightButton.cooldownTimer.GetComponent<SliderTimer>().TimerCompleted, fightButton.cooldownTimer.GetComponent<SliderTimer>().UpdateTimer);
     }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadSceneAsync(PlayerPrefs.GetString("LastLevel"));
+    }
 }
 
