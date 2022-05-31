@@ -35,10 +35,17 @@ public class StoryScript : MonoBehaviour
     [Button]
     public void NextStory()
     {
+        shirma.raycastTarget = true;
         StartCoroutine("VisibleIE");
+    }
+
+    public void DisableStoryPanel()
+    {
+        gameObject.SetActive(false);
     }
     IEnumerator VisibleIE()
     {
+        
         for (float f = 0.05f; f <= 1f; f += 0.05f)
         {
             Color color = shirma.color;
@@ -46,6 +53,7 @@ public class StoryScript : MonoBehaviour
             shirma.color = color;
             yield return new WaitForSeconds(0.05f);
         }
+        
         if (N == StoryText.Length) gameObject.SetActive(false);
         if(N != StoryText.Length)
         {
@@ -64,5 +72,6 @@ public class StoryScript : MonoBehaviour
             shirma.color = color;
             yield return new WaitForSeconds(0.05f);
         }
+        shirma.raycastTarget = false;
     }
 }
