@@ -5,9 +5,10 @@ using UnityEngine;
 public class NextLevelInvetnoryLoader : MonoBehaviour
 {
     [SerializeField] private SavingSystem savingManager;
-
-    private void Awake()
+    [SerializeField] private bool traningScene = false;
+    private void Start()
     {
-        savingManager.LoadInventory();
+        if(!traningScene)
+            savingManager.LoadInventory();
     }
 }
