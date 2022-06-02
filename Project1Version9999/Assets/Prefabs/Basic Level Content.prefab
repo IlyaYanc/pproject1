@@ -14153,10 +14153,10 @@ MonoBehaviour:
         m_CallState: 2
   m_cellSize: 1
   m_tileMap: {fileID: 0}
-  m_moveDelay: 0.5
+  m_moveDelay: 0.55
   m_rotateDelay: 0.6
-  m_moveAnimDuration: 0.2
-  m_rotateAnimDuration: 0.3
+  m_moveAnimDuration: 0.32
+  m_rotateAnimDuration: 0.32
   animator: {fileID: 0}
   useAnimations: 0
   _manager: {fileID: 0}
