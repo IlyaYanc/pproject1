@@ -16,12 +16,17 @@ public class ADS_spawn : MonoBehaviour
     [SerializeField]
     private GameObject allPlayer;
     [SerializeField]
+    private float HP_DecreaseValue;
+    [SerializeField]
+    private bool progressiveHPDecrease;
+    [SerializeField]
     private DeathAudioSourceController deathAudioSourceController;
     [SerializeField]
     private GameObject deathScreen;
     public bool deathOnBreakTrap;
     public Vector3 spawningPosition;
     public breacTrap trap_killer;
+    private int death_amount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +39,7 @@ public class ADS_spawn : MonoBehaviour
     public void Spawn()
     {
         RightDown.GetComponentInParent<DamageInputController>().Undeath();
-        StartCoroutine(enemiTupit(1.5f));
+        StartCoroutine(enemiTupit(2.5f));
         Debug.Log(deathOnBreakTrap);
         if(deathOnBreakTrap)
         {
@@ -47,13 +52,13 @@ public class ADS_spawn : MonoBehaviour
         deathAudioSourceController.EnableAudioSource();
         HP hp;
         hp = LeftDown.GetComponent<HP>();
-        hp.Hp(hp.GetMaxHp() * 0.75f);
+        hp.Hp(hp.GetMaxHp() * HPMultipluyer());
         hp = RightDown.GetComponent<HP>();
-        hp.Hp(hp.GetMaxHp() * 0.75f);
+        hp.Hp(hp.GetMaxHp() * HPMultipluyer());
         hp = LeftUp.GetComponent<HP>();
-        hp.Hp(hp.GetMaxHp() * 0.75f);
+        hp.Hp(hp.GetMaxHp() * HPMultipluyer());
         hp = RightUp.GetComponent<HP>();
-        hp.Hp(hp.GetMaxHp() * 0.75f);
+        hp.Hp(hp.GetMaxHp() * HPMultipluyer());
     }
     IEnumerator enemiTupit(float time)
     {
@@ -63,5 +68,21 @@ public class ADS_spawn : MonoBehaviour
         {
             enemies[i].GetComponent<enemy>().CanAttack(true);
         }
+    }
+
+    private float HPMultipluyer()
+    {
+        float decrease = HP_DecreaseValue;
+        if(progressiveHPDecrease == true)
+        {
+            decrease *= death_amount;
+        }
+        float mult = 1f - decrease;
+        if(mult - HP_DecreaseValue <= 0f)
+        {
+            deathScreen.GetComponent<Start_Death_Screen>().DisableAdButton();
+        }
+        death_amount++;
+        return mult;
     }
 }

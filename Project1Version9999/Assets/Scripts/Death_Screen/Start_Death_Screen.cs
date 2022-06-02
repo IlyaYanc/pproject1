@@ -16,6 +16,10 @@ public class Start_Death_Screen : MonoBehaviour
     [SerializeField]
     private GameObject menuBut;
     [SerializeField]
+    private GameObject restartBut;
+    [SerializeField]
+    private GameObject restartBut2;
+    [SerializeField]
     private DeathAudioSourceController deathAudioSourceController;
     private AudioSource Ads;
     private void Start()
@@ -75,5 +79,11 @@ public class Start_Death_Screen : MonoBehaviour
         deathAudioSourceController.EnableAudioSource();
     }
 
+    public void DisableAdButton()
+    {
+        ADSBut.SetActive(false);
+        restartBut.SetActive(false);
+        restartBut2.SetActive(true);
+    }
 
 }
