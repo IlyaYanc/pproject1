@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLadder : Interactable
 {
+    [SerializeField] private bool savesInventory;
     [SerializeField] private InventoryComponent inventoryComponent; 
     [SerializeField] private string NextLevelName;
     [SerializeField] private bool InstantSceneLoad;
@@ -20,7 +21,11 @@ public class LevelLadder : Interactable
     }
     public override void Interact()
     {
-        SaveStats();
+        if(savesInventory)
+        {
+            SaveStats();
+        }
+        
         if (SceneUtility.GetBuildIndexByScenePath(NextLevelName) != -1 && NextLevelName != "Start_Scene")
         {
             PlayerPrefs.SetString("LastLevel", NextLevelName);

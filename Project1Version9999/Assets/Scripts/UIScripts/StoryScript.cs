@@ -27,10 +27,19 @@ public class StoryScript : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("INVisibleIE");
-        StoryImageUI.sprite = StoryImage[0];
-        StoryTextUI.text = StoryText[0];
-        N++;
+        if(!PlayerPrefs.HasKey("IntroSeen"))
+        {
+            PlayerPrefs.SetInt("IntroSeen", 1);
+            StartCoroutine("INVisibleIE");
+            StoryImageUI.sprite = StoryImage[0];
+            StoryTextUI.text = StoryText[0];
+            N++;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
     }
     [Button]
     public void NextStory()

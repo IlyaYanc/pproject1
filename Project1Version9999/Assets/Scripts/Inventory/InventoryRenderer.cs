@@ -56,7 +56,7 @@ public class InventoryRenderer : MonoBehaviour
         
         ActiveItemButton.gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
-        wholeContainer.SetActive(false);
+        //wholeContainer.SetActive(false);
 
         Image[] contents = container.GetComponentsInChildren<Image>(true);
         for (int i = 0; i < contents.Length; i++)

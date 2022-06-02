@@ -128,8 +128,6 @@ public class InventoryComponent : MonoBehaviour
         inventoryRenderer.UpdateInventory(items);
         inventoryRenderer.ActiveItemUpdate(null, 0);
         
-        Debug.Log("Loaded inv");
-        
     }
 }
 
