@@ -59,6 +59,8 @@ public class ADS_spawn : MonoBehaviour
         hp.Hp(hp.GetMaxHp() * HPMultipluyer());
         hp = RightUp.GetComponent<HP>();
         hp.Hp(hp.GetMaxHp() * HPMultipluyer());
+
+        death_amount++;
     }
     IEnumerator enemiTupit(float time)
     {
@@ -82,7 +84,6 @@ public class ADS_spawn : MonoBehaviour
         {
             deathScreen.GetComponent<Start_Death_Screen>().DisableAdButton();
         }
-        death_amount++;
         return mult;
     }
 }

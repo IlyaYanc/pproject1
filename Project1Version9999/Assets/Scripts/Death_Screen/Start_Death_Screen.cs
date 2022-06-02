@@ -41,11 +41,16 @@ public class Start_Death_Screen : MonoBehaviour
     }
     private void Act (bool condition)
     {
-        if (menuBut != null && ADSBut != null)
+        /*if (menuBut != null && ADSBut != null)
         {
             menuBut.SetActive(condition);
             ADSBut.SetActive(condition);
+        } */
+        if (ADSBut != null)
+        {
+             ADSBut.SetActive(condition);
         }
+        menuBut.SetActive(condition);
         fon.SetActive(condition);
     }
     IEnumerator VisibleIE()
@@ -81,7 +86,7 @@ public class Start_Death_Screen : MonoBehaviour
 
     public void DisableAdButton()
     {
-        ADSBut.SetActive(false);
+        Destroy(ADSBut);
         restartBut.SetActive(false);
         restartBut2.SetActive(true);
     }

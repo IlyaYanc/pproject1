@@ -29247,7 +29247,7 @@ MonoBehaviour:
   LeftDown: {fileID: 9038259792362831151}
   RightDown: {fileID: 9038259791398781719}
   allPlayer: {fileID: 3846789750362680415}
-  HP_DecreaseValue: 0
+  HP_DecreaseValue: 0.25
   progressiveHPDecrease: 0
   deathAudioSourceController: {fileID: 9038259790941727433}
   deathScreen: {fileID: 4755632977215376038}
