@@ -290,6 +290,92 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+--- !u!1 &1021041093464493397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334224968896195277}
+  - component: {fileID: 7404255993165731342}
+  - component: {fileID: 8056302976844952115}
+  m_Layer: 0
+  m_Name: LevelTextsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &334224968896195277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021041093464493397}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1955.6096, y: 555.3483, z: -14316.182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8847628476580203437}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7404255993165731342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021041093464493397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0560b22e11aaf4f82560896d0addc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelTexts:
+  - {fileID: 9038259792246084327}
+  - {fileID: 3588403213384622027}
+  - {fileID: 3588403213667716183}
+  - {fileID: 3588403212538825315}
+  - {fileID: 1675106758429329185}
+  - {fileID: 1675106759381998137}
+  - {fileID: 1675106758094553676}
+  - {fileID: 1675106758395644575}
+  - {fileID: 1675106759311387308}
+  - {fileID: 1675106757962226911}
+  - {fileID: 1675106758586126814}
+  - {fileID: 1675106757552375894}
+  - {fileID: 2301223350459773521}
+  - {fileID: 2301223350047673498}
+  - {fileID: 4115211973492929832}
+  - {fileID: 4115211974827017813}
+  - {fileID: 4115211973839997230}
+  - {fileID: 9038259791626415418}
+  - {fileID: 9038259791530368341}
+  - {fileID: 9038259790603961768}
+  - {fileID: 2876373552076412114}
+  - {fileID: 6095732728670373469}
+  - {fileID: 8484469083653587400}
+  - {fileID: 9038259792096649636}
+  - {fileID: 8484469083933254785}
+  - {fileID: 8484469082928148658}
+  - {fileID: 3588403212624074147}
+--- !u!114 &8056302976844952115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021041093464493397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff61dcca7e91544cad7b8f772710ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelTextContainer: {fileID: 7404255993165731342}
+  english: {fileID: 0}
 --- !u!1 &1300463382297828631
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +477,7 @@ GameObject:
   - component: {fileID: 7710984313860698843}
   - component: {fileID: 6095732728670373469}
   m_Layer: 5
-  m_Name: ADS_Tmp
+  m_Name: DeathRestart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -561,7 +647,7 @@ GameObject:
   - component: {fileID: 1675106757552375881}
   - component: {fileID: 1675106757552375894}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: OptionsControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -917,7 +1003,7 @@ GameObject:
   - component: {fileID: 1675106757962226910}
   - component: {fileID: 1675106757962226911}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: OptionsMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1051,7 +1137,7 @@ GameObject:
   - component: {fileID: 1675106758094553679}
   - component: {fileID: 1675106758094553676}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PauseOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1333,7 +1419,7 @@ GameObject:
   - component: {fileID: 1675106758395644574}
   - component: {fileID: 1675106758395644575}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PauseMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1541,7 +1627,7 @@ GameObject:
   - component: {fileID: 1675106758429329184}
   - component: {fileID: 1675106758429329185}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PauseResume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1675,7 +1761,7 @@ GameObject:
   - component: {fileID: 1675106758586126801}
   - component: {fileID: 1675106758586126814}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: OptionsEffects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1883,7 +1969,7 @@ GameObject:
   - component: {fileID: 1675106759311387311}
   - component: {fileID: 1675106759311387308}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: OptionsHeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2201,7 +2287,7 @@ GameObject:
   - component: {fileID: 1675106759381998136}
   - component: {fileID: 1675106759381998137}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PauseInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5121,7 +5207,7 @@ GameObject:
   - component: {fileID: 2301223350047673497}
   - component: {fileID: 2301223350047673498}
   m_Layer: 5
-  m_Name: TouchText
+  m_Name: OptionsSwipes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7891,7 +7977,7 @@ GameObject:
   - component: {fileID: 2301223350459773520}
   - component: {fileID: 2301223350459773521}
   m_Layer: 5
-  m_Name: CrossText
+  m_Name: OptionsCross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9027,7 +9113,7 @@ GameObject:
   - component: {fileID: 3571289546172500549}
   - component: {fileID: 2876373552076412114}
   m_Layer: 5
-  m_Name: ADS_Tmp
+  m_Name: DeathRestart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9782,10 +9868,10 @@ RectTransform:
   m_Father: {fileID: 3588403213768753851}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.13278191}
-  m_AnchorMax: {x: 0.95519483, y: 0.5064436}
+  m_AnchorMin: {x: 0.40712503, y: 0.13278191}
+  m_AnchorMax: {x: 0.95519483, y: 0.50666666}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.00018310547, y: -0.000011444092}
+  m_SizeDelta: {x: 0.000061035156, y: -0.000011444092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3588403212080122716
 MonoBehaviour:
@@ -10078,10 +10164,10 @@ RectTransform:
   m_Father: {fileID: 3588403212805334986}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.13278191}
+  m_AnchorMin: {x: 0.40712494, y: 0.13278191}
   m_AnchorMax: {x: 0.95519483, y: 0.5064436}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.00018310547, y: -0.000011444092}
+  m_SizeDelta: {x: -0.00010681152, y: -0.000011444092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3588403212361811503
 MonoBehaviour:
@@ -10165,10 +10251,10 @@ RectTransform:
   m_Father: {fileID: 3588403213768753851}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.5064436}
+  m_AnchorMin: {x: 0.40712497, y: 0.5064436}
   m_AnchorMax: {x: 0.75200003, y: 0.8673309}
-  m_AnchoredPosition: {x: 0.03125, y: 0}
-  m_SizeDelta: {x: -0.31999207, y: 0.0075302124}
+  m_AnchoredPosition: {x: -0.06430054, y: 0}
+  m_SizeDelta: {x: -0.12892914, y: 0.0075302124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3588403212538825314
 CanvasRenderer:
@@ -10225,7 +10311,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.75
+  m_fontSize: 39.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10399,7 +10485,7 @@ GameObject:
   - component: {fileID: 3588403212624074146}
   - component: {fileID: 3588403212624074147}
   m_Layer: 5
-  m_Name: TypeText
+  m_Name: InventoryTypeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12412,10 +12498,10 @@ RectTransform:
   m_Father: {fileID: 3588403213365079756}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.5064436}
+  m_AnchorMin: {x: 0.40712494, y: 0.5064436}
   m_AnchorMax: {x: 0.75200003, y: 0.8673309}
-  m_AnchoredPosition: {x: 0.03125, y: 0}
-  m_SizeDelta: {x: -0.31999207, y: 0.0075302124}
+  m_AnchoredPosition: {x: -0.06430054, y: 0}
+  m_SizeDelta: {x: -0.12892914, y: 0.0075302124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3588403213384622026
 CanvasRenderer:
@@ -12472,7 +12558,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.75
+  m_fontSize: 39.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12800,10 +12886,10 @@ RectTransform:
   m_Father: {fileID: 3588403212805334986}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.5064436}
+  m_AnchorMin: {x: 0.40712494, y: 0.5064436}
   m_AnchorMax: {x: 0.75200003, y: 0.8673309}
-  m_AnchoredPosition: {x: 0.03125, y: 0}
-  m_SizeDelta: {x: -0.31999207, y: 0.0075302124}
+  m_AnchoredPosition: {x: -0.06430054, y: 0}
+  m_SizeDelta: {x: -0.12892914, y: 0.0075302124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3588403213667716182
 CanvasRenderer:
@@ -12860,7 +12946,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.75
+  m_fontSize: 39.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12935,10 +13021,10 @@ RectTransform:
   m_Father: {fileID: 2301223350886044320}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.13278191}
-  m_AnchorMax: {x: 0.95519483, y: 0.5064436}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.000061035156}
-  m_SizeDelta: {x: -0.00018310547, y: -0.000011444092}
+  m_AnchorMin: {x: 0.40712494, y: 0.13278191}
+  m_AnchorMax: {x: 0.95519483, y: 0.5064543}
+  m_AnchoredPosition: {x: -0.011001587, y: 0.000061035156}
+  m_SizeDelta: {x: 0.021636963, y: -0.000011444092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3588403213669219539
 MonoBehaviour:
@@ -13339,10 +13425,10 @@ RectTransform:
   m_Father: {fileID: 3588403213365079756}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.13278191}
+  m_AnchorMin: {x: 0.40712494, y: 0.13278191}
   m_AnchorMax: {x: 0.95519483, y: 0.5064436}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.00018310547, y: -0.000011444092}
+  m_AnchoredPosition: {x: -0.010894775, y: 0}
+  m_SizeDelta: {x: 0.021636963, y: -0.000011444092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3588403213820771042
 MonoBehaviour:
@@ -14965,7 +15051,7 @@ GameObject:
   - component: {fileID: 4115211973492929831}
   - component: {fileID: 4115211973492929832}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ExitConfirm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15500,7 +15586,7 @@ GameObject:
   - component: {fileID: 4115211973839997229}
   - component: {fileID: 4115211973839997230}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ExitNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17132,7 +17218,7 @@ GameObject:
   - component: {fileID: 4115211974827017812}
   - component: {fileID: 4115211974827017813}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ExitYes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18163,6 +18249,7 @@ Transform:
   - {fileID: 9038259790941726006}
   - {fileID: 870233562}
   - {fileID: 192414427}
+  - {fileID: 334224968896195277}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23779,7 +23866,7 @@ GameObject:
   - component: {fileID: 8484469082928148657}
   - component: {fileID: 8484469082928148658}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LevelEndContinue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24409,7 +24496,7 @@ GameObject:
   - component: {fileID: 8484469083653587407}
   - component: {fileID: 8484469083653587400}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LevelEndText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25066,7 +25153,7 @@ GameObject:
   - component: {fileID: 8484469083933254784}
   - component: {fileID: 8484469083933254785}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LevelEndMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26780,7 +26867,7 @@ GameObject:
   - component: {fileID: 9038259790603961771}
   - component: {fileID: 9038259790603961768}
   m_Layer: 5
-  m_Name: ADS_Tmp
+  m_Name: DeathADS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28801,7 +28888,7 @@ GameObject:
   - component: {fileID: 9038259791530368340}
   - component: {fileID: 9038259791530368341}
   m_Layer: 5
-  m_Name: spawn_Tmp
+  m_Name: DeathMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29197,7 +29284,7 @@ GameObject:
   - component: {fileID: 9038259791626415421}
   - component: {fileID: 9038259791626415418}
   m_Layer: 5
-  m_Name: GameOver_Tmp
+  m_Name: DeathGameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30265,7 +30352,7 @@ GameObject:
   - component: {fileID: 9038259792096649639}
   - component: {fileID: 9038259792096649636}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: LevelEndTBC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30641,10 +30728,10 @@ RectTransform:
   m_Father: {fileID: 2301223350886044320}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.46031833, y: 0.5064543}
+  m_AnchorMin: {x: 0.40712497, y: 0.5064543}
   m_AnchorMax: {x: 0.75200003, y: 0.8673309}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.01335907}
-  m_SizeDelta: {x: 0, y: -0.026741028}
+  m_AnchoredPosition: {x: 0.0007019043, y: 0.01335907}
+  m_SizeDelta: {x: 0.0013275146, y: -0.026741028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9038259792246084326
 CanvasRenderer:
@@ -30701,7 +30788,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.85
+  m_fontSize: 40
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
