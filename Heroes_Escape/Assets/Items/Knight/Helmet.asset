@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3ad03a8a2b17c4c9526d85479ae34b, type: 3}
+  m_Name: Helmet
+  m_EditorClassIdentifier: 
+  itemName: "\u0428\u043B\u0435\u043C"
+  inventorySprite: {fileID: -182906879593595776, guid: df3596a767a5ff04b96c7779202d259f,
+    type: 3}
+  type: 1
+  stackable: 0
+  canBeApplied: 1
+  description: 
+  defence: 0
+  animator: {fileID: 9100000, guid: 1b41ebd8a519ee54fb24c6b611ea0b56, type: 2}
+  classType: 0
+  equipmentType: 0

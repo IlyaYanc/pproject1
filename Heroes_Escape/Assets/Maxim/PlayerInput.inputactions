@@ -1,0 +1,29 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "a3b09d11-fbf8-4ff5-99ce-23e6edadccca",
+            "actions": [
+                {
+                    "name": "Open",
+                    "type": "Button",
+                    "id": "b68d598d-d019-45f0-abc5-fca1a506b853",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "3a3cd569-5c22-4086-bac5-193232ec2cab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,0 +1,10 @@
+1. Managers - Loot Manager
+2. Всем интерактивным тег Interactive и BoxCollider2D trigger
+3. При добавлении сундуков указать им лут менеджер
+4. Рычагам указать сундук
+
+Для тестов свайпов и тачей:
+Window - Analysis - Input Debugger - Options - Simulate Touch Input From MOuse or Pen
+
+Для тестов крестовины 
+Simulate Touch Input From MOuse or Pen выключить!!!!!!!!

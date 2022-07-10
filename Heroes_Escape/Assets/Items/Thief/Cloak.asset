@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3ad03a8a2b17c4c9526d85479ae34b, type: 3}
+  m_Name: Cloak
+  m_EditorClassIdentifier: 
+  itemName: "\u041F\u043B\u0430\u0449"
+  inventorySprite: {fileID: 1279517537747117101, guid: a6fe4d51afd82ff45b95008b83066386,
+    type: 3}
+  type: 1
+  stackable: 0
+  canBeApplied: 1
+  description: 
+  defence: 0
+  animator: {fileID: 9100000, guid: 623d2e2fbab759845bb1b8eb8e77ece5, type: 2}
+  classType: 3
+  equipmentType: 0
