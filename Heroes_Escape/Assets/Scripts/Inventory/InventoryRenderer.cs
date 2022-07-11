@@ -11,6 +11,8 @@ public class InventoryRenderer : MonoBehaviour
 {
     [SerializeField] private InventoryComponent inventory;
     [SerializeField] private GameObject wholeContainer;
+    [SerializeField] private InventoryTranslator translator;
+    [SerializeField] private ItemsTranslator itemsTtranslator;
 
     //Inventory
     [SerializeField] private GameObject container;
@@ -31,6 +33,7 @@ public class InventoryRenderer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ActiveItemDescription;
     [SerializeField] private UnityEngine.UI.Button ActiveItemButton;
     [SerializeField] private UnityEngine.UI.Button DeleteButton;
+    [SerializeField] private TextMeshProUGUI DeleteButtonText;
     [SerializeField] private TextMeshProUGUI textToHide;
     private InventoryItem activeItem;
     
@@ -55,6 +58,8 @@ public class InventoryRenderer : MonoBehaviour
         _manager = GetComponent<TimerManager>();
         
         ActiveItemButton.gameObject.SetActive(false);
+        translator.Translate();
+        DeleteButtonText.text = translator.removeText;
         DeleteButton.gameObject.SetActive(false);
         //wholeContainer.SetActive(false);
 
@@ -158,21 +163,23 @@ public class InventoryRenderer : MonoBehaviour
             textToHide.text = "";
             return;
         }
-        textToHide.text = "тип:";
+        textToHide.text = translator.typeText;
         ActiveItemImage.color = new Color(100,100,100, 100);
-        ActiveItemName.text = _item.item.itemName;
-        ActiveItemDescription.text = _item.item.description;
-        if(_item.item.type == ItemType.Weapon)
+        //ActiveItemName.text = _item.item.itemName;
+        ActiveItemName.text = itemsTtranslator.usedTranslations.FindName(_item.item);
+        //ActiveItemDescription.text = _item.item.description;
+        ActiveItemDescription.text = itemsTtranslator.usedTranslations.FindDescription(_item.item);
+        if (_item.item.type == ItemType.Weapon)
         {
-            ActiveItemDescription.text += "\nбазовый урон: " + _item.damage;// * attackControllers[_x].GetDamageMultiplier();
+            ActiveItemDescription.text += translator.baseDamageText + _item.damage;// * attackControllers[_x].GetDamageMultiplier();
             
         }
         ActiveItemType.text = _item.item.type.ToString();
         switch (_item.item.type)
         {
-            case ItemType.Equipment: ActiveItemType.text = "экипировка"; break;
-            case ItemType.Weapon: ActiveItemType.text = "оружие"; break;
-            case ItemType.Food: ActiveItemType.text = "еда"; break;
+            case ItemType.Equipment: ActiveItemType.text = translator.equipmentText; break;
+            case ItemType.Weapon: ActiveItemType.text = translator.weaponText; break;
+            case ItemType.Food: ActiveItemType.text = translator.foodText; break;
                 
         }
         
@@ -188,13 +195,13 @@ public class InventoryRenderer : MonoBehaviour
         if (_item.item.canBeApplied)
         {
             
-            btnText.text = !_item.isApplied ? "надеть" : "снять";
+            btnText.text = !_item.isApplied ? translator.applyText : translator.takeOffText;
 
             ActiveItemButton.onClick.AddListener(() => ApplyItem(_item, _x));
         }
         else
         {
-            btnText.text = "использовать";
+            btnText.text = translator.useText;
             ActiveItemButton.onClick.AddListener(() => UseItem(_item, _x));
         }
         
@@ -368,7 +375,7 @@ public class InventoryRenderer : MonoBehaviour
         
         _item.isApplied = !_item.isApplied;
         
-        btnText.text = !_item.isApplied ? "надеть" : "снять";
+        btnText.text = !_item.isApplied ? translator.applyText : translator.takeOffText;
         inventory.ChangeItem(_item, _x);
         UpdateInventory(inventory.ReturnItems());
     }

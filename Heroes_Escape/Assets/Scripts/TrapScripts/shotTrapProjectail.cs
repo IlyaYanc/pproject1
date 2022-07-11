@@ -8,7 +8,7 @@ public class shotTrapProjectail : MonoBehaviour
     private DamageInputController.DamageType _dmgForPlayer;
     private float _fireTime;
     private float _damage;
-    private float _speed = 7f;
+    private float _speed;
     private Transform _transform;
     private GameObject player;
 
@@ -23,10 +23,9 @@ public class shotTrapProjectail : MonoBehaviour
     void Update()
     {
         Vector3 newPos = _transform.position + transform.up * _speed * Time.deltaTime;
-        Debug.Log(_speed);
         transform.position = newPos;
     }
-    public shotTrapProjectail(float speed, float damage, weaponType weaponType, DamageInputController.DamageType damageType, float fireTime)
+    public void shotTrapProjectailParameters(float speed, float damage, weaponType weaponType, DamageInputController.DamageType damageType, float fireTime)
     {
         _dmgForEnemy = weaponType;
         _dmgForPlayer = damageType;

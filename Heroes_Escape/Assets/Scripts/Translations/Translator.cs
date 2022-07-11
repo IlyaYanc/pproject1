@@ -9,7 +9,7 @@ public class Translator : MonoBehaviour
     void Start()
     {
         // выбрать язык
-        if (Application.systemLanguage == SystemLanguage.Russian)
+        if (Application.systemLanguage != SystemLanguage.Russian)
         {
             Translate(english);
         }

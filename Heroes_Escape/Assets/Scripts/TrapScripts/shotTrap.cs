@@ -22,7 +22,7 @@ public class shotTrap : MonoBehaviour
 
     private void Start()
     {
-        arrow = new GameObject("arrow", typeof(shotTrapProjectail));
+        //arrow = new GameObject("arrow", typeof(shotTrapProjectail));
         AudS = GetComponent<AudioSource>();
         _manager = GetComponent<TimerManager>();
         shotTimer = new Timer(timerDuration, false, TimerComplete);
@@ -72,7 +72,8 @@ public class shotTrap : MonoBehaviour
     }
     public void Shoot()
     {
-        //GameObject project = Instantiate(arrow, transform.position, transform.rotation);
+        GameObject project = Instantiate(_projectail, transform.position, transform.rotation);
+        project.GetComponent<shotTrapProjectail>().shotTrapProjectailParameters(_sped, _damage, _dmgForEnemy, _dmgForPlayer, _fireTime);
         AudS.Play();
     }
     
