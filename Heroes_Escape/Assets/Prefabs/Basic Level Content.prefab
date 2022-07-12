@@ -21510,7 +21510,7 @@ GameObject:
   - component: {fileID: 6570710750503267211}
   - component: {fileID: 6570710750503267208}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: remove_btnText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23122,6 +23122,8 @@ GameObject:
   - component: {fileID: 8484469082503877203}
   - component: {fileID: 8484469082503877202}
   - component: {fileID: 8484469082503877200}
+  - component: {fileID: 2376507262895803078}
+  - component: {fileID: 7257516912873817300}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -23177,6 +23179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 8484469082503877203}
   wholeContainer: {fileID: 2884791870651136689}
+  translator: {fileID: 2376507262895803078}
+  itemsTtranslator: {fileID: 7257516912873817300}
   container: {fileID: 2884791872137771400}
   attackControllers:
   - {fileID: 9038259791979336478}
@@ -23191,6 +23195,7 @@ MonoBehaviour:
   ActiveItemDescription: {fileID: 6052662339097418121}
   ActiveItemButton: {fileID: 6052662338692712577}
   DeleteButton: {fileID: 6052662339731937636}
+  DeleteButtonText: {fileID: 6570710750503267208}
   textToHide: {fileID: 3588403212624074147}
   HpControllers:
   - {fileID: 9038259791979336479}
@@ -23225,6 +23230,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088b3e8b99516444fa0d26bd41ebc249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2376507262895803078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484469082503877292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab1b91a4785e1b41afaf9ed005825a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeText: 
+  baseDamageText: 
+  equipmentText: 
+  weaponText: 
+  foodText: 
+  applyText: 
+  takeOffText: 
+  useText: 
+  removeText: 
+--- !u!114 &7257516912873817300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484469082503877292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8732c6cfd5aee43488e352f9c81556dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: {fileID: 11400000, guid: ca3a90ac19d3e0d4ab930df9c86b4ca9, type: 2}
+  russian: {fileID: 11400000, guid: 50e4008afe5ed904eb4abe5b1a7cd640, type: 2}
+  usedTranslations: {fileID: 0}
 --- !u!1 &8484469082657451698
 GameObject:
   m_ObjectHideFlags: 0
@@ -24581,7 +24622,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.65
+  m_fontSize: 70
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -29363,7 +29404,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 145.05
+  m_fontSize: 128.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

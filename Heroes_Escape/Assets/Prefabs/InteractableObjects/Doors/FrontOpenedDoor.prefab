@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openValue: 0
-  multipleLevers: 1
+  multipleLevers: 0
   sRenderer: {fileID: 2747629038817219141}
   openLock: {fileID: 8300000, guid: 44d98c5918a651a4ab04f9ebe802279c, type: 3}
   open: {fileID: 8300000, guid: 74205be44571ba44c8b47f4da4c91729, type: 3}
