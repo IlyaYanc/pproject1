@@ -32,6 +32,7 @@ public class Door : activObject
     [SerializeField] private MonoBehaviour shadowCasterOpened;
 
     [SerializeField] private GameObject[] roomObjects = new GameObject[0];
+    [SerializeField] private GameObject[] objectsToDeactivate = new GameObject[0];
 
     private void Start()
     {
@@ -47,6 +48,7 @@ public class Door : activObject
             shadowCasterOpened.enabled = false;
         }
         DeactivateRoomObjects();
+        ActivateObjects();
     }
 
     /* private void Update()
@@ -75,6 +77,7 @@ public class Door : activObject
         AudS.clip = open;
         AudS.Play();
         ActivateRoomObjects();
+        DeactivateObjects();
     }
   
     public override void SetStage(int _stage)
@@ -128,7 +131,8 @@ public class Door : activObject
     {
         for(int i = 0; i<roomObjects.Length; i++)
         {
-            roomObjects[i].SetActive(true);
+            if(roomObjects[i] != null)
+                roomObjects[i].SetActive(true);
         }
     }
 
@@ -136,7 +140,26 @@ public class Door : activObject
     {
         for (int i = 0; i < roomObjects.Length; i++)
         {
-            roomObjects[i].SetActive(false);
+            if (roomObjects[i] != null)
+                roomObjects[i].SetActive(false);
+        }
+    }
+
+    private void DeactivateObjects()
+    {
+        for (int i = 0; i < objectsToDeactivate.Length; i++)
+        {
+            if (objectsToDeactivate[i] != null)
+                objectsToDeactivate[i].SetActive(false);
+        }
+    }
+
+    private void ActivateObjects()
+    {
+        for (int i = 0; i < objectsToDeactivate.Length; i++)
+        {
+            if (objectsToDeactivate[i] != null)
+                objectsToDeactivate[i].SetActive(true);
         }
     }
 }
